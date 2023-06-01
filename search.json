@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\n            Cognitive Diagnostic Models With R and Stan\n        ",
+    "section": "",
+    "text": "Cognitive Diagnostic Models With R and Stan\n        \n        \n            Estimate and evaluate diagnostic models\n        \n        \n            StanCon 2023\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\nInstructor\n\n   W. Jake Thompson, Ph.D.\n   University of Kansas\n   wjakethompson@ku.edu\n   wjakethompson\n\n\n\nCourse details\n\n   June 21, 2023\n   8:30am–12:00pm\n   Washington University in St. Louis"
+  },
+  {
+    "objectID": "materials/01-intro.html",
+    "href": "materials/01-intro.html",
+    "title": "Welcome!",
+    "section": "",
+    "text": "In this session…\n Open slides in new window"
+  },
+  {
+    "objectID": "materials/02-dcm-intro.html",
+    "href": "materials/02-dcm-intro.html",
+    "title": "Introduction to Diagnostic Classification Models",
+    "section": "",
+    "text": "In this session…"
+  },
+  {
+    "objectID": "materials/index.html",
+    "href": "materials/index.html",
+    "title": "Materials",
+    "section": "",
+    "text": "Something…"
+  },
+  {
+    "objectID": "materials/slides/01-intro-slides.html#introductions",
+    "href": "materials/slides/01-intro-slides.html#introductions",
+    "title": "Cognitive diagnostic  models",
+    "section": "Introductions",
+    "text": "Introductions\n\n\nJake Thompson\nAssistant Director of Psychometrics\nATLAS | University of Kansas\n\n\n\n\n   @wjakethompson\n   @wjakethompson"
+  },
+  {
+    "objectID": "materials/slides/01-intro-slides.html#acknowledgements",
+    "href": "materials/slides/01-intro-slides.html#acknowledgements",
+    "title": "Cognitive diagnostic  models",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\n\n\n\nThe research reported here was supported by the Institute of Education Sciences, U.S. Department of Education, through Grant R305D210045 to the University of Kansas. The opinions expressed are those of the authors and do not represent the views of the the Institute or the U.S. Department of Education."
+  },
+  {
+    "objectID": "materials/slides/01-intro-slides.html#schedule",
+    "href": "materials/slides/01-intro-slides.html#schedule",
+    "title": "Cognitive diagnostic  models",
+    "section": "Schedule",
+    "text": "Schedule\n\n\nPart 1: Foundations\nBrief introduction to DCMs\nTheoretical underpinnings\n\n\nPart 2: Applications\nModel estimation and evaluation"
+  },
+  {
+    "objectID": "materials/slides/01-intro-slides.html#materials",
+    "href": "materials/slides/01-intro-slides.html#materials",
+    "title": "Cognitive diagnostic  models",
+    "section": "Materials",
+    "text": "Materials\nAll materials are available on the workshop website: https://stancon2023.measr.info"
+  },
+  {
+    "objectID": "materials/slides/01-intro-slides.html#installation",
+    "href": "materials/slides/01-intro-slides.html#installation",
+    "title": "Cognitive diagnostic  models",
+    "section": "Installation",
+    "text": "Installation\n\nRequired\n\nR (≥ 4.2)\nrstan (≥ 2.21.8)\nmeasr (≥ 0.3.1)\n\nRecommended\n\nRStudio (≥ 2023.03.1+446)\ncmdstanr (≥ 0.5.3)\nCmdStan (≥ 2.32.2)"
+  },
+  {
+    "objectID": "materials/slides/01-intro-slides.html#copy-and-run",
+    "href": "materials/slides/01-intro-slides.html#copy-and-run",
+    "title": "Cognitive diagnostic  models",
+    "section": "Copy and run",
+    "text": "Copy and run\n\ninstall.packages(c(\"rstan\", \"StanHeaders\", \"cmdstanr\"),\n                 repos = c(\"https://mc-stan.org/r-packages\", getOption(\"repos\")))\n\n# check toolchain\ncmdstanr::check_cmdstan_toolchain()\ncmdstanr::install_cmdstan(cores = 2)\n\ninstall.packages(\"measr\")\n\nFor help installing RStan or configuring the toolchain, see the RStan help pages."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "show_table &lt;- function(group_id) {\n  # Add a heading\n  cat(as.character(paste(\"\\n\\n###\", schedule_nested$group[[group_id]], \"\\n\\n\")))\n  \n  # Make the table\n  tbl &lt;- schedule_nested$data[[group_id]] %&gt;% \n    select(-subgroup) %&gt;% \n    kbl(escape = FALSE, align = \"rlccc\", table.attr = 'class=\"schedule-table\"') %&gt;% \n    kable_styling() %&gt;% \n    column_spec(1, width = \"20%\", extra_css = \"padding-right: 20px;\") %&gt;% \n    column_spec(2, width = \"50%\") %&gt;% \n    column_spec(3:5, width = \"10%\") %&gt;% \n    pack_rows(index = schedule_nested$subgroup_index[[group_id]],\n              label_row_css = \"border-bottom: 2px solid #000000;\")\n  \n  cat(tbl)\n}"
+  }
+]
