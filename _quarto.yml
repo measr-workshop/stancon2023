@@ -1,0 +1,67 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+
+execute: 
+  freeze: auto
+
+description-meta: "Use modern Bayesian methods to estimate and evaluation diagnostic classification models."
+
+website:
+  title: "measr"
+  site-url: "https://stancon2023.measr.info"
+  
+  favicon: "/files/icon-180.png"
+  
+  twitter-card:
+    image: "/files/social-image-measr.png"
+    card-style: summary_large_image
+    creator: "@wjakethompson"
+    site: "@atlas4learning"
+  
+  open-graph:
+    image: "/files/social-image-measr.png"
+    locale: en_US
+  
+  navbar:
+    pinned: true
+    background: "#023047"
+    right:
+      - schedule.qmd
+      - text: "Materials"
+        file: materials/index.qmd
+
+  sidebar:
+    - title: "Materials"
+      style: "docked"
+      search: false
+      background: primary
+      contents:
+        - section: "Overview"
+          contents: 
+            - materials/index.qmd
+        - section: "Workshop Content"
+          contents: 
+            - text: "Welcome!"
+              file: materials/01-intro.qmd
+            - text: "Intro to DCMs"
+              file: materials/02-dcm-intro.qmd
+  
+  page-footer:
+    left: |
+        Content {{< fa brands creative-commons >}} {{< var event.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
+        All content licensed under a {{< fa brands creative-commons >}}
+        {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
+        [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+    right: |
+        Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/)<br>
+        [View the source at {{< fa brands github >}} GitHub]({{< var event.github >}})
+
+format:
+  html:
+    theme:
+      - litera
+      - html/custom.scss
+    toc: true
+    highlight-style: github

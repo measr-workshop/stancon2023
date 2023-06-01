@@ -1,0 +1,28 @@
+author: Jake Thompson
+
+instructor:
+  name: W. Jake Thompson, Ph.D.
+  name_no_title: Jake Thompson
+  work: University of Kansas
+  work_url: "https://atlas.ku.edu"
+  email: wjakethompson@ku.edu
+  url: "https://wjakethompson.com"
+  twitter: wjakethompson
+  github: wjakethompson
+
+event:
+  time: "8:30am–12:00pm"
+  location: "Washington University in St. Louis"
+  room: "Hilman Hall 70"
+  dates: "June 21, 2023"
+  github: "https://www.github.com/wjakethompson/measr-stancon2023"
+  url: "https://stancon2023.measr.info"
+  copyright_year: "2023"
+
+university:
+  name: University of Kansas
+  url: "https://ku.edu"
+
+center:
+  name: Accessible Teaching, Learning, and Assessment Systems
+  url: "https://atlas.ku.edu/"

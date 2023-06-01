@@ -1,0 +1,106 @@
+---
+title: Cognitive diagnostic </br> models
+subtitle: With R and Stan
+author: W. Jake Thompson, Ph.D.
+format:
+  measr-quarto-revealjs:
+    progress: false
+    title-slide-attributes: 
+      data-background-image: figure/backgrounds/ku-title.png
+      data-background-size: contain
+---
+
+# Welcome! {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Introductions {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+:::{.column width="50%"}
+<br><br>Jake Thompson  
+Assistant Director of Psychometrics  
+[ATLAS](https://atlas.ku.edu) | University of Kansas
+:::
+
+:::{.column width="50%"}
+:::{.center}
+<img style="border-radius: 50%;" src="figure/images/thompson-2022-07.jpg" width="400px"/>
+
+:::{.small}
+{{< fa brands twitter >}} &nbsp; [@{{< var instructor.twitter >}}](https://www.twitter.com/{{< var instructor.twitter >}})  
+{{< fa brands github >}} &nbsp; [@{{< var instructor.github >}}](https://www.gitub.com/{{< var instructor.github >}})
+:::
+:::
+:::
+:::
+
+## Acknowledgements {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+:::{.column width="50%"}
+:::{.small}
+<br>The research reported here was supported by the Institute of Education Sciences, U.S. Department of Education, through Grant [R305D210045](https://ies.ed.gov/funding/grantsearch/details.asp?ID=4546) to the University of Kansas. The opinions expressed are those of the authors and do not represent the views of the the Institute or the U.S. Department of Education.
+:::
+:::
+
+:::{.column width="50%"}
+:::{.center}
+![](figure/images/ies.jpg){fig-alt="Logo for the Institute of Education Sciences"}
+:::
+:::
+:::
+
+## Schedule {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+
+:::{.column .center width="50%"}
+### Part 1: Foundations
+
+Brief introduction to DCMs
+
+Theoretical underpinnings
+
+
+:::
+
+:::{.column .center .fragment width="50%"}
+### Part 2: Applications
+
+Model estimation and evaluation
+
+![](figure/images/combined-logos.png){fig-align="center"}
+:::
+:::
+
+## Materials {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+All materials are available on the workshop website: https://stancon2023.measr.info
+
+## Installation {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Required
+  * R (≥ 4.2)
+  * rstan (≥ 2.21.8)
+  * measr (≥ 0.3.1)
+
+* Recommended
+  * RStudio (≥ 2023.03.1+446)
+  * cmdstanr (≥ 0.5.3)
+  * CmdStan (≥ 2.32.2)
+
+## Copy and run {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r}
+#| echo: true
+#| eval: false
+install.packages(c("rstan", "StanHeaders", "cmdstanr"),
+                 repos = c("https://mc-stan.org/r-packages", getOption("repos")))
+
+# check toolchain
+cmdstanr::check_cmdstan_toolchain()
+cmdstanr::install_cmdstan(cores = 2)
+
+install.packages("measr")
+```
+
+For help installing RStan or configuring the toolchain, see the [RStan help pages](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).
