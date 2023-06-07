@@ -2,7 +2,7 @@
 title: "Welcome!"
 ---
 
-In this session...
+This session provides a brief introduction to the workshop and describes the required software for following along with the example code.
 
 ```{=html}
 <p class="buttons"><a class="btn btn-danger" target="_blank" href="slides/01-intro-slides.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open slides in new window</a>

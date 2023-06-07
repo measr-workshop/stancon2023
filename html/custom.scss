@@ -91,6 +91,21 @@ div.sidebar-item-container .active, div.sidebar-item-container .show > .nav-link
   color: $yellow;
 }
 
+.quarto-secondary-nav nav.quarto-page-breadcrumbs a {
+  color: $lightblue;
+}
+
+.quarto-secondary-nav nav.quarto-page-breadcrumbs a:hover {
+  color: $blue;
+}
+
+i.bi.bi-chevron-right.ms-2 {
+  color: $lightblue;
+}
+
+i.bi.bi-chevron-right.ms-2:hover {
+  color: $blue;
+}
 
 // Home page stuff
 .title-block {
@@ -244,6 +259,18 @@ p a.btn, .buttons span.btn {
   color: $darkblue;
   background-color: $lightblue;
   border-color: $lightblue;
+}
+
+.btn-danger:active {
+  color: $lightblue;
+  background-color: $darkblue;
+  border-color: $darkblue;
+}
+
+.btn-danger:focus {
+  color: $lightblue;
+  background-color: $darkblue;
+  border-color: $darkblue;
 }
 
 main {
