@@ -4,21 +4,21 @@
     "href": "index.html",
     "title": "\n            Cognitive Diagnostic Models With R and Stan\n        ",
     "section": "",
-    "text": "Cognitive Diagnostic Models With R and Stan\n        \n        \n            Estimate and evaluate diagnostic models\n        \n        \n            StanCon 2023\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\nInstructor\n\n   W. Jake Thompson, Ph.D.\n   University of Kansas\n   wjakethompson@ku.edu\n   wjakethompson\n\n\n\nCourse details\n\n   June 21, 2023\n   8:30am–12:00pm\n   Washington University in St. Louis"
+    "text": "Cognitive Diagnostic Models With R and Stan\n        \n        \n            Estimate and evaluate diagnostic models\n        \n        \n            StanCon 2023\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\nInstructor\n\n   W. Jake Thompson, Ph.D.\n   University of Kansas\n   wjakethompson@ku.edu\n   @wjakethompson\n   @wjakethompson@fosstodon.org\n\n\n\nCourse details\n\n   June 21, 2023\n   8:30am–12:00pm\n   Washington University in St. Louis"
   },
   {
     "objectID": "materials/01-intro.html",
     "href": "materials/01-intro.html",
     "title": "Welcome!",
     "section": "",
-    "text": "In this session…\n Open slides in new window"
+    "text": "This session provides a brief introduction to the workshop and describes the required software for following along with the example code.\n Open slides in new window"
   },
   {
     "objectID": "materials/02-dcm-intro.html",
     "href": "materials/02-dcm-intro.html",
     "title": "Introduction to Diagnostic Classification Models",
     "section": "",
-    "text": "In this session…"
+    "text": "This session provides a brief introduction to diagnostic classification models, including conceptual and statistical foundations.\n Open slides in new window"
   },
   {
     "objectID": "materials/index.html",
@@ -68,6 +68,181 @@
     "title": "Cognitive diagnostic  models",
     "section": "Copy and run",
     "text": "Copy and run\n\ninstall.packages(c(\"rstan\", \"StanHeaders\", \"cmdstanr\"),\n                 repos = c(\"https://mc-stan.org/r-packages\", getOption(\"repos\")))\n\n# check toolchain\ncmdstanr::check_cmdstan_toolchain()\ncmdstanr::install_cmdstan(cores = 2)\n\ninstall.packages(\"measr\")\n\nFor help installing RStan or configuring the toolchain, see the RStan help pages."
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#section",
+    "href": "materials/slides/02-dcm-intro-slides.html#section",
+    "title": "Diagnostic classification  models",
+    "section": "",
+    "text": "Traditional assessments and psychometric models measure an overall skill or ability\nAssume a continuous latent trait"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#traditional-methods",
+    "href": "materials/slides/02-dcm-intro-slides.html#traditional-methods",
+    "title": "Diagnostic classification  models",
+    "section": "Traditional methods",
+    "text": "Traditional methods\n\nThe output is a weak ordering of teams due to error in estimates\n\nConfident Portland Thorns are the best\nNot confident who is second best (OL Reign, North Carolina Courage, San Diego Wave)\n\nLimited in the types of questions that can be answered.\n\nWhy is Kansas City so low?\nWhat aspects are teams competent/proficient in?\nHow much skill is “enough” to pass?"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#soccer-example",
+    "href": "materials/slides/02-dcm-intro-slides.html#soccer-example",
+    "title": "Diagnostic classification  models",
+    "section": "Soccer example",
+    "text": "Soccer example\n\n\n\nRather than measuring overall team strength, we can break soccer down into set of skills or attributes\n\nFinishing\nPossession\nDefending\nGoalkeeping\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAttributes are categorical, often dichotomous (e.g., proficient vs. non-proficient)"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#diagnostic-classification-models",
+    "href": "materials/slides/02-dcm-intro-slides.html#diagnostic-classification-models",
+    "title": "Diagnostic classification  models",
+    "section": "Diagnostic classification models",
+    "text": "Diagnostic classification models\n\nDCMs place individuals into groups according to proficiency of multiple attributes\n\n\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      \n      finishing\n      possession\n      defending\n      goalkeeping\n    \n  \n  \n    \nXmark\nCheck\nXmark\nXmark\n    \nCheck\nCheck\nCheck\nXmark\n    \nCheck\nXmark\nXmark\nCheck\n    \nCheck\nCheck\nCheck\nXmark"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#answering-more-questions",
+    "href": "materials/slides/02-dcm-intro-slides.html#answering-more-questions",
+    "title": "Diagnostic classification  models",
+    "section": "Answering more questions",
+    "text": "Answering more questions\n\nWhy is Kansas City so low?\n\nPoor finishing, defending, and goalkeeping\n\nWhat aspects are teams competent/proficient in?\n\nDCMs provide classifications directly"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#diagnostic-psychometrics",
+    "href": "materials/slides/02-dcm-intro-slides.html#diagnostic-psychometrics",
+    "title": "Diagnostic classification  models",
+    "section": "Diagnostic psychometrics",
+    "text": "Diagnostic psychometrics\n\nDesigned to be multidimensional\nNo continuum of student achievement\nCategorical constructs\n\nUsually binary (e.g., master/nonmaster, proficient/not proficient)\n\nSeveral different names in the literature\n\nDiagnostic classification models (DCMs)\nCognitive diagnostic models (CDMs)\nSkills assessment models\nLatent response models\nRestricted latent class models"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#when-are-dcms-appropriate",
+    "href": "materials/slides/02-dcm-intro-slides.html#when-are-dcms-appropriate",
+    "title": "Diagnostic classification  models",
+    "section": "When are DCMs appropriate?",
+    "text": "When are DCMs appropriate?\nSuccess depends on:\n\nDomain definitions\n\nWhat are the attributes we’re trying to measure?\nAre the attributes measurable (e.g., with assessment items)?\n\nAlignment of purpose between assessment and model\n\nIs classification the purpose?"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#example-applications",
+    "href": "materials/slides/02-dcm-intro-slides.html#example-applications",
+    "title": "Diagnostic classification  models",
+    "section": "Example applications",
+    "text": "Example applications\n\nEducational measurement: The competencies that student is or is not proficient in\n\nLatent knowledge, skills, or understandings\nUsed for tailored instruction and remediation\n\nPsychiatric assessment: The DSM criteria that an individual meets\n\nBroader diagnosis of a disorder"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#when-are-dcms-not-appropriate",
+    "href": "materials/slides/02-dcm-intro-slides.html#when-are-dcms-not-appropriate",
+    "title": "Diagnostic classification  models",
+    "section": "When are DCMs not appropriate?",
+    "text": "When are DCMs not appropriate?\n\nWhen the goal is to place individuals on a scale\nDCMs do not distinguish within classes\n\n\n\n\n\n\n\n\n\n\n  \n    \n    \n    \n    \n    \n  \n  \n    \n    \n      \n      finishing\n      possession\n      defending\n      goalkeeping\n    \n  \n  \n    \nCheck\nCheck\nCheck\nXmark\n    \nCheck\nCheck\nCheck\nXmark"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#conceptual-foundation-summary",
+    "href": "materials/slides/02-dcm-intro-slides.html#conceptual-foundation-summary",
+    "title": "Diagnostic classification  models",
+    "section": "Conceptual foundation summary",
+    "text": "Conceptual foundation summary\n\n\n\nDCMs are psychometric models designed to classify\n\nWe can define our attributes in any wya that we choose\nItems depend on the attribute definitions\nClassifications are probabilistic\nTakes fewer items to classify than to rank/scale\n\n\n\n\nDCMs provide valuable information with more feasible data demands than other psychometric models\n\nHigher reliability than IRT/MIRT models\nNaturally accommodates multidimensionality\nComplex item structures possible\nCriterion-referenced interpretations\nAlignment of assessment goals and psychometric model"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#statistical-foundation",
+    "href": "materials/slides/02-dcm-intro-slides.html#statistical-foundation",
+    "title": "Diagnostic classification  models",
+    "section": "Statistical foundation",
+    "text": "Statistical foundation\n\nLatent class models use responses to probabilistically place individuals into latent classes\nDCMs are confirmatory latent class models\n\nLatent classes specified a priori as attribute profiles\nQ-matrx specifies item-attribute structure\nPerson parameters are attribute proficiency probabilities"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#terminology",
+    "href": "materials/slides/02-dcm-intro-slides.html#terminology",
+    "title": "Diagnostic classification  models",
+    "section": "Terminology",
+    "text": "Terminology\n\nRespondents (r): The individuals from whom behavioral data are collected\n\nFor today, this is dichotomous assessment item responses\nNot limited to only item responses in practice\n\nItems (i): Assessment questions used to classify/diagnose respondents\nAttributes (a): Unobserved latent categorical characteristics underlying the behaviors (i.e., diagnostic status)\n\nLatent variables\n\nDiagnostic Assessment: The method used to elicit behavioral data"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#attribute-profiles",
+    "href": "materials/slides/02-dcm-intro-slides.html#attribute-profiles",
+    "title": "Diagnostic classification  models",
+    "section": "Attribute profiles",
+    "text": "Attribute profiles\n\nWith binary attributes, there are \\(2^A\\) possible profiles\nExample 2-attribute assessment:\n\n\n[0, 0]\n[1, 0]\n[0, 1]\n[1, 1]"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#dcms-as-latent-class-models",
+    "href": "materials/slides/02-dcm-intro-slides.html#dcms-as-latent-class-models",
+    "title": "Diagnostic classification  models",
+    "section": "DCMs as latent class models",
+    "text": "DCMs as latent class models\n\\[\n\\color{#D55E00}{P(X_r=x_r)} = \\sum_{c=1}^C\\color{#009E73}{\\nu_c} \\prod_{i=1}^I\\color{#56B4E9}{\\pi_{ic}^{x_{ir}}(1-\\pi_{ic})^{1 - x_{ir}}}\n\\]\n\nObserved data: Probability of observing examinee r's item reponses\n\n\nStructural component: Proportion of examinees in each class\n\n\nMeasurement component: Product of item response probabilities"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#item-response-probabilities",
+    "href": "materials/slides/02-dcm-intro-slides.html#item-response-probabilities",
+    "title": "Diagnostic classification  models",
+    "section": "Item response probabilities",
+    "text": "Item response probabilities\n\nNumerous DCMs have been developed over the years\nEach DCM makes different assumptions about how attributes proficiencies combine/interact to produce an item response"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#non-compensatory-dcms",
+    "href": "materials/slides/02-dcm-intro-slides.html#non-compensatory-dcms",
+    "title": "Diagnostic classification  models",
+    "section": "Non-compensatory DCMs",
+    "text": "Non-compensatory DCMs\n\n\n\nMust be proficient in all attributes measured by the item to provide a correct response\nDeterministic inputs, noisy “and” gate (DINA; de la Torre & Douglas, 2004)"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#compensatory-dcms",
+    "href": "materials/slides/02-dcm-intro-slides.html#compensatory-dcms",
+    "title": "Diagnostic classification  models",
+    "section": "Compensatory DCMs",
+    "text": "Compensatory DCMs\n\n\n\nMust be proficient in at least 1 attribute measured by the item to provide a correct response\nDeterministic inputs, noisy “or” gate (DINO; Templin & Henson, 2006)"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#general-dcms",
+    "href": "materials/slides/02-dcm-intro-slides.html#general-dcms",
+    "title": "Diagnostic classification  models",
+    "section": "General DCMs",
+    "text": "General DCMs\n\n\n\nDifferent response probabilities for each class (partially compensatory)\nLog-linear cognitive diagnostic model (LCDM; Henson et al., 2009)\nThis will be our focus"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#simple-structure-lcdm",
+    "href": "materials/slides/02-dcm-intro-slides.html#simple-structure-lcdm",
+    "title": "Diagnostic classification  models",
+    "section": "Simple structure LCDM",
+    "text": "Simple structure LCDM\nItem measures only 1 attribute\n\\[\n\\text{logit}(X_i = 1) = \\color{#D7263D}{\\lambda_{i,0}} + \\color{#219EBC}{\\lambda_{i,1(1)}}\\color{#009E73}{\\alpha}\n\\]\n\nλi,0: Log-odds when not proficient\n\n\nλi,1(1): Increase in log-odds when proficient\n\n\nα: Attribute proficiency status (either 0 or 1)"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#subscript-notation",
+    "href": "materials/slides/02-dcm-intro-slides.html#subscript-notation",
+    "title": "Diagnostic classification  models",
+    "section": "Subscript notation",
+    "text": "Subscript notation\n\n\n\nλi,e(α1)\n\n\n\ni = The item to which the parameter belongs\n\n\n\n\ne = The level of the effect\n\n0 = intercept\n1 = main effect\n2 = two-way interaction\n3 = three-way interaction\nEtc.\n\n\n\n\n\n\\((\\alpha_1,...)\\) = The attributes to which the effect applies\n\nThe same number of attributes as listed in subscript 2"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#complex-structure-lcdm",
+    "href": "materials/slides/02-dcm-intro-slides.html#complex-structure-lcdm",
+    "title": "Diagnostic classification  models",
+    "section": "Complex structure LCDM",
+    "text": "Complex structure LCDM\nItem measures multiple attributes\n\\[\n\\text{logit}(X_i = 1) = \\color{#D7263D}{\\lambda_{i,0}} + \\color{#4B3F72}{\\lambda_{i,1(1)}\\alpha_1} + \\color{#9589BE}{\\lambda_{i,1(2)}\\alpha_2} +\n\\color{#219EBC}{\\lambda_{i,2(1,2)}\\alpha_1\\alpha_2}\n\\]\n\nLog-odds when proficient in neither attribute\n\n\nIncrease in log-odds when proficient in attribute 1\n\n\nIncrease in log-odds when proficient in attribute 2\n\n\nChange in log-odds when proficient in both attributes"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#defining-dcm-structures",
+    "href": "materials/slides/02-dcm-intro-slides.html#defining-dcm-structures",
+    "title": "Diagnostic classification  models",
+    "section": "Defining DCM structures",
+    "text": "Defining DCM structures\n\nAttribute and item relationships are defined in the Q-matrix\nQ-matrix\n\nI \\(\\times\\) A matrix\n0 = Attribute is not measured by the item\n1 = Attribute is measured by the item"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#the-lcdm-as-a-general-dcm",
+    "href": "materials/slides/02-dcm-intro-slides.html#the-lcdm-as-a-general-dcm",
+    "title": "Diagnostic classification  models",
+    "section": "The LCDM as a general DCM",
+    "text": "The LCDM as a general DCM\n\nSo called “general” DCM because the LCDM subsumes other DCMs\nConstraints on item parameters make LCDM equivalent to other DCMs (e.g., DINA and DINO)\n\nInteractive Shiny app: https://atlas-aai.shinyapps.io/dcm-probs/\nDINA\n\nOnly the intercept and highest-order interaction are non-0\n\nDINO\n\nAll main effects are equal\nAll two-way interactions are -1 \\(\\times\\) main effect\nAll three-way interactions are -1 \\(\\times\\) two-way interaction (i.e., equal to main effects)\nEtc."
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#the-rest-of-today",
+    "href": "materials/slides/02-dcm-intro-slides.html#the-rest-of-today",
+    "title": "Diagnostic classification  models",
+    "section": "The rest of today",
+    "text": "The rest of today\n\nEstimating DCMs with Stan and measr\nEvaluating DCMs with measr"
+  },
+  {
+    "objectID": "materials/slides/02-dcm-intro-slides.html#section-1",
+    "href": "materials/slides/02-dcm-intro-slides.html#section-1",
+    "title": "Diagnostic classification  models",
+    "section": "",
+    "text": "Diagnostic classification models\n\n\nA brief introduction\n\n\nhttps://stancon2023.measr.info"
   },
   {
     "objectID": "schedule.html",
