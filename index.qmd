@@ -23,7 +23,8 @@ course-logo: /files/img/measr-hex.png
 - {{< fa user >}} &nbsp; [{{< var instructor.name >}}]({{< var instructor.url >}})
 - {{< fa university >}} &nbsp; [{{< var instructor.work >}}]({{< var instructor.work_url >}})
 - {{< fa envelope >}} &nbsp; <a href="mailto:{{< var instructor.email >}}">{{< var instructor.email >}}</a>
-- {{< fa brands twitter >}} &nbsp; [{{< var instructor.twitter >}}](https://www.twitter.com/{{< var instructor.twitter >}})
+- {{< fa brands twitter >}} &nbsp; [@{{< var instructor.twitter >}}](https://www.twitter.com/{{< var instructor.twitter >}})
+- {{< fa brands mastodon >}} &nbsp; [@{{< var instructor.mastodon >}}@fosstodon.org](https://www.fosstodon.org/@{{< var instructor.mastodon >}})
 :::
 
 ::: {.g-col-12 .g-col-sm-6}
