@@ -66,6 +66,19 @@ $btn-code-copy-color-active: $theme-darkblue;
   }
 }
 
+/* exercise slides */
+.exercise {
+  a {
+    color: $theme-darkblue;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: $theme-lightblue;
+    background: $theme-darkblue;
+  }
+}
+
 /* section headers */
 .reveal .slides .title-slide h1 {
   font-size: 45pt;

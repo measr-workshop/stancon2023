@@ -1,0 +1,123 @@
+---
+title: Estimating diagnostic </br> classification models
+subtitle: With Stan and measr
+author: W. Jake Thompson, Ph.D.
+format:
+  measr-quarto-revealjs:
+    progress: false
+    title-slide-attributes: 
+      data-background-image: figure/backgrounds/ku-title.png
+      data-background-size: contain
+preload-iframes: true
+---
+
+```{r setup}
+library(tidyverse)
+library(ggmeasr)
+library(ggdist)
+library(magick)
+library(distributional)
+library(knitr)
+library(measr)
+library(here)
+library(fs)
+
+opts_chunk$set(
+  fig.width = 7,
+  fig.asp = 0.618,
+  fig.align = "center"
+)
+
+set_theme(plot_margin = margin(5, 0, 0, 0))
+
+# copy grid-worms
+if (!dir_exists(here("_site/materials/slides/"))) {
+  dir_create(here("_site/materials/slides/"))
+}
+dir_copy(here("materials", "slides", "grid-worms"),
+         here("_site/materials/slides/grid-worms"), overwrite = TRUE)
+```
+
+# Example data {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Data for examples {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Examination for the Certificate of Proficiency in English (ECPE; [Templin & Hoffman, 2013](https://doi.org/10.1111/emip.12010))
+  * 28 items measuring 3 total attributes
+  * 2,922 respondents
+
+* 3 attributes
+  * Morphosyntactic rules
+  * Cohesive rules
+  * Lexical rules
+
+## ECPE data {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r echo = TRUE}
+library(measr)
+
+ecpe_data
+```
+
+## ECPE Q-matrix {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r echo = TRUE}
+ecpe_qmatrix
+```
+
+## Data for exercises {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+* Multiplication data from [MacReady & Dayton (1977)](https://doi.org/0.2307/1164802)
+
+## Exercise 1 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+1. Download the exercise files
+```{r echo = TRUE, eval = FALSE}
+usethis::use_course()
+```
+
+
+## MDM data {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{r echo = TRUE}
+mdm_data
+```
+
+## MDM Q-matrix {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{r echo = TRUE}
+mdm_qmatrix
+```
+
+# Estimation options {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Existing software {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+</br>
+
+:::{.columns}
+:::{.column width="50%"}
+:::{.center}
+### Software Programs
+:::
+
+* Mplus, flexMIRT, mdltm
+* Limitations
+  * Tedious to implement, expensive, limited licenses, etc.
+:::
+
+:::{.column width="50%"}
+:::{.center}
+### R Packages
+:::
+
+* CDM, GDINA, mirt, blatant
+* Limitations
+  * Limited to constrained DCMs, under-documented
+  * Different packages have different functionality, and don't talk to each other
+:::
+:::
+
+# {data-menu-title="measr" background-color="white" background-iframe="grid-worms/index.html"}
+
+![](figure/measr-hex.png){fig-alt="Hex logo for the measr R package."}
