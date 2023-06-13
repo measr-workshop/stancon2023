@@ -49,6 +49,8 @@ website:
               file: materials/02-dcm-intro.qmd
             - text: "Estimating DCMs"
               file: materials/03-estimation.qmd
+            - text: "Evaluating DCMs"
+              file: materials/04-evaluation.qmd
   
   page-footer:
     left: |
