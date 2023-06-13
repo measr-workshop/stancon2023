@@ -36,10 +36,9 @@ class GridWorm
         }
         var colors = 
         [
-            `rgba(142,202,230,${opacity})`/*lightblue*/,
             `rgba(33,158,188,${opacity})`/*blue*/,
-            `rgba(2,48,71,${opacity})`/*darkblue*/,
             `rgba(215,38,61,${opacity})`/*red*/,
+            `rgba(243,211,189,${opacity})`/*cream*/,
             `rgba(0,0,0,${opacity})`
         ];
         if(isRandom)
@@ -97,11 +96,11 @@ class GridWorm
                     break; 
                 case 1: 
                     radius  =circleradius *   2;//bigger circle 
-                    color   = this.getColor(0.5,false,colorIndex);             
+                    color   = this.getColor(1,false,colorIndex);             
                     break; 
                 case 2: 
                     radius  =circleradius *   6;//biggest circle 
-                    color   = this.getColor(0.2,false,colorIndex); 
+                    color   = this.getColor(1,false,colorIndex); 
                     break; 
             }
             //draw the node
@@ -167,7 +166,6 @@ class GridWorm
     {    
         //draw the head of the gridworm 
         this.drawCircle(this.xCoord,this.yCoord,this.radius/2,ctx,this.mainColorIndex); 
-        this.drawArrowHead(this.xCoord,this.yCoord,this.radius/2,ctx,this.arrowHeadColorIndex); 
         //draw circles and squares at every visited junctions in the gridworm's memory(not RAM)
         for(let i = 0; i < this.junctionMemory.length; i++)
         {   
@@ -175,12 +173,12 @@ class GridWorm
             //draw a circle at each junction point
             this.drawCircle(junction.point.x, junction.point.y,this.radius/2,ctx,this.mainColorIndex);  
             //draw painted squares at every junction point
-            ctx.fillStyle   = this.getColor(0.1,false,this.mainColorIndex); 
+            ctx.fillStyle   = this.getColor(0,false,this.mainColorIndex); 
             ctx.fillRect(junction.point.x,junction.point.y,this.interval,this.interval);
             
         } 
         //draw the line connecting head to body
-        ctx.strokeStyle = 'black';
+        ctx.strokeStyle = `rgba(142,202,230,1)`;
         ctx.lineWidth = this.radius; 
         ctx.beginPath(); 
         ctx.moveTo(this.xCoord,this.yCoord); 
@@ -482,7 +480,7 @@ window.addEventListener('resize',onWindowResize);
 function updateCanvas()
 {
     ctx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);    
-    ctx.fillStyle   = 'white';  
+    ctx.fillStyle   = `rgba(2,48,71,1)`;  
     ctx.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 }
 function doAnimationLoop(timestamp)

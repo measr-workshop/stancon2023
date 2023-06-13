@@ -77,6 +77,27 @@ $btn-code-copy-color-active: $theme-darkblue;
     color: $theme-lightblue;
     background: $theme-darkblue;
   }
+  
+  code {
+    color: #023047;
+    background: $code-block-bg;
+    padding: 0.1em;
+    font-size: 80%;
+  }
+  code.sourceCode {
+    font-size: 100%;
+  }
+  div.cell-output code {
+    font-size: 100%;
+  }
+  
+  div.panel-tabset a {
+    color: $theme-darkblue;
+  }
+  div.panel-tabset a:hover {
+    color: $theme-lightblue;
+    background: $theme-darkblue;
+  }
 }
 
 /* section headers */
@@ -86,6 +107,20 @@ $btn-code-copy-color-active: $theme-darkblue;
 }
 
 /* default slides */
+.reveal .slides div.panel-tabset li[role=presentation] {
+    margin-top: 0 !important;
+}
+
+.reveal .slides code {
+  color: #023047;
+}
+
+.tippy-box[data-theme~=light-border] {
+    background-color: #FFFFFF;
+    color: #023047;
+    border: solid 1px #023047;
+}
+
 .reveal .slides h3 {
   font-size: 28pt;
 }

@@ -8,10 +8,14 @@ format:
     title-slide-attributes: 
       data-background-image: figure/backgrounds/ku-title.png
       data-background-size: contain
+code-link: true
 preload-iframes: true
+code-annotations: select
+filters:
+  - lua/output-line-highlight.lua
 ---
 
-```{r setup}
+```{r setup, include = FALSE}
 library(tidyverse)
 library(ggmeasr)
 library(ggdist)
@@ -21,6 +25,9 @@ library(knitr)
 library(measr)
 library(here)
 library(fs)
+library(downlit)
+library(countdown)
+library(cmdstanr)
 
 opts_chunk$set(
   fig.width = 7,
@@ -62,6 +69,9 @@ ecpe_data
 ## ECPE Q-matrix {background-image="figure/backgrounds/default.png" background-size="contain"}
 
 ```{r echo = TRUE}
+#| class-output: highlight
+#| output-line-numbers: "|4|5,11|6,10"
+
 ecpe_qmatrix
 ```
 
@@ -73,21 +83,69 @@ ecpe_qmatrix
 
 1. Download the exercise files
 ```{r echo = TRUE, eval = FALSE}
-usethis::use_course()
+usethis::use_course("measr-workshop/stancon2023-exercises")
 ```
 
+2. Open `estimation.Rmd`
 
-## MDM data {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+3. Run the `setup` chunk
 
+4. Explore `mdm_data` and `mdm_qmatrix`
+    * How many items are in the data?
+    * How many respondents are in the data? 
+    * How many attributes are measured?
+    
+```{r}
+countdown(
+  minutes = 3, 
+  seconds = 0,
+  bottom = "10%",
+  color_border              = "#023047",
+  color_background          = "#023047",
+  color_text                = "#8ECAE6",
+  color_running_background  = "#023047",
+  color_running_text        = "#8ECAE6",
+  color_finished_background = "#D7263D",
+  color_finished_text       = "#FFFFFF"
+)
+```
+
+## {.exercise data-menu-title="Solution 1" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+::: {.panel-tabset}
+
+### Data
+
+:::{.columns}
+:::{.column width="50%"}
 ```{r echo = TRUE}
 mdm_data
 ```
+:::
 
-## MDM Q-matrix {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+:::{.column width="50%"}
+* 4 items
+* 142 respondents
+:::
+:::
 
+### Q-Matrix
+
+:::{.columns}
+:::{.column width="50%"}
 ```{r echo = TRUE}
 mdm_qmatrix
 ```
+:::
+
+:::{.column width="50%"}
+* 4 items
+* 1 attribute
+  * Multiplication skills
+:::
+:::
+
+:::
 
 # Estimation options {background-image="figure/backgrounds/section.png" background-size="contain"}
 
@@ -98,7 +156,7 @@ mdm_qmatrix
 :::{.columns}
 :::{.column width="50%"}
 :::{.center}
-### Software Programs
+**Software Programs**
 :::
 
 * Mplus, flexMIRT, mdltm
@@ -108,7 +166,7 @@ mdm_qmatrix
 
 :::{.column width="50%"}
 :::{.center}
-### R Packages
+**R Packages**
 :::
 
 * CDM, GDINA, mirt, blatant
@@ -118,6 +176,585 @@ mdm_qmatrix
 :::
 :::
 
-# {data-menu-title="measr" background-color="white" background-iframe="grid-worms/index.html"}
+## DCMs with Stan {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+:::{.column width="60%"}
+* Stan is free and open-source
+* Functionality is well-documented
+* Ecosystem of supporting packages
+* Existing documentation for implementing DCMs
+  * [Case study using the DINA model](https://mc-stan.org/users/documentation/case-studies/dina_independent.html)
+  * [Paper describing LCDM implmentation](https://doi.org/10.3758/s13428-018-1069-9)
+:::
+
+:::{.column width="40%"}
+:::{.center}
+![](figure/stan-logo.png){fig-alt="Stan logo."}
+:::
+:::
+:::
+
+## Stan for DCMs: Structure {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+Like most Stan programs, there are four main blocks:
+
+1. `data`
+2. `parameters`
+3. `transformed parameters`
+4. `model`
+
+## Stan for DCMs: `data` {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{.default}
+data {
+  int<lower=1> I;           // # of items
+  int<lower=1> R;           // # of respondents 
+  int<lower=1> A;           // # of attributes
+  int<lower=1> C;           // # of attribute profiles (latent classes) 
+  matrix[R,I] y;            // response matrix
+}
+```
+
+## Stan for DCMs: `parameters` {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{.default}
+parameters {
+  simplex[C] Vc;            // probability of class membership
+  
+  // item parameters
+  real l1_0;
+  real<lower=0> l1_11;
+  real<lower=0> l1_12;
+  real<lower=-1 * min([l1_11,l1_12])> l1_212;
+  
+  real l2_0;
+  real_l2_12;
+  ...
+}
+```
+
+## Item parameters in Stan {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+:::{.column width="50%"}
+```{.default code-line-numbers="|5|6-7|8|10|11|12"}
+parameters {
+  simplex[C] Vc;
+  
+  // item parameters
+  real l1_0;
+  real<lower=0> l1_11;
+  real<lower=0> l1_12;
+  real<lower=-1 * min([l1_11,l1_12])> l1_212;
+  
+  real l2_0;
+  real_l2_12;
+  ...
+}
+```
+:::
+
+:::{.column width="50%"}
+
+:::{.panel-tabset}
+### Q-matrix
+
+```{r}
+slice(ecpe_qmatrix, 1:2)
+```
+
+### Item 1
+
+:::{.center}
+$\lambda_{1,0} + \lambda_{1,1(1)} + \lambda_{1,1(2)} + \lambda_{1,2(1,2)}$
+:::
+
+* Item 1 measures attributes 1 and 2
+  * Intercept (`l1_0`)
+  * Two main effects (`l1_11` and `l1_12`)
+  * One two-way interaction (`l1_212`)
+
+### Item 2
+
+:::{.center}
+$\lambda_{2,0} + \lambda_{2,1(2)}$
+:::
+
+* Item 2 measures only attribute 2
+  * Intercept (`l2_0`)
+  * One main effect (`l2_12`)
+
+### ...
+
+Repeat for all remaining items.
+
+:::
+:::
+:::
+
+## Stan for DCMs: `transformed parameters` {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{.default}
+transformed parameters {
+  matrix[I,C] PImat;
+  
+  PImat[1,1] = inv_logit(l1_0);
+  PImat[1,2] = inv_logit(l1_0 + l1_1);
+  PImat[1,3] = inv_logit(l1_0 + l1_2);
+  PImat[1,4] = inv_logit(l1_0);
+  PImat[1,5] = inv_logit(l1_0 + l1_11 + l1_12 + l1_212);
+  PImat[1,6] = inv_logit(l1_0 + l1_1);
+  PImat[1,7] = inv_logit(l1_0 + l1_2);
+  PImat[1,8] = inv_logit(l1_0 + l1_11 + l1_12 + l1_212);
+  ...
+}
+```
+
+## DCM classes {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+
+:::{.column width="50%"}
+* When using binary attributes, there are 2^A^ possible profiles
+:::
+
+:::{.column width="50%"}
+
+```{r echo = TRUE}
+create_profiles(3)
+```
+
+:::
+
+:::
+
+## Mapping classes to `PImat` {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+
+:::{.column width="70%"}
+
+```{.default code-line-numbers="|4,7|5,9|6,10|8,11|12"}
+transformed parameters {
+  matrix[I,C] PImat;
+  
+  PImat[1,1] = inv_logit(l1_0);
+  PImat[1,2] = inv_logit(l1_0 + l1_1);
+  PImat[1,3] = inv_logit(l1_0 + l1_2);
+  PImat[1,4] = inv_logit(l1_0);
+  PImat[1,5] = inv_logit(l1_0 + l1_11 + l1_12 + l1_212);
+  PImat[1,6] = inv_logit(l1_0 + l1_1);
+  PImat[1,7] = inv_logit(l1_0 + l1_2);
+  PImat[1,8] = inv_logit(l1_0 + l1_11 + l1_12 + l1_212);
+  ...
+}
+```
+
+:::
+
+:::{.column width="30%"}
+
+```{r echo = TRUE}
+create_profiles(3)
+```
+
+:::
+
+:::
+
+## Stan for DCMs: `model` {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.center}
+$P(X_r=x_r) = \sum_{c=1}^C\nu_c \prod_{i=1}^I\pi_{ic}^{x_{ir}}(1-\pi_{ic})^{1 - x_{ir}}$
+:::
+
+```{.default code-line-numbers="|7|9|11"}
+model {
+  for (r in 1:R) {
+    real ps[C];
+    for (c in 1:C) {
+      real log_items[I];
+      for (i in 1:I) {
+        log_items[i] = y[r,i] * log(PImat[i,c]) + (1 - y[r,i]) * log(1 - pi[i,c]);
+      }
+      ps[c] = log(Vc[c]) + sum(log_items);
+    }
+    target += log_sum_exp(ps);
+  }
+}
+```
+
+
+## Exercise 2 {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+Complete the `parameters` and `transformed parameters` blocks for the MDM data.
+
+```{r}
+countdown(
+  minutes = 5, 
+  seconds = 0,
+  bottom = "10%"
+)
+```
+
+## {data-menu-title="Solution 2" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{.default}
+parameters {
+  simplex[C] Vc;
+  
+  // item parameters
+  real l1_0;
+  real<lower=0> l1_11;
+  real l2_0;
+  real<lower=0> l2_11;
+  real l3_0;
+  real<lower=0> l3_11;
+  real l4_0;
+  real<lower=0> l4_11;
+}
+transformed parameters {
+  matrix[I,C] PImat;
+  
+  PImat[1,1] = inv_logit(l1_0);
+  PImat[1,2] = inv_logit(l1_0 + l1_11);
+  PImat[2,1] = inv_logit(l2_0);
+  PImat[2,2] = inv_logit(l2_0 + l2_11);
+  PImat[3,1] = inv_logit(l3_0);
+  PImat[3,2] = inv_logit(l3_0 + l3_11);
+  PImat[4,1] = inv_logit(l4_0);
+  PImat[4,2] = inv_logit(l4_0 + l4_11);
+}
+```
+
+## Limitations of Stan for DCMs {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Very tedious---prone to typos
+* Complexity increases with the number of attributes and item structure
+* `parameters` and `transformed parameters` blocks have to be customized to each particular Q-matrix
+
+## Benefits of Stan for DCMs {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Powerful and flexible
+
+* Access to other packages in the Stan ecosystem
+  * [loo](https://mc-stan.org/loo/)
+  * [tidybayes](http://mjskay.github.io/tidybayes/)
+  * [posterior](https://mc-stan.org/posterior/)
+
+* Just need to automate the creation of the Stan scripts...
+
+
+# {data-menu-title="measr" background-color="#023047" background-iframe="grid-worms/index.html"}
 
 ![](figure/measr-hex.png){fig-alt="Hex logo for the measr R package."}
+
+## What is measr? {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* R package that automates the creation of Stan scripts for DCMs
+* Wraps [rstan](https://mc-stan.org/rstan) or [cmdstanr](https://mc-stan.org/cmdstanr) to estimate the models
+* Provides additional functions to automate the evaluation of DCMs
+  * Model fit
+  * Classification accuracy and consistency
+
+## `measr_dcm()` {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+Estimate a DCM with Stan
+
+```{r}
+#| echo: true
+ecpe <- measr_dcm(
+  data = ecpe_data, qmatrix = ecpe_qmatrix, # <1>
+  resp_id = "resp_id", item_id = "item_id", # <1>
+  type = "lcdm",                            # <2>
+  method = "mcmc", backend = "cmdstanr",    # <3>
+  iter_warmup = 1000, iter_sampling = 500,  # <4>
+  chains = 4, parallel_chains = 4,          # <4>
+  file = "fits/ecpe-lcdm"                   # <5>
+)
+```
+1. Specify your data, Q-matrix, and ID columns
+2. Choose the DCM to estimate (e.g., LCDM, DINA, etc.)
+3. Choose the estimation engine
+4. Pass additional arguments to rstan or cmdstanr
+5. Save the model to save time in the future
+
+## `measr_dcm()` options {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* `type`: Declare the type of DCM to estimate. Currently support LCDM, DINA, DINO, and C-RUM
+
+* `method`: How to estimate the model. To sample, use "mcmc". To use Stan's optimizer, use "optim"
+
+* `backend`: Which engine to use, either "rstan" or "cmdstanr"
+
+* `...`: Additional arguments that are passed to, depending on the `method` and `backend`:
+  * `rstan::sampling()`
+  * `rstan::optimizing()`
+  * `cmdstanr::sample()`
+  * `cmdstanr::optimize()`
+
+## Exercise 3 {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+Estimate and LCDM on the MDM data. Your model should have:
+
+* 2 chains
+* 1000 warmup and 500 sampling iterations
+* Use whichever backend you prefer
+
+```{r}
+countdown(minutes = 5, bottom = "10%")
+```
+
+## {data-menu-title="Solution 3" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{r echo = TRUE}
+mdm_lcdm <- measr_dcm(
+  data = mdm_data, qmatrix = mdm_qmatrix,
+  resp_id = "respondent", item_id = "item",
+  type = "lcdm",
+  method = "mcmc", backend = "cmdstanr",
+  iter_warmup = 1000, iter_sampling = 500, chains = 2,
+  file = "fits/mdm-lcdm"
+)
+```
+
+## Extracting item parameters {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.small}
+`measr_extract()` can be used to pull out components of an estimated model.
+:::
+
+```{r echo = TRUE}
+measr_extract(ecpe, "item_param")
+```
+
+## Extracting structural parameters {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r echo = TRUE}
+#| class-output: highlight
+#| output-line-numbers: "|4,7,10,11"
+
+measr_extract(ecpe, "strc_param")
+```
+
+## Extracting respondent probabilities {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r}
+ecpe <- add_respondent_estimates(ecpe)
+measr_extract(ecpe, "attribute_prob")
+```
+
+
+## Exercise 4 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+What proportion of respondents have mastered multiplication in the MDM data?
+
+What is the probability that respondent zfn2i has mastered multiplication?
+
+```{r}
+countdown(minutes = 2, bottom = "10%")
+```
+
+## {.exercise data-menu-title="Solution 4" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Structural parameters
+
+```{r echo = TRUE}
+measr_extract(mdm_lcdm, "strc_param")
+```
+
+### Respondent probabilities
+
+```{r echo = TRUE}
+#| class-output: highlight
+#| output-line-numbers: "|12"
+
+mdm_lcdm <- add_respondent_estimates(mdm_lcdm)
+measr_extract(mdm_lcdm, "attribute_prob")
+```
+
+:::
+
+# Priors {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Default priors {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r echo = TRUE}
+default_dcm_priors(type = "lcdm")
+```
+
+## Weakly informative priors {background-image="figure/backgrounds/empty.png" background-size="contain"}
+
+```{r include = FALSE, cache = TRUE}
+library(rstan)
+
+prior_mod <- "
+parameters{
+  real l1_0;
+  real<lower=0> l1_11;
+  real<lower=0> l1_12;
+  real<lower=-1*min([l1_11,l1_12])> l1_212;
+}
+transformed parameters {
+  matrix[1,4] pi;
+  
+  pi[1,1] = inv_logit(l1_0);
+  pi[1,2] = inv_logit(l1_0 + l1_11);
+  pi[1,3] = inv_logit(l1_0 + l1_12);
+  pi[1,4] = inv_logit(l1_0 + l1_11 + l1_12 + l1_212);
+}
+model {
+  l1_0 ~ normal(0, 2);
+  l1_11 ~ lognormal(0, 1);
+  l1_12 ~ lognormal(0, 1);
+  l1_212 ~ normal(0, 2);
+}
+"
+
+prior_stan <- stan(model_code = prior_mod)
+
+draws <- posterior::as_draws_df(prior_stan) |> 
+  posterior::subset_draws("pi") |> 
+  as_tibble() |> 
+  pivot_longer(starts_with("pi")) |> 
+  mutate(class = case_when(name == "pi[1,1]" ~ "[0,0]",
+                           name == "pi[1,2]" ~ "[1,0]",
+                           name == "pi[1,3]" ~ "[0,1]",
+                           name == "pi[1,4]" ~ "[1,1]"),
+         class = fct_inorder(class))
+```
+
+```{r}
+#| out-width: 80%
+#| out-height: 80%
+#| fig-alt: "The distribution of expected probabilities of providing a correct response for each class, based on the default priors."
+
+ggplot(draws, aes(x = value, y = class)) +
+  stat_interval(.width = c(0.67, 0.89, 0.97),
+                linewidth = 10) +
+  scale_color_manual(values = ramp_blue(seq(0.9, 0.1, length.out = 3)),
+                     breaks = c(0.67, 0.89, 0.97)) +
+  labs(x = "Probability of Correct Response",
+       y = "Class",
+       color = "Interval")
+```
+
+## Creating custom priors {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r echo = TRUE}
+prior(normal(0, 10), class = "maineffect")
+```
+
+</br> </br>
+
+:::{.fragment}
+```{r echo = TRUE}
+prior(normal(0, 1), class = "intercept", coef = "l3_0")
+```
+:::
+
+## Specifying custom priors {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Specify separately
+
+```{r eval = FALSE, echo = TRUE}
+#| code-line-numbers: "|1,6"
+my_prior <- prior(normal(-1, 1), class = "intercept")
+new_ecpe <- measr_dcm(
+  data = ecpe_data, qmatrix = ecpe_qmatrix,
+  resp_id = "resp_id", item_id = "item_id", 
+  type = "lcdm",  
+  prior = my_prior,
+  method = "optim", backend = "cmdstanr",
+  file = "fits/ecpe-new-prior"
+)
+```
+
+### Specify in `measr_dcm()`
+
+```{r, echo = TRUE}
+#| code-line-numbers: "|5"
+new_ecpe <- measr_dcm(
+  data = ecpe_data, qmatrix = ecpe_qmatrix,
+  resp_id = "resp_id", item_id = "item_id", 
+  type = "lcdm",  
+  prior = prior(normal(-1, 1), class = "intercept"),
+  method = "optim", backend = "cmdstanr",
+  file = "fits/ecpe-new-prior"
+)
+```
+
+:::
+
+## Extract priors {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r echo = TRUE}
+measr_extract(ecpe, "prior")
+```
+
+</br> </br>
+
+:::{.fragment}
+```{r echo = TRUE}
+measr_extract(new_ecpe, "prior")
+```
+:::
+
+## Exercise 5 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+Estimate a new LCDM model for the MDM data with the following priors:
+
+* Intercepts: `normal(-1, 2)`
+  * Except item 3, which should use a `normal(0, 1)` prior
+* Main effects: `lognormal(0, 1)`
+
+Extract the prior to see that the specifications were applied
+
+```{r}
+countdown(minutes = 5, bottom = "10%")
+```
+
+## {.exercise data-menu-title="Solution 5" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{r echo = TRUE}
+#| code-line-numbers: "|5-6"
+new_mdm <- measr_dcm(
+  data = mdm_data, qmatrix = mdm_qmatrix,
+  resp_id = "respondent", item_id = "item",
+  type = "lcdm",
+  prior = c(prior(normal(-1, 2), class = "intercept"),
+            prior(normal(0, 1), class = "intercept", coef = "l3_0")),
+  method = "mcmc", backend = "cmdstanr",
+  iter_warmup = 1000, iter_sampling = 500, chains = 2,
+  file = "fits/mdm-new-prior"
+)
+```
+
+</br> </br>
+
+:::{.fragment}
+```{r echo = TRUE}
+measr_extract(new_mdm, "prior")
+```
+:::
+
+## {data-menu-title="Closing" background-image="figure/backgrounds/plain-title.png" background-size="contain"}
+
+</br>
+
+:::{.end-title color="white" font-size="200%"}
+Estimating diagnostic classification models
+:::
+
+:::{.end-subtitle}
+With Stan and measr
+:::
+
+:::{.center}
+<https://stancon2023.measr.info>
+:::
