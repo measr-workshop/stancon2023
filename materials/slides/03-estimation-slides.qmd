@@ -743,7 +743,7 @@ measr_extract(new_mdm, "prior")
 ```
 :::
 
-## {data-menu-title="Closing" background-image="figure/backgrounds/plain-title.png" background-size="contain"}
+# {.closing data-menu-title="Closing" background-image="figure/backgrounds/plain-title.png" background-size="contain"}
 
 </br>
 

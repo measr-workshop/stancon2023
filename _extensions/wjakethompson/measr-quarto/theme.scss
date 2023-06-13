@@ -100,6 +100,11 @@ $btn-code-copy-color-active: $theme-darkblue;
   }
 }
 
+/* closing slides */
+.reveal .slides .closing {
+  top: 1em !important;
+}
+
 /* section headers */
 .reveal .slides .title-slide h1 {
   font-size: 45pt;

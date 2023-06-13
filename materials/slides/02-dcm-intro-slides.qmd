@@ -574,7 +574,7 @@ $$
 
 * Evaluating DCMs with [measr](https://measr.info)
 
-## {data-menu-title="" background-image="figure/backgrounds/plain-title.png" background-size="contain"}
+# {.closing data-menu-title="Closing" background-image="figure/backgrounds/plain-title.png" background-size="contain"}
 
 </br>
 
