@@ -2,30 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://stancon2023.measr.info/index.html</loc>
-    <lastmod>2023-06-07T02:22:37.182Z</lastmod>
+    <lastmod>2023-06-13T03:08:18.275Z</lastmod>
   </url>
   <url>
     <loc>https://stancon2023.measr.info/materials/01-intro.html</loc>
-    <lastmod>2023-06-07T02:22:37.561Z</lastmod>
+    <lastmod>2023-06-13T03:08:18.650Z</lastmod>
   </url>
   <url>
     <loc>https://stancon2023.measr.info/materials/02-dcm-intro.html</loc>
-    <lastmod>2023-06-07T02:22:37.892Z</lastmod>
+    <lastmod>2023-06-13T03:08:19.004Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stancon2023.measr.info/materials/03-estimation.html</loc>
+    <lastmod>2023-06-13T03:08:19.343Z</lastmod>
   </url>
   <url>
     <loc>https://stancon2023.measr.info/materials/index.html</loc>
-    <lastmod>2023-06-07T02:22:38.228Z</lastmod>
+    <lastmod>2023-06-13T03:08:19.693Z</lastmod>
   </url>
   <url>
     <loc>https://stancon2023.measr.info/materials/slides/01-intro-slides.html</loc>
-    <lastmod>2023-06-07T02:22:38.836Z</lastmod>
+    <lastmod>2023-06-13T03:08:20.325Z</lastmod>
   </url>
   <url>
     <loc>https://stancon2023.measr.info/materials/slides/02-dcm-intro-slides.html</loc>
-    <lastmod>2023-06-07T02:22:40.467Z</lastmod>
+    <lastmod>2023-06-13T03:08:22.120Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stancon2023.measr.info/materials/slides/03-estimation-slides.html</loc>
+    <lastmod>2023-06-13T03:08:25.706Z</lastmod>
   </url>
   <url>
     <loc>https://stancon2023.measr.info/schedule.html</loc>
-    <lastmod>2023-06-07T02:22:40.986Z</lastmod>
+    <lastmod>2023-06-13T03:08:26.231Z</lastmod>
   </url>
 </urlset>

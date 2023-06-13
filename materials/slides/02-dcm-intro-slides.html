@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -356,7 +421,41 @@ W. Jake Thompson, Ph.D.
 <section>
 <section id="conceptual-foundations" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
 <h1>Conceptual foundations</h1>
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(ggmeasr)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">library</span>(magick)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to ImageMagick 6.9.12.3
+Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
+Disabled features: fftw, ghostscript, x11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(distributional)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(measr)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="at">fig.width =</span> <span class="dv">7</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="at">fig.asp =</span> <span class="fl">0.618</span>,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="at">fig.align =</span> <span class="st">"center"</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="fu">set_theme</span>(<span class="at">plot_margin =</span> <span class="fu">margin</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="section" class="slide level2" data-menu-title="Classic psychometrics" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
 <h2></h2>
@@ -368,10 +467,41 @@ W. Jake Thompson, Ph.D.
 </ul>
 </div><div class="column" style="width:80%;">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>logos <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data/nwsl.rds"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> (spi <span class="sc">-</span> <span class="fu">mean</span>(spi)) <span class="sc">/</span> <span class="fu">sd</span>(spi)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">arrange</span>(spi) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(team <span class="sc">==</span> <span class="st">"Kansas City"</span> <span class="sc">~</span> <span class="fl">0.12</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>                       team <span class="sc">==</span> <span class="st">"Angel City"</span> <span class="sc">~</span> <span class="fl">0.25</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>                       team <span class="sc">==</span> <span class="st">"NJ/NY Gotham"</span> <span class="sc">~</span> <span class="fl">0.25</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>                       team <span class="sc">==</span> <span class="st">"Houston"</span> <span class="sc">~</span> <span class="fl">0.12</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>                       team <span class="sc">==</span> <span class="st">"North Carolina"</span> <span class="sc">~</span> <span class="fl">0.25</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>                       team <span class="sc">==</span> <span class="st">"Reign"</span> <span class="sc">~</span> <span class="fl">0.12</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>                       <span class="at">.default =</span> <span class="fl">0.02</span>))</span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">parse_dist</span>(prior_def) <span class="sc">|&gt;</span> </span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">xdist =</span> .dist_obj)) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">stat_slab</span>(<span class="at">color =</span> palette_measr[<span class="dv">1</span>], <span class="at">fill =</span> palette_measr[<span class="dv">3</span>]) <span class="ot">-&gt;</span> base</span>
+<span id="cb6-16"><a href="#cb6-16"></a></span>
+<span id="cb6-17"><a href="#cb6-17"></a>width <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(logos)) {</span>
+<span id="cb6-19"><a href="#cb6-19"></a>  img <span class="ot">&lt;-</span> <span class="fu">as.raster</span>(<span class="fu">image_read</span>(logos<span class="sc">$</span>logo[i]))</span>
+<span id="cb6-20"><a href="#cb6-20"></a>  </span>
+<span id="cb6-21"><a href="#cb6-21"></a>  base <span class="ot">&lt;-</span> base <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="fu">annotation_raster</span>(img,</span>
+<span id="cb6-23"><a href="#cb6-23"></a>                      logos<span class="sc">$</span>x[i] <span class="sc">-</span> (width <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb6-24"><a href="#cb6-24"></a>                      logos<span class="sc">$</span>x[i] <span class="sc">+</span> (width <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb6-25"><a href="#cb6-25"></a>                      logos<span class="sc">$</span>y[i], logos<span class="sc">$</span>y[i] <span class="sc">+</span> <span class="fl">0.15</span>)</span>
+<span id="cb6-26"><a href="#cb6-26"></a>}</span>
+<span id="cb6-27"><a href="#cb6-27"></a></span>
+<span id="cb6-28"><a href="#cb6-28"></a>base <span class="sc">+</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Team Strength"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-31"><a href="#cb6-31"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02-dcm-intro-slides_files/figure-revealjs/unnamed-chunk-1-1.png" style="width:100.0%;height:90.0%" alt="A normal distribution with team logos from the National Women's Soccer League overlayed."></p>
+<p><img data-src="02-dcm-intro-slides_files/figure-html/unnamed-chunk-1-1.png" style="width:100.0%;height:90.0%" alt="A normal distribution with team logos from the National Women's Soccer League overlayed."></p>
 </figure>
 </div>
 </div>
@@ -410,10 +540,28 @@ W. Jake Thompson, Ph.D.
 </ul>
 </div><div class="column" style="width:70%;">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">tibble</span>(<span class="at">start =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="sc">-</span>pi <span class="sc">/</span> <span class="dv">2</span>, pi <span class="sc">/</span> <span class="dv">2</span>), <span class="dv">4</span>),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>       <span class="at">type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Proficient"</span>, <span class="st">"Non-proficient"</span>), <span class="dv">4</span>),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>       <span class="at">skill =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Finishing"</span>, <span class="st">"Possession"</span>, <span class="st">"Defending"</span>, <span class="st">"Goalkeeping"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>                   <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>       <span class="at">x =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">12</span>), <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb7-8"><a href="#cb7-8"></a>       <span class="at">y =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">geom_arc_bar</span>(<span class="fu">aes</span>(<span class="at">x0 =</span> x, <span class="at">y0 =</span> y, <span class="at">r0 =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="fl">1.2</span>, <span class="at">start =</span> start,</span>
+<span id="cb7-11"><a href="#cb7-11"></a>                   <span class="at">end =</span> start <span class="sc">+</span> pi, <span class="at">fill =</span> type), <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">radius =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="sc">~</span><span class="fu">slice</span>(., <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)),</span>
+<span id="cb7-14"><a href="#cb7-14"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> skill), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Proficient"</span> <span class="ot">=</span> palette_measr[<span class="dv">3</span>],</span>
+<span id="cb7-16"><a href="#cb7-16"></a>                               <span class="st">"Non-proficient"</span> <span class="ot">=</span> palette_measr[<span class="dv">1</span>])) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02-dcm-intro-slides_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:80.0%;height:40.0%"></p>
+<p><img data-src="02-dcm-intro-slides_files/figure-html/unnamed-chunk-2-1.png" style="width:80.0%;height:40.0%"></p>
 </figure>
 </div>
 </div>
@@ -430,26 +578,55 @@ W. Jake Thompson, Ph.D.
 <li>DCMs place individuals into groups according to proficiency of multiple attributes</li>
 </ul>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">library</span>(gtExtras)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a>team_profiles <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="sc">~</span>team,            <span class="sc">~</span>chances, <span class="sc">~</span>finishing, <span class="sc">~</span>possession, <span class="sc">~</span>defending, <span class="sc">~</span>goalkeeping,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="st">"Kansas City"</span>,     <span class="st">"check"</span>,    <span class="st">"xmark"</span>,     <span class="st">"check"</span>,    <span class="st">"xmark"</span>,      <span class="st">"xmark"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="st">"Angel City"</span>,      <span class="st">"xmark"</span>,    <span class="st">"check"</span>,     <span class="st">"check"</span>,    <span class="st">"check"</span>,      <span class="st">"xmark"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="st">"San Diego Wave"</span>,  <span class="st">"xmark"</span>,    <span class="st">"check"</span>,     <span class="st">"xmark"</span>,    <span class="st">"xmark"</span>,      <span class="st">"check"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="st">"Portland"</span>,        <span class="st">"check"</span>,    <span class="st">"check"</span>,     <span class="st">"check"</span>,    <span class="st">"check"</span>,      <span class="st">"xmark"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>)</span>
+<span id="cb8-11"><a href="#cb8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12"></a>logos <span class="sc">|&gt;</span> </span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">inner_join</span>(team_profiles, <span class="at">by =</span> <span class="st">"team"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">select</span>(logo, finishing, possession, defending, goalkeeping) <span class="sc">|&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">cols_label</span>(<span class="at">logo =</span> <span class="st">""</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">cols_width</span>(logo <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">100</span>),</span>
+<span id="cb8-18"><a href="#cb8-18"></a>             <span class="fu">everything</span>() <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">150</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">gt_img_rows</span>(<span class="at">columns =</span> logo, <span class="at">img_source =</span> <span class="st">"local"</span>, <span class="at">height =</span> <span class="dv">50</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-20"><a href="#cb8-20"></a>  <span class="fu">gt_fa_column</span>(finishing, <span class="at">align =</span> <span class="st">"center"</span>, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb8-21"><a href="#cb8-21"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb8-22"><a href="#cb8-22"></a>  <span class="fu">gt_fa_column</span>(possession, <span class="at">align =</span> <span class="st">"center"</span>,, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb8-24"><a href="#cb8-24"></a>  <span class="fu">gt_fa_column</span>(defending, <span class="at">align =</span> <span class="st">"center"</span>,, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb8-25"><a href="#cb8-25"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb8-26"><a href="#cb8-26"></a>  <span class="fu">gt_fa_column</span>(goalkeeping, <span class="at">align =</span> <span class="st">"center"</span>,, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb8-27"><a href="#cb8-27"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb8-28"><a href="#cb8-28"></a>  <span class="fu">gt_theme_measr</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb8-29"><a href="#cb8-29"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="qdgknzttlk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="yshncntshb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#qdgknzttlk table {
+#yshncntshb table {
   font-family: 'Open Sans', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qdgknzttlk thead, #qdgknzttlk tbody, #qdgknzttlk tfoot, #qdgknzttlk tr, #qdgknzttlk td, #qdgknzttlk th {
+#yshncntshb thead, #yshncntshb tbody, #yshncntshb tfoot, #yshncntshb tr, #yshncntshb td, #yshncntshb th {
   border-style: none;
 }
 
-#qdgknzttlk p {
+#yshncntshb p {
   margin: 0;
   padding: 0;
 }
 
-#qdgknzttlk .gt_table {
+#yshncntshb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -475,12 +652,12 @@ W. Jake Thompson, Ph.D.
   border-left-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_caption {
+#yshncntshb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qdgknzttlk .gt_title {
+#yshncntshb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -492,7 +669,7 @@ W. Jake Thompson, Ph.D.
   border-bottom-width: 0;
 }
 
-#qdgknzttlk .gt_subtitle {
+#yshncntshb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -504,7 +681,7 @@ W. Jake Thompson, Ph.D.
   border-top-width: 0;
 }
 
-#qdgknzttlk .gt_heading {
+#yshncntshb .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -516,13 +693,13 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_bottom_border {
+#yshncntshb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_col_headings {
+#yshncntshb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #FFFFFF;
@@ -537,7 +714,7 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_col_heading {
+#yshncntshb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -557,7 +734,7 @@ W. Jake Thompson, Ph.D.
   overflow-x: hidden;
 }
 
-#qdgknzttlk .gt_column_spanner_outer {
+#yshncntshb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -569,15 +746,15 @@ W. Jake Thompson, Ph.D.
   padding-right: 4px;
 }
 
-#qdgknzttlk .gt_column_spanner_outer:first-child {
+#yshncntshb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qdgknzttlk .gt_column_spanner_outer:last-child {
+#yshncntshb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qdgknzttlk .gt_column_spanner {
+#yshncntshb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -589,11 +766,11 @@ W. Jake Thompson, Ph.D.
   width: 100%;
 }
 
-#qdgknzttlk .gt_spanner_row {
+#yshncntshb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qdgknzttlk .gt_group_heading {
+#yshncntshb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -619,7 +796,7 @@ W. Jake Thompson, Ph.D.
   text-align: left;
 }
 
-#qdgknzttlk .gt_empty_group_heading {
+#yshncntshb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -634,15 +811,15 @@ W. Jake Thompson, Ph.D.
   vertical-align: middle;
 }
 
-#qdgknzttlk .gt_from_md > :first-child {
+#yshncntshb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qdgknzttlk .gt_from_md > :last-child {
+#yshncntshb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qdgknzttlk .gt_row {
+#yshncntshb .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -661,7 +838,7 @@ W. Jake Thompson, Ph.D.
   overflow-x: hidden;
 }
 
-#qdgknzttlk .gt_stub {
+#yshncntshb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -674,7 +851,7 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#qdgknzttlk .gt_stub_row_group {
+#yshncntshb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -688,15 +865,15 @@ W. Jake Thompson, Ph.D.
   vertical-align: top;
 }
 
-#qdgknzttlk .gt_row_group_first td {
+#yshncntshb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qdgknzttlk .gt_row_group_first th {
+#yshncntshb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qdgknzttlk .gt_summary_row {
+#yshncntshb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -706,16 +883,16 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#qdgknzttlk .gt_first_summary_row {
+#yshncntshb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_first_summary_row.thick {
+#yshncntshb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qdgknzttlk .gt_last_summary_row {
+#yshncntshb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +902,7 @@ W. Jake Thompson, Ph.D.
   border-bottom-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_grand_summary_row {
+#yshncntshb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -735,7 +912,7 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#qdgknzttlk .gt_first_grand_summary_row {
+#yshncntshb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,7 +922,7 @@ W. Jake Thompson, Ph.D.
   border-top-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_last_grand_summary_row_top {
+#yshncntshb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -755,11 +932,11 @@ W. Jake Thompson, Ph.D.
   border-bottom-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_striped {
+#yshncntshb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qdgknzttlk .gt_table_body {
+#yshncntshb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -768,7 +945,7 @@ W. Jake Thompson, Ph.D.
   border-bottom-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_footnotes {
+#yshncntshb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -782,7 +959,7 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_footnote {
+#yshncntshb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -791,7 +968,7 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#qdgknzttlk .gt_sourcenotes {
+#yshncntshb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -805,7 +982,7 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#qdgknzttlk .gt_sourcenote {
+#yshncntshb .gt_sourcenote {
   font-size: 12px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -813,63 +990,63 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#qdgknzttlk .gt_left {
+#yshncntshb .gt_left {
   text-align: left;
 }
 
-#qdgknzttlk .gt_center {
+#yshncntshb .gt_center {
   text-align: center;
 }
 
-#qdgknzttlk .gt_right {
+#yshncntshb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qdgknzttlk .gt_font_normal {
+#yshncntshb .gt_font_normal {
   font-weight: normal;
 }
 
-#qdgknzttlk .gt_font_bold {
+#yshncntshb .gt_font_bold {
   font-weight: bold;
 }
 
-#qdgknzttlk .gt_font_italic {
+#yshncntshb .gt_font_italic {
   font-style: italic;
 }
 
-#qdgknzttlk .gt_super {
+#yshncntshb .gt_super {
   font-size: 65%;
 }
 
-#qdgknzttlk .gt_footnote_marks {
+#yshncntshb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qdgknzttlk .gt_asterisk {
+#yshncntshb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qdgknzttlk .gt_indent_1 {
+#yshncntshb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qdgknzttlk .gt_indent_2 {
+#yshncntshb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qdgknzttlk .gt_indent_3 {
+#yshncntshb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qdgknzttlk .gt_indent_4 {
+#yshncntshb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qdgknzttlk .gt_indent_5 {
+#yshncntshb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -991,26 +1168,45 @@ W. Jake Thompson, Ph.D.
 <div class="column" style="width:50%;">
 <p><br></p>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>logos <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">inner_join</span>(team_profiles, <span class="at">by =</span> <span class="st">"team"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">filter</span>(team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Angel City"</span>, <span class="st">"Portland"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">select</span>(logo, finishing, possession, defending, goalkeeping) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">cols_label</span>(<span class="at">logo =</span> <span class="st">""</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">cols_width</span>(logo <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">100</span>),</span>
+<span id="cb9-8"><a href="#cb9-8"></a>             <span class="fu">everything</span>() <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">120</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">gt_img_rows</span>(<span class="at">columns =</span> logo, <span class="at">img_source =</span> <span class="st">"local"</span>, <span class="at">height =</span> <span class="dv">50</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">gt_fa_column</span>(finishing, <span class="at">align =</span> <span class="st">"center"</span>, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb9-12"><a href="#cb9-12"></a>  <span class="fu">gt_fa_column</span>(possession, <span class="at">align =</span> <span class="st">"center"</span>,, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">gt_fa_column</span>(defending, <span class="at">align =</span> <span class="st">"center"</span>,, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb9-16"><a href="#cb9-16"></a>  <span class="fu">gt_fa_column</span>(goalkeeping, <span class="at">align =</span> <span class="st">"center"</span>,, <span class="at">height =</span> <span class="st">"40px"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"xmark"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>], <span class="st">"check"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>])) <span class="sc">|&gt;</span> </span>
+<span id="cb9-18"><a href="#cb9-18"></a>  <span class="fu">gt_theme_measr</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb9-19"><a href="#cb9-19"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="koobpdtgji" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="yqsmdviayo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#koobpdtgji table {
+#yqsmdviayo table {
   font-family: 'Open Sans', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#koobpdtgji thead, #koobpdtgji tbody, #koobpdtgji tfoot, #koobpdtgji tr, #koobpdtgji td, #koobpdtgji th {
+#yqsmdviayo thead, #yqsmdviayo tbody, #yqsmdviayo tfoot, #yqsmdviayo tr, #yqsmdviayo td, #yqsmdviayo th {
   border-style: none;
 }
 
-#koobpdtgji p {
+#yqsmdviayo p {
   margin: 0;
   padding: 0;
 }
 
-#koobpdtgji .gt_table {
+#yqsmdviayo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1036,12 +1232,12 @@ W. Jake Thompson, Ph.D.
   border-left-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_caption {
+#yqsmdviayo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#koobpdtgji .gt_title {
+#yqsmdviayo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1053,7 +1249,7 @@ W. Jake Thompson, Ph.D.
   border-bottom-width: 0;
 }
 
-#koobpdtgji .gt_subtitle {
+#yqsmdviayo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1065,7 +1261,7 @@ W. Jake Thompson, Ph.D.
   border-top-width: 0;
 }
 
-#koobpdtgji .gt_heading {
+#yqsmdviayo .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1077,13 +1273,13 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_bottom_border {
+#yqsmdviayo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_col_headings {
+#yqsmdviayo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #FFFFFF;
@@ -1098,7 +1294,7 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_col_heading {
+#yqsmdviayo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1118,7 +1314,7 @@ W. Jake Thompson, Ph.D.
   overflow-x: hidden;
 }
 
-#koobpdtgji .gt_column_spanner_outer {
+#yqsmdviayo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1130,15 +1326,15 @@ W. Jake Thompson, Ph.D.
   padding-right: 4px;
 }
 
-#koobpdtgji .gt_column_spanner_outer:first-child {
+#yqsmdviayo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#koobpdtgji .gt_column_spanner_outer:last-child {
+#yqsmdviayo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#koobpdtgji .gt_column_spanner {
+#yqsmdviayo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1150,11 +1346,11 @@ W. Jake Thompson, Ph.D.
   width: 100%;
 }
 
-#koobpdtgji .gt_spanner_row {
+#yqsmdviayo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#koobpdtgji .gt_group_heading {
+#yqsmdviayo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1180,7 +1376,7 @@ W. Jake Thompson, Ph.D.
   text-align: left;
 }
 
-#koobpdtgji .gt_empty_group_heading {
+#yqsmdviayo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1195,15 +1391,15 @@ W. Jake Thompson, Ph.D.
   vertical-align: middle;
 }
 
-#koobpdtgji .gt_from_md > :first-child {
+#yqsmdviayo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#koobpdtgji .gt_from_md > :last-child {
+#yqsmdviayo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#koobpdtgji .gt_row {
+#yqsmdviayo .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -1222,7 +1418,7 @@ W. Jake Thompson, Ph.D.
   overflow-x: hidden;
 }
 
-#koobpdtgji .gt_stub {
+#yqsmdviayo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1235,7 +1431,7 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#koobpdtgji .gt_stub_row_group {
+#yqsmdviayo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1249,15 +1445,15 @@ W. Jake Thompson, Ph.D.
   vertical-align: top;
 }
 
-#koobpdtgji .gt_row_group_first td {
+#yqsmdviayo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#koobpdtgji .gt_row_group_first th {
+#yqsmdviayo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#koobpdtgji .gt_summary_row {
+#yqsmdviayo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1267,16 +1463,16 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#koobpdtgji .gt_first_summary_row {
+#yqsmdviayo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_first_summary_row.thick {
+#yqsmdviayo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#koobpdtgji .gt_last_summary_row {
+#yqsmdviayo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1286,7 +1482,7 @@ W. Jake Thompson, Ph.D.
   border-bottom-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_grand_summary_row {
+#yqsmdviayo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1296,7 +1492,7 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#koobpdtgji .gt_first_grand_summary_row {
+#yqsmdviayo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1306,7 +1502,7 @@ W. Jake Thompson, Ph.D.
   border-top-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_last_grand_summary_row_top {
+#yqsmdviayo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1316,11 +1512,11 @@ W. Jake Thompson, Ph.D.
   border-bottom-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_striped {
+#yqsmdviayo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#koobpdtgji .gt_table_body {
+#yqsmdviayo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1329,7 +1525,7 @@ W. Jake Thompson, Ph.D.
   border-bottom-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_footnotes {
+#yqsmdviayo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1343,7 +1539,7 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_footnote {
+#yqsmdviayo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1352,7 +1548,7 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#koobpdtgji .gt_sourcenotes {
+#yqsmdviayo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1366,7 +1562,7 @@ W. Jake Thompson, Ph.D.
   border-right-color: #D3D3D3;
 }
 
-#koobpdtgji .gt_sourcenote {
+#yqsmdviayo .gt_sourcenote {
   font-size: 12px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1374,63 +1570,63 @@ W. Jake Thompson, Ph.D.
   padding-right: 5px;
 }
 
-#koobpdtgji .gt_left {
+#yqsmdviayo .gt_left {
   text-align: left;
 }
 
-#koobpdtgji .gt_center {
+#yqsmdviayo .gt_center {
   text-align: center;
 }
 
-#koobpdtgji .gt_right {
+#yqsmdviayo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#koobpdtgji .gt_font_normal {
+#yqsmdviayo .gt_font_normal {
   font-weight: normal;
 }
 
-#koobpdtgji .gt_font_bold {
+#yqsmdviayo .gt_font_bold {
   font-weight: bold;
 }
 
-#koobpdtgji .gt_font_italic {
+#yqsmdviayo .gt_font_italic {
   font-style: italic;
 }
 
-#koobpdtgji .gt_super {
+#yqsmdviayo .gt_super {
   font-size: 65%;
 }
 
-#koobpdtgji .gt_footnote_marks {
+#yqsmdviayo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#koobpdtgji .gt_asterisk {
+#yqsmdviayo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#koobpdtgji .gt_indent_1 {
+#yqsmdviayo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#koobpdtgji .gt_indent_2 {
+#yqsmdviayo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#koobpdtgji .gt_indent_3 {
+#yqsmdviayo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#koobpdtgji .gt_indent_4 {
+#yqsmdviayo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#koobpdtgji .gt_indent_5 {
+#yqsmdviayo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1472,10 +1668,34 @@ W. Jake Thompson, Ph.D.
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>table_logos <span class="ot">&lt;-</span> logos <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Angel City"</span>, <span class="st">"Portland"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fl">0.02</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">parse_dist</span>(prior_def) <span class="sc">|&gt;</span> </span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">xdist =</span> .dist_obj)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">stat_slab</span>(<span class="at">color =</span> palette_measr[<span class="dv">1</span>], <span class="at">fill =</span> palette_measr[<span class="dv">3</span>]) <span class="ot">-&gt;</span> base</span>
+<span id="cb10-9"><a href="#cb10-9"></a></span>
+<span id="cb10-10"><a href="#cb10-10"></a>width <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(table_logos)) {</span>
+<span id="cb10-12"><a href="#cb10-12"></a>  img <span class="ot">&lt;-</span> <span class="fu">as.raster</span>(<span class="fu">image_read</span>(table_logos<span class="sc">$</span>logo[i]))</span>
+<span id="cb10-13"><a href="#cb10-13"></a>  </span>
+<span id="cb10-14"><a href="#cb10-14"></a>  base <span class="ot">&lt;-</span> base <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="fu">annotation_raster</span>(img,</span>
+<span id="cb10-16"><a href="#cb10-16"></a>                      table_logos<span class="sc">$</span>x[i] <span class="sc">-</span> (width <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb10-17"><a href="#cb10-17"></a>                      table_logos<span class="sc">$</span>x[i] <span class="sc">+</span> (width <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb10-18"><a href="#cb10-18"></a>                      table_logos<span class="sc">$</span>y[i], table_logos<span class="sc">$</span>y[i] <span class="sc">+</span> <span class="fl">0.15</span>)</span>
+<span id="cb10-19"><a href="#cb10-19"></a>}</span>
+<span id="cb10-20"><a href="#cb10-20"></a></span>
+<span id="cb10-21"><a href="#cb10-21"></a>base <span class="sc">+</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Team Strength"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-24"><a href="#cb10-24"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02-dcm-intro-slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="672"></p>
+<p><img data-src="02-dcm-intro-slides_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1588,10 +1808,21 @@ W. Jake Thompson, Ph.D.
 </ul>
 </div><div class="column" style="width:70%;">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"[0, 0]"</span>, <span class="st">"[1, 0]"</span>, <span class="st">"[0, 1]"</span>, <span class="st">"[1, 1]"</span>),</span>
+<span id="cb11-2"><a href="#cb11-2"></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>, <span class="fl">0.90</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">fct_inorder</span>(x),</span>
+<span id="cb11-4"><a href="#cb11-4"></a>         <span class="at">prof =</span> y <span class="sc">&gt;</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> prof)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">scale_y_percent</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">TRUE</span><span class="st">`</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>],</span>
+<span id="cb11-10"><a href="#cb11-10"></a>                               <span class="st">`</span><span class="at">FALSE</span><span class="st">`</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>])) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Profile"</span>, <span class="at">y =</span> <span class="st">"Probability of Correct Response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02-dcm-intro-slides_files/figure-revealjs/unnamed-chunk-6-1.png" style="width:100.0%;height:50.0%"></p>
+<p><img data-src="02-dcm-intro-slides_files/figure-html/unnamed-chunk-6-1.png" style="width:100.0%;height:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -1609,10 +1840,21 @@ W. Jake Thompson, Ph.D.
 </ul>
 </div><div class="column" style="width:70%;">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"[0, 0]"</span>, <span class="st">"[1, 0]"</span>, <span class="st">"[0, 1]"</span>, <span class="st">"[1, 1]"</span>),</span>
+<span id="cb12-2"><a href="#cb12-2"></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.90</span>, <span class="fl">0.90</span>, <span class="fl">0.90</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">fct_inorder</span>(x),</span>
+<span id="cb12-4"><a href="#cb12-4"></a>         <span class="at">prof =</span> y <span class="sc">&gt;</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> prof)) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">scale_y_percent</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">TRUE</span><span class="st">`</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>],</span>
+<span id="cb12-10"><a href="#cb12-10"></a>                               <span class="st">`</span><span class="at">FALSE</span><span class="st">`</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>])) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Profile"</span>, <span class="at">y =</span> <span class="st">"Probability of Correct Response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02-dcm-intro-slides_files/figure-revealjs/unnamed-chunk-7-1.png" style="width:100.0%;height:50.0%"></p>
+<p><img data-src="02-dcm-intro-slides_files/figure-html/unnamed-chunk-7-1.png" style="width:100.0%;height:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -1631,10 +1873,24 @@ W. Jake Thompson, Ph.D.
 </ul>
 </div><div class="column" style="width:70%;">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"[0, 0]"</span>, <span class="st">"[1, 0]"</span>, <span class="st">"[0, 1]"</span>, <span class="st">"[1, 1]"</span>),</span>
+<span id="cb13-2"><a href="#cb13-2"></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.60</span>, <span class="fl">0.40</span>, <span class="fl">0.90</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">fct_inorder</span>(x),</span>
+<span id="cb13-4"><a href="#cb13-4"></a>         <span class="at">prof =</span> <span class="fu">case_when</span>(y <span class="sc">&lt;</span> <span class="fl">0.2</span> <span class="sc">~</span> <span class="st">"FALSE"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>                          y <span class="sc">&gt;</span> <span class="fl">0.8</span> <span class="sc">~</span> <span class="st">"TRUE"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>                          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Partial"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> prof)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">scale_y_percent</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> palette_measr[<span class="dv">4</span>],</span>
+<span id="cb13-12"><a href="#cb13-12"></a>                               <span class="st">"FALSE"</span> <span class="ot">=</span> palette_measr[<span class="dv">2</span>],</span>
+<span id="cb13-13"><a href="#cb13-13"></a>                               <span class="st">"Partial"</span> <span class="ot">=</span> <span class="st">"#4B3F72"</span>)) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Profile"</span>, <span class="at">y =</span> <span class="st">"Probability of Correct Response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02-dcm-intro-slides_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%;height:50.0%"></p>
+<p><img data-src="02-dcm-intro-slides_files/figure-html/unnamed-chunk-8-1.png" style="width:100.0%;height:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -1981,44 +2237,6 @@ W. Jake Thompson, Ph.D.
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
