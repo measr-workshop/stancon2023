@@ -8,7 +8,7 @@
 
 <meta name="description" content="Use modern Bayesian methods to estimate and evaluation diagnostic classification models.">
 
-<title>measr - Materials</title>
+<title>measr - Prework</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -98,14 +98,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="measr - Materials">
+<meta property="og:title" content="measr - Prework">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://stancon2023.measr.info/files/social-image-measr.png">
 <meta property="og:site-name" content="measr">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="measr - Materials">
+<meta name="twitter:title" content="measr - Prework">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://stancon2023.measr.info/files/social-image-measr.png">
 <meta name="twitter:creator" content="@wjakethompson">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../materials/index.html">Overview</a></li><li class="breadcrumb-item"><a href="../materials/index.html">Materials</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../materials/index.html">Overview</a></li><li class="breadcrumb-item"><a href="../materials/prework.html">Prework</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -174,13 +174,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../materials/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../materials/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Materials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../materials/prework.html" class="sidebar-item-text sidebar-link">
+  <a href="../materials/prework.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Prework</span></a>
   </div>
 </li>
@@ -233,14 +233,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#optional" id="toc-optional" class="nav-link active" data-scroll-target="#optional">Optional</a>
+  <ul class="collapse">
+  <li><a href="#updated-rstan" id="toc-updated-rstan" class="nav-link" data-scroll-target="#updated-rstan">Updated rstan</a></li>
+  <li><a href="#cmdstanr" id="toc-cmdstanr" class="nav-link" data-scroll-target="#cmdstanr">cmdstanr</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Materials</h1>
+<h1 class="title">Prework</h1>
 </div>
 
 
@@ -255,11 +265,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Each session includes slides and exercises. The slides for each session can be accessed using the links in the sidebar. You can download the exercises as an R project by running:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_course</span>(<span class="st">"measr-workshop/stancon2023-exercises"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To make sure you can run the exercises, following the installation instructions on the <a href="../materials/prework.html">prework</a> page.</p>
+<p>Thank you participating in our workshop, Cognitive Diagnostic Models With R and Stan. To prepare for the workshop, please install the following:</p>
+<ul>
+<li>A recent version of R (≥ 4.2.0), which is available for free at <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></li>
+<li>(Recommended) A recent version of RStudio Desktop (≥ 2023.06.0-421), available for free at <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></li>
+<li>The R packages we will use, which you can install by connecting to the internet, opening RStudio, and running the following code in the console:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"measr"</span>, <span class="st">"fs"</span>), <span class="at">repos =</span> <span class="st">"https://cran.rstudio.com/"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="optional" class="level2">
+<h2 class="anchored" data-anchor-id="optional">Optional</h2>
+<p>By default, measr using <a href="https://mc-stan.org/rstan">rstan</a> as a backend for estimating models. However, the version of rstan on CRAN is outdated. Therefore, I recommend using an updated version of rstan from the <a href="https://github.com/stan-dev/r-packages">stan-dev/r-packages</a> repository, or using the <a href="https://mc-stan.org/cmdstanr">cmdstanr</a> interface to CmdStan.</p>
+<section id="updated-rstan" class="level3">
+<h3 class="anchored" data-anchor-id="updated-rstan">Updated rstan</h3>
+<p>You can download an updated version of rstan by running the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"StanHeaders"</span>, <span class="st">"rstan"</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">"https://mc-stan.org/r-packages/"</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To verify that rstan is installed correctly, run the following code. If it works, then things are set up properly! For additional help installing rstan, see the <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started">RStan Getting Started</a> help page.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(stan_model, <span class="at">package =</span> <span class="st">"rstan"</span>, <span class="at">run.dontrun =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cmdstanr" class="level3">
+<h3 class="anchored" data-anchor-id="cmdstanr">cmdstanr</h3>
+<p>For cmdstanr, I recommend installing the development version directly from Github:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"stan-dev/cmdstanr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After installing cmdstanr, you will also need to install CmdStan, which can be by running:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cmdstanr<span class="sc">::</span><span class="fu">install_cmdstan</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To ensure that cmdstanr and CmdStan are installed properly, try running the following code. If it works, then you are good to go! For help with install cmdstanr, see the <a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html">Getting Started with CmdStanR</a> vignette.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">"examples"</span>, <span class="st">"bernoulli"</span>, <span class="st">"bernoulli.stan"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

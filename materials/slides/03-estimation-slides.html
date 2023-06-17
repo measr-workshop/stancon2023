@@ -8,17 +8,17 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
-<meta name="author" content="W. Jake Thompson, Ph.D.">
-<title>measr - Estimating diagnostic  classification models</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.3.361">
+
+  <meta name="author" content="W. Jake Thompson, Ph.D.">
+  <title>measr - Estimating diagnostic  classification models</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -96,12 +96,12 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
-<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -298,7 +298,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -385,8 +385,8 @@
       margin-right: 0; 
     }
   </style>
-<link href="../../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
-<script src="../../site_libs/countdown-0.4.0/countdown.js"></script>
+  <link href="../../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="../../site_libs/countdown-0.4.0/countdown.js"></script>
 <meta property="og:title" content="measr - Estimating diagnostic  classification models">
 <meta property="og:description" content="With Stan and measr">
 <meta property="og:image" content="https://stancon2023.measr.info/files/social-image-measr.png">
@@ -407,7 +407,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="figure/backgrounds/ku-title.png" data-background-size="contain" class="quarto-title-block center"><h1 class="title">Estimating diagnostic  classification models</h1>
+<section id="title-slide" data-background-image="figure/backgrounds/ku-title.png" data-background-size="contain" class="quarto-title-block center">
+  <h1 class="title">Estimating diagnostic <br> classification models</h1>
   <p class="subtitle">With Stan and measr</p>
 
 <div class="quarto-title-authors">
@@ -418,24 +419,30 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 
-</section><section><section id="example-data" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain"><h1>Example data</h1>
+</section>
+<section>
+<section id="example-data" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
+<h1>Example data</h1>
 
-</section><section id="data-for-examples" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Data for examples</h2>
+</section>
+<section id="data-for-examples" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Data for examples</h2>
 <ul>
 <li>Examination for the Certificate of Proficiency in English (ECPE; <a href="https://doi.org/10.1111/emip.12010">Templin &amp; Hoffman, 2013</a>)
 <ul>
 <li>28 items measuring 3 total attributes</li>
 <li>2,922 respondents</li>
-</ul>
-</li>
+</ul></li>
 <li>3 attributes
 <ul>
 <li>Morphosyntactic rules</li>
 <li>Cohesive rules</li>
 <li>Lexical rules</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="ecpe-data" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>ECPE data</h2>
+</section>
+<section id="ecpe-data" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>ECPE data</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(measr)</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
@@ -460,7 +467,9 @@ W. Jake Thompson, Ph.D.
 #   E23 &lt;int&gt;, E24 &lt;int&gt;, E25 &lt;int&gt;, E26 &lt;int&gt;, E27 &lt;int&gt;, E28 &lt;int&gt;</code></pre>
 </div>
 </div>
-</section><section id="ecpe-q-matrix" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>ECPE Q-matrix</h2>
+</section>
+<section id="ecpe-q-matrix" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>ECPE Q-matrix</h2>
 <div class="cell" data-layout-align="center" data-output-line-numbers="|4|5,11|6,10">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ecpe_qmatrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -480,11 +489,15 @@ W. Jake Thompson, Ph.D.
 <span id="cb4-14"><a href="#cb4-14"></a># ℹ 18 more rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section><section id="data-for-exercises" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Data for exercises</h2>
+</section>
+<section id="data-for-exercises" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2>Data for exercises</h2>
 <ul>
-<li>Multiplication data from <a href="https://doi.org/0.2307/1164802">MacReady &amp; Dayton (1977)</a>
-</li>
-</ul></section><section id="exercise-1" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 1</h2>
+<li>Multiplication data from <a href="https://doi.org/0.2307/1164802">MacReady &amp; Dayton (1977)</a></li>
+</ul>
+</section>
+<section id="exercise-1" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2>Exercise 1</h2>
 <ol type="1">
 <li>Download the exercise files</li>
 </ol>
@@ -494,31 +507,26 @@ W. Jake Thompson, Ph.D.
 <ol start="2" type="1">
 <li><p>Open <code>estimation.Rmd</code></p></li>
 <li><p>Run the <code>setup</code> chunk</p></li>
-<li>
-<p>Explore <code>mdm_data</code> and <code>mdm_qmatrix</code></p>
+<li><p>Explore <code>mdm_data</code> and <code>mdm_qmatrix</code></p>
 <ul>
 <li>How many items are in the data?</li>
 <li>How many respondents are in the data?</li>
 <li>How many attributes are measured?</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_7395e92c" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls">
-<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
-</div>
+<div class="countdown" id="timer_45bd2078" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section><section id="section" class="slide level2 exercise" data-menu-title="Solution 1" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
+</section>
+<section id="section" class="slide level2 exercise" data-menu-title="Solution 1" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2></h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-1-1">Data</a></li>
-<li><a href="#tabset-1-2">Q-Matrix</a></li>
-</ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Data</a></li><li><a href="#tabset-1-2">Q-Matrix</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="columns">
@@ -571,18 +579,22 @@ W. Jake Thompson, Ph.D.
 <li>1 attribute
 <ul>
 <li>Multiplication skills</li>
+</ul></li>
 </ul>
-</li>
-</ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section></section><section><section id="estimation-options" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain"><h1>Estimation options</h1>
+</section></section>
+<section>
+<section id="estimation-options" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
+<h1>Estimation options</h1>
 
-</section><section id="existing-software" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Existing software</h2>
-<p></p>
+</section>
+<section id="existing-software" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Existing software</h2>
+<p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="center">
@@ -593,8 +605,7 @@ W. Jake Thompson, Ph.D.
 <li>Limitations
 <ul>
 <li>Tedious to implement, expensive, limited licenses, etc.</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="center">
@@ -606,12 +617,13 @@ W. Jake Thompson, Ph.D.
 <ul>
 <li>Limited to constrained DCMs, under-documented</li>
 <li>Different packages have different functionality, and don’t talk to each other</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div>
 </div>
-</section><section id="dcms-with-stan" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>DCMs with Stan</h2>
+</section>
+<section id="dcms-with-stan" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>DCMs with Stan</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
@@ -622,8 +634,7 @@ W. Jake Thompson, Ph.D.
 <ul>
 <li><a href="https://mc-stan.org/users/documentation/case-studies/dina_independent.html">Case study using the DINA model</a></li>
 <li><a href="https://doi.org/10.3758/s13428-018-1069-9">Paper describing LCDM implmentation</a></li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div><div class="column" style="width:40%;">
 <div class="center">
@@ -631,15 +642,19 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section><section id="stan-for-dcms-structure" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Stan for DCMs: Structure</h2>
+</section>
+<section id="stan-for-dcms-structure" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Stan for DCMs: Structure</h2>
 <p>Like most Stan programs, there are four main blocks:</p>
 <ol type="1">
 <li><code>data</code></li>
 <li><code>parameters</code></li>
 <li><code>transformed parameters</code></li>
 <li><code>model</code></li>
-</ol></section><section id="stan-for-dcms-data" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Stan for DCMs: <code>data</code>
-</h2>
+</ol>
+</section>
+<section id="stan-for-dcms-data" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Stan for DCMs: <code>data</code></h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1"></a>data {</span>
 <span id="cb10-2"><a href="#cb10-2"></a>  int&lt;lower=1&gt; I;           // # of items</span>
 <span id="cb10-3"><a href="#cb10-3"></a>  int&lt;lower=1&gt; R;           // # of respondents </span>
@@ -647,8 +662,9 @@ W. Jake Thompson, Ph.D.
 <span id="cb10-5"><a href="#cb10-5"></a>  int&lt;lower=1&gt; C;           // # of attribute profiles (latent classes) </span>
 <span id="cb10-6"><a href="#cb10-6"></a>  matrix[R,I] y;            // response matrix</span>
 <span id="cb10-7"><a href="#cb10-7"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="stan-for-dcms-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Stan for DCMs: <code>parameters</code>
-</h2>
+</section>
+<section id="stan-for-dcms-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Stan for DCMs: <code>parameters</code></h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1"></a>parameters {</span>
 <span id="cb11-2"><a href="#cb11-2"></a>  simplex[C] Vc;            // probability of class membership</span>
 <span id="cb11-3"><a href="#cb11-3"></a>  </span>
@@ -662,7 +678,9 @@ W. Jake Thompson, Ph.D.
 <span id="cb11-11"><a href="#cb11-11"></a>  real_l2_12;</span>
 <span id="cb11-12"><a href="#cb11-12"></a>  ...</span>
 <span id="cb11-13"><a href="#cb11-13"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="item-parameters-in-stan" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Item parameters in Stan</h2>
+</section>
+<section id="item-parameters-in-stan" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Item parameters in Stan</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="sourceCode" id="cb12" data-code-line-numbers="|5|6-7|8|10|11|12"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1"></a>parameters {</span>
@@ -680,12 +698,7 @@ W. Jake Thompson, Ph.D.
 <span id="cb12-13"><a href="#cb12-13"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-2-1">Q-matrix</a></li>
-<li><a href="#tabset-2-2">Item 1</a></li>
-<li><a href="#tabset-2-3">Item 2</a></li>
-<li><a href="#tabset-2-4">…</a></li>
-</ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Q-matrix</a></li><li><a href="#tabset-2-2">Item 1</a></li><li><a href="#tabset-2-3">Item 2</a></li><li><a href="#tabset-2-4">…</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
@@ -708,8 +721,7 @@ W. Jake Thompson, Ph.D.
 <li>Intercept (<code>l1_0</code>)</li>
 <li>Two main effects (<code>l1_11</code> and <code>l1_12</code>)</li>
 <li>One two-way interaction (<code>l1_212</code>)</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div>
 <div id="tabset-2-3">
@@ -721,8 +733,7 @@ W. Jake Thompson, Ph.D.
 <ul>
 <li>Intercept (<code>l2_0</code>)</li>
 <li>One main effect (<code>l2_12</code>)</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div>
 <div id="tabset-2-4">
@@ -732,8 +743,9 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section><section id="stan-for-dcms-transformed-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Stan for DCMs: <code>transformed parameters</code>
-</h2>
+</section>
+<section id="stan-for-dcms-transformed-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Stan for DCMs: <code>transformed parameters</code></h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1"></a>transformed parameters {</span>
 <span id="cb14-2"><a href="#cb14-2"></a>  matrix[I,C] PImat;</span>
 <span id="cb14-3"><a href="#cb14-3"></a>  </span>
@@ -747,7 +759,9 @@ W. Jake Thompson, Ph.D.
 <span id="cb14-11"><a href="#cb14-11"></a>  PImat[1,8] = inv_logit(l1_0 + l1_11 + l1_12 + l1_212);</span>
 <span id="cb14-12"><a href="#cb14-12"></a>  ...</span>
 <span id="cb14-13"><a href="#cb14-13"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="dcm-classes" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>DCM classes</h2>
+</section>
+<section id="dcm-classes" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>DCM classes</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -772,8 +786,9 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section><section id="mapping-classes-to-pimat" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Mapping classes to <code>PImat</code>
-</h2>
+</section>
+<section id="mapping-classes-to-pimat" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Mapping classes to <code>PImat</code></h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="sourceCode" id="cb17" data-code-line-numbers="|4,7|5,9|6,10|8,11|12"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1"></a>transformed parameters {</span>
@@ -808,8 +823,9 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section><section id="stan-for-dcms-model" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Stan for DCMs: <code>model</code>
-</h2>
+</section>
+<section id="stan-for-dcms-model" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Stan for DCMs: <code>model</code></h2>
 <div class="center">
 <p><span class="math inline">\(P(X_r=x_r) = \sum_{c=1}^C\nu_c \prod_{i=1}^I\pi_{ic}^{x_{ir}}(1-\pi_{ic})^{1 - x_{ir}}\)</span></p>
 </div>
@@ -826,19 +842,21 @@ W. Jake Thompson, Ph.D.
 <span id="cb20-11"><a href="#cb20-11"></a>    target += log_sum_exp(ps);</span>
 <span id="cb20-12"><a href="#cb20-12"></a>  }</span>
 <span id="cb20-13"><a href="#cb20-13"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="exercise-2" class="slide level2" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 2</h2>
+</section>
+<section id="exercise-2" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2>Exercise 2</h2>
 <p>Complete the <code>parameters</code> and <code>transformed parameters</code> blocks for the MDM data.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_a6668549" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls">
-<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
-</div>
+<div class="countdown" id="timer_ad9a7e54" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section><section id="section-2" class="slide level2" data-menu-title="Solution 2" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
+</section>
+<section id="section-2" class="slide level2" data-menu-title="Solution 2" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2></h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1"></a>parameters {</span>
 <span id="cb21-2"><a href="#cb21-2"></a>  simplex[C] Vc;</span>
 <span id="cb21-3"><a href="#cb21-3"></a>  </span>
@@ -864,27 +882,35 @@ W. Jake Thompson, Ph.D.
 <span id="cb21-23"><a href="#cb21-23"></a>  PImat[4,1] = inv_logit(l4_0);</span>
 <span id="cb21-24"><a href="#cb21-24"></a>  PImat[4,2] = inv_logit(l4_0 + l4_11);</span>
 <span id="cb21-25"><a href="#cb21-25"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="limitations-of-stan-for-dcms" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Limitations of Stan for DCMs</h2>
+</section>
+<section id="limitations-of-stan-for-dcms" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Limitations of Stan for DCMs</h2>
 <ul>
 <li>Very tedious—prone to typos</li>
 <li>Complexity increases with the number of attributes and item structure</li>
-<li>
-<code>parameters</code> and <code>transformed parameters</code> blocks have to be customized to each particular Q-matrix</li>
-</ul></section><section id="benefits-of-stan-for-dcms" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Benefits of Stan for DCMs</h2>
+<li><code>parameters</code> and <code>transformed parameters</code> blocks have to be customized to each particular Q-matrix</li>
+</ul>
+</section>
+<section id="benefits-of-stan-for-dcms" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Benefits of Stan for DCMs</h2>
 <ul>
 <li><p>Powerful and flexible</p></li>
-<li>
-<p>Access to other packages in the Stan ecosystem</p>
+<li><p>Access to other packages in the Stan ecosystem</p>
 <ul>
 <li><a href="https://mc-stan.org/loo/">loo</a></li>
 <li><a href="http://mjskay.github.io/tidybayes/">tidybayes</a></li>
 <li><a href="https://mc-stan.org/posterior/">posterior</a></li>
-</ul>
-</li>
+</ul></li>
 <li><p>Just need to automate the creation of the Stan scripts…</p></li>
-</ul></section></section><section><section id="section-3" class="title-slide slide level1 center" data-menu-title="measr" data-background-color="#023047" data-background-iframe="grid-worms/index.html"><h1></h1>
+</ul>
+</section></section>
+<section>
+<section id="section-3" class="title-slide slide level1 center" data-menu-title="measr" data-background-color="#023047" data-background-iframe="grid-worms/index.html">
+<h1></h1>
 
-<img data-src="figure/measr-hex.png" alt="Hex logo for the measr R package." class="r-stretch"></section><section id="what-is-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>What is measr?</h2>
+<img data-src="figure/measr-hex.png" alt="Hex logo for the measr R package." class="r-stretch"></section>
+<section id="what-is-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>What is measr?</h2>
 <ul>
 <li>R package that automates the creation of Stan scripts for DCMs</li>
 <li>Wraps <a href="https://mc-stan.org/rstan">rstan</a> or <a href="https://mc-stan.org/cmdstanr">cmdstanr</a> to estimate the models</li>
@@ -892,9 +918,11 @@ W. Jake Thompson, Ph.D.
 <ul>
 <li>Model fit</li>
 <li>Classification accuracy and consistency</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="measr_dcm" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2><code>measr_dcm()</code></h2>
+</section>
+<section id="measr_dcm" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2><code>measr_dcm()</code></h2>
 <p>Estimate a DCM with Stan</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>ecpe <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
@@ -910,43 +938,45 @@ W. Jake Thompson, Ph.D.
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="2,3" data-code-cell="annotated-cell-9" data-code-annotation="1">Specify your data, Q-matrix, and ID columns</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="2,3" data-code-annotation="1">Specify your data, Q-matrix, and ID columns</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="4" data-code-cell="annotated-cell-9" data-code-annotation="2">Choose the DCM to estimate (e.g., LCDM, DINA, etc.)</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="2">Choose the DCM to estimate (e.g., LCDM, DINA, etc.)</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="5" data-code-cell="annotated-cell-9" data-code-annotation="3">Choose the estimation engine</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="5" data-code-annotation="3">Choose the estimation engine</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="6,7" data-code-cell="annotated-cell-9" data-code-annotation="4">Pass additional arguments to rstan or cmdstanr</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="6,7" data-code-annotation="4">Pass additional arguments to rstan or cmdstanr</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-lines="8" data-code-cell="annotated-cell-9" data-code-annotation="5">Save the model to save time in the future</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="8" data-code-annotation="5">Save the model to save time in the future</span>
 </dd>
 </dl>
 </div>
 </div>
-</section><section id="measr_dcm-options" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>
-<code>measr_dcm()</code> options</h2>
+</section>
+<section id="measr_dcm-options" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2><code>measr_dcm()</code> options</h2>
 <ul>
 <li><p><code>type</code>: Declare the type of DCM to estimate. Currently support LCDM, DINA, DINO, and C-RUM</p></li>
 <li><p><code>method</code>: How to estimate the model. To sample, use “mcmc”. To use Stan’s optimizer, use “optim”</p></li>
 <li><p><code>backend</code>: Which engine to use, either “rstan” or “cmdstanr”</p></li>
-<li>
-<p><code>...</code>: Additional arguments that are passed to, depending on the <code>method</code> and <code>backend</code>:</p>
+<li><p><code>...</code>: Additional arguments that are passed to, depending on the <code>method</code> and <code>backend</code>:</p>
 <ul>
-<li><code><a href="https://mc-stan.org/rstan/reference/stanmodel-method-sampling.html">rstan::sampling()</a></code></li>
-<li><code><a href="https://mc-stan.org/rstan/reference/stanmodel-method-optimizing.html">rstan::optimizing()</a></code></li>
-<li><code><a href="https://mc-stan.org/cmdstanr/reference/model-method-sample.html">cmdstanr::sample()</a></code></li>
-<li><code><a href="https://mc-stan.org/cmdstanr/reference/model-method-optimize.html">cmdstanr::optimize()</a></code></li>
+<li><code>rstan::sampling()</code></li>
+<li><code>rstan::optimizing()</code></li>
+<li><code>cmdstanr::sample()</code></li>
+<li><code>cmdstanr::optimize()</code></li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="exercise-3" class="slide level2" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 3</h2>
+</section>
+<section id="exercise-3" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2>Exercise 3</h2>
 <p>Estimate and LCDM on the MDM data. Your model should have:</p>
 <ul>
 <li>2 chains</li>
@@ -955,26 +985,28 @@ W. Jake Thompson, Ph.D.
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_58fd032a" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls">
-<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
-</div>
+<div class="countdown" id="timer_dc5ab16a" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section><section id="section-4" class="slide level2" data-menu-title="Solution 3" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
+</section>
+<section id="section-4" class="slide level2" data-menu-title="Solution 3" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2></h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
 <span id="cb22-2"><a href="#cb22-2"></a>  <span class="at">data =</span> mdm_data, <span class="at">qmatrix =</span> mdm_qmatrix,</span>
 <span id="cb22-3"><a href="#cb22-3"></a>  <span class="at">resp_id =</span> <span class="st">"respondent"</span>, <span class="at">item_id =</span> <span class="st">"item"</span>,</span>
 <span id="cb22-4"><a href="#cb22-4"></a>  <span class="at">type =</span> <span class="st">"lcdm"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5"></a>  <span class="at">method =</span> <span class="st">"mcmc"</span>, <span class="at">backend =</span> <span class="st">"cmdstanr"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6"></a>  <span class="at">iter_warmup =</span> <span class="dv">1000</span>, <span class="at">iter_sampling =</span> <span class="dv">500</span>, <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="at">method =</span> <span class="st">"mcmc"</span>, <span class="at">backend =</span> <span class="st">"rstan"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="at">warmup =</span> <span class="dv">1000</span>, <span class="at">iter =</span> <span class="dv">1500</span>, <span class="at">chains =</span> <span class="dv">2</span>,</span>
 <span id="cb22-7"><a href="#cb22-7"></a>  <span class="at">file =</span> <span class="st">"fits/mdm-lcdm"</span></span>
 <span id="cb22-8"><a href="#cb22-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="extracting-item-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Extracting item parameters</h2>
+</section>
+<section id="extracting-item-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Extracting item parameters</h2>
 <div class="small">
 <p><code>measr_extract()</code> can be used to pull out components of an estimated model.</p>
 </div>
@@ -997,7 +1029,9 @@ W. Jake Thompson, Ph.D.
 # ℹ 64 more rows</code></pre>
 </div>
 </div>
-</section><section id="extracting-structural-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Extracting structural parameters</h2>
+</section>
+<section id="extracting-structural-parameters" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Extracting structural parameters</h2>
 <div class="cell" data-layout-align="center" data-output-line-numbers="|4,7,10,11">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"strc_param"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1014,8 +1048,12 @@ W. Jake Thompson, Ph.D.
 <span id="cb26-11"><a href="#cb26-11"></a>8 [1,1,1]  0.3451 ± 0.0167</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section><section id="extracting-respondent-probabilities" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Extracting respondent probabilities</h2>
+</section>
+<section id="extracting-respondent-probabilities" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Extracting respondent probabilities</h2>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>ecpe <span class="ot">&lt;-</span> <span class="fu">add_respondent_estimates</span>(ecpe)</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"attribute_prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,922 × 4
    resp_id morphosyntactic cohesive lexical
@@ -1033,67 +1071,82 @@ W. Jake Thompson, Ph.D.
 # ℹ 2,912 more rows</code></pre>
 </div>
 </div>
-</section><section id="exercise-4" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 4</h2>
+</section>
+<section id="exercise-4" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2>Exercise 4</h2>
 <p>What proportion of respondents have mastered multiplication in the MDM data?</p>
 <p>What is the probability that respondent zfn2i has mastered multiplication?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_c4f82a91" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls">
-<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
-</div>
+<div class="countdown" id="timer_445eaad4" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section><section id="section-5" class="slide level2 exercise" data-menu-title="Solution 4" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
+</section>
+<section id="section-5" class="slide level2 exercise" data-menu-title="Solution 4" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2></h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-3-1">Structural parameters</a></li>
-<li><a href="#tabset-3-2">Respondent probabilities</a></li>
-</ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Structural parameters</a></li><li><a href="#tabset-3-2">Respondent probabilities</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"strc_param"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"strc_param"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
-  class      estimate
-  &lt;chr&gt;    &lt;rvar[1d]&gt;
-1 [0]    0.49 ± 0.073
-2 [1]    0.51 ± 0.073</code></pre>
+  class     estimate
+  &lt;chr&gt;   &lt;rvar[1d]&gt;
+1 [0]    0.5 ± 0.074
+2 [1]    0.5 ± 0.074</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-3-2">
 <div class="cell" data-layout-align="center" data-output-line-numbers="|12">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">add_respondent_estimates</span>(mdm_lcdm)</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"attribute_prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">add_respondent_estimates</span>(mdm_lcdm)</span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"attribute_prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb31" data-code-line-numbers="|12"><pre class="sourceCode numberSource highlight has-line-highlights number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a># A tibble: 142 × 2</span>
-<span id="cb31-2"><a href="#cb31-2"></a>   respondent multiplication</span>
-<span id="cb31-3"><a href="#cb31-3"></a>   &lt;fct&gt;               &lt;dbl&gt;</span>
-<span id="cb31-4"><a href="#cb31-4"></a> 1 7gray               0.997</span>
-<span id="cb31-5"><a href="#cb31-5"></a> 2 3dvje               0.997</span>
-<span id="cb31-6"><a href="#cb31-6"></a> 3 sl7fa               0.997</span>
-<span id="cb31-7"><a href="#cb31-7"></a> 4 bo4ps               0.997</span>
-<span id="cb31-8"><a href="#cb31-8"></a> 5 woxc7               0.997</span>
-<span id="cb31-9"><a href="#cb31-9"></a> 6 s9exl               0.997</span>
-<span id="cb31-10"><a href="#cb31-10"></a> 7 6cboa               0.997</span>
-<span id="cb31-11"><a href="#cb31-11"></a> 8 tckp1               0.997</span>
-<span id="cb31-12"><a href="#cb31-12"></a> 9 zfn2i               0.997</span>
-<span id="cb31-13"><a href="#cb31-13"></a>10 pre1b               0.997</span>
-<span id="cb31-14"><a href="#cb31-14"></a># ℹ 132 more rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32" data-code-line-numbers="|12"><pre class="sourceCode numberSource highlight has-line-highlights number-lines code-with-copy"><code class="sourceCode"><span id="cb32-1"><a href="#cb32-1"></a># A tibble: 142 × 2</span>
+<span id="cb32-2"><a href="#cb32-2"></a>   respondent multiplication</span>
+<span id="cb32-3"><a href="#cb32-3"></a>   &lt;fct&gt;               &lt;dbl&gt;</span>
+<span id="cb32-4"><a href="#cb32-4"></a> 1 7gray               0.997</span>
+<span id="cb32-5"><a href="#cb32-5"></a> 2 3dvje               0.997</span>
+<span id="cb32-6"><a href="#cb32-6"></a> 3 sl7fa               0.997</span>
+<span id="cb32-7"><a href="#cb32-7"></a> 4 bo4ps               0.997</span>
+<span id="cb32-8"><a href="#cb32-8"></a> 5 woxc7               0.997</span>
+<span id="cb32-9"><a href="#cb32-9"></a> 6 s9exl               0.997</span>
+<span id="cb32-10"><a href="#cb32-10"></a> 7 6cboa               0.997</span>
+<span id="cb32-11"><a href="#cb32-11"></a> 8 tckp1               0.997</span>
+<span id="cb32-12"><a href="#cb32-12"></a> 9 zfn2i               0.997</span>
+<span id="cb32-13"><a href="#cb32-13"></a>10 pre1b               0.997</span>
+<span id="cb32-14"><a href="#cb32-14"></a># ℹ 132 more rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section></section><section><section id="priors" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain"><h1>Priors</h1>
-
-</section><section id="default-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Default priors</h2>
+</section>
+<section id="working-with-stan-objects" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Working with Stan objects</h2>
+<p>Extract Stan code with:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">default_dcm_priors</span>(<span class="at">type =</span> <span class="st">"lcdm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>ecpe<span class="sc">$</span>stancode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extract the Stan object:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>ecpe<span class="sc">$</span>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="priors" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
+<h1>Priors</h1>
+
+</section>
+<section id="default-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Default priors</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">default_dcm_priors</span>(<span class="at">type =</span> <span class="st">"lcdm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   class       coef  prior_def                  
@@ -1104,18 +1157,23 @@ W. Jake Thompson, Ph.D.
 4 structural  Vc    dirichlet(rep_vector(1, C))</code></pre>
 </div>
 </div>
-</section><section id="weakly-informative-priors" class="slide level2" data-background-image="figure/backgrounds/empty.png" data-background-size="contain"><h2>Weakly informative priors</h2>
+</section>
+<section id="weakly-informative-priors" class="slide level2" data-background-image="figure/backgrounds/empty.png" data-background-size="contain">
+<h2>Weakly informative priors</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="03-estimation-slides_files/figure-revealjs/unnamed-chunk-22-1.png" style="width:80.0%;height:80.0%" alt="The distribution of expected probabilities of providing a correct response for each class, based on the default priors."></p>
+<figure>
+<p><img data-src="03-estimation-slides_files/figure-revealjs/plot-prior-1.png" style="width:80.0%;height:80.0%" alt="The distribution of expected probabilities of providing a correct response for each class, based on the default priors."></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="creating-custom-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Creating custom priors</h2>
+</section>
+<section id="creating-custom-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Creating custom priors</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="at">class =</span> <span class="st">"maineffect"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="at">class =</span> <span class="st">"maineffect"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   class      coef  prior_def    
@@ -1123,10 +1181,10 @@ W. Jake Thompson, Ph.D.
 1 maineffect &lt;NA&gt;  normal(0, 10)</code></pre>
 </div>
 </div>
-<p> </p>
+<p><br> <br></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>, <span class="at">coef =</span> <span class="st">"l3_0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>, <span class="at">coef =</span> <span class="st">"l3_0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   class     coef  prior_def   
@@ -1135,43 +1193,44 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section><section id="specifying-custom-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Specifying custom priors</h2>
+</section>
+<section id="specifying-custom-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Specifying custom priors</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-4-1">Specify separately</a></li>
-<li><a href="#tabset-4-2">Specify in <code>measr_dcm()</code></a></li>
-</ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Specify separately</a></li><li><a href="#tabset-4-2">Specify in <code>measr_dcm()</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="|1,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>my_prior <span class="ot">&lt;-</span> <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>)</span>
-<span id="cb38-2"><a href="#cb38-2"></a>new_ecpe <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
-<span id="cb38-3"><a href="#cb38-3"></a>  <span class="at">data =</span> ecpe_data, <span class="at">qmatrix =</span> ecpe_qmatrix,</span>
-<span id="cb38-4"><a href="#cb38-4"></a>  <span class="at">resp_id =</span> <span class="st">"resp_id"</span>, <span class="at">item_id =</span> <span class="st">"item_id"</span>, </span>
-<span id="cb38-5"><a href="#cb38-5"></a>  <span class="at">type =</span> <span class="st">"lcdm"</span>,  </span>
-<span id="cb38-6"><a href="#cb38-6"></a>  <span class="at">prior =</span> my_prior,</span>
-<span id="cb38-7"><a href="#cb38-7"></a>  <span class="at">method =</span> <span class="st">"optim"</span>, <span class="at">backend =</span> <span class="st">"cmdstanr"</span>,</span>
-<span id="cb38-8"><a href="#cb38-8"></a>  <span class="at">file =</span> <span class="st">"fits/ecpe-new-prior"</span></span>
-<span id="cb38-9"><a href="#cb38-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="|1,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>my_prior <span class="ot">&lt;-</span> <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2"></a>new_ecpe <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
+<span id="cb41-3"><a href="#cb41-3"></a>  <span class="at">data =</span> ecpe_data, <span class="at">qmatrix =</span> ecpe_qmatrix,</span>
+<span id="cb41-4"><a href="#cb41-4"></a>  <span class="at">resp_id =</span> <span class="st">"resp_id"</span>, <span class="at">item_id =</span> <span class="st">"item_id"</span>, </span>
+<span id="cb41-5"><a href="#cb41-5"></a>  <span class="at">type =</span> <span class="st">"lcdm"</span>,  </span>
+<span id="cb41-6"><a href="#cb41-6"></a>  <span class="at">prior =</span> my_prior,</span>
+<span id="cb41-7"><a href="#cb41-7"></a>  <span class="at">method =</span> <span class="st">"optim"</span>, <span class="at">backend =</span> <span class="st">"cmdstanr"</span>,</span>
+<span id="cb41-8"><a href="#cb41-8"></a>  <span class="at">file =</span> <span class="st">"fits/ecpe-new-prior"</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>new_ecpe <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
-<span id="cb39-2"><a href="#cb39-2"></a>  <span class="at">data =</span> ecpe_data, <span class="at">qmatrix =</span> ecpe_qmatrix,</span>
-<span id="cb39-3"><a href="#cb39-3"></a>  <span class="at">resp_id =</span> <span class="st">"resp_id"</span>, <span class="at">item_id =</span> <span class="st">"item_id"</span>, </span>
-<span id="cb39-4"><a href="#cb39-4"></a>  <span class="at">type =</span> <span class="st">"lcdm"</span>,  </span>
-<span id="cb39-5"><a href="#cb39-5"></a>  <span class="at">prior =</span> <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>),</span>
-<span id="cb39-6"><a href="#cb39-6"></a>  <span class="at">method =</span> <span class="st">"optim"</span>, <span class="at">backend =</span> <span class="st">"cmdstanr"</span>,</span>
-<span id="cb39-7"><a href="#cb39-7"></a>  <span class="at">file =</span> <span class="st">"fits/ecpe-new-prior"</span></span>
-<span id="cb39-8"><a href="#cb39-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>new_ecpe <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
+<span id="cb42-2"><a href="#cb42-2"></a>  <span class="at">data =</span> ecpe_data, <span class="at">qmatrix =</span> ecpe_qmatrix,</span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="at">resp_id =</span> <span class="st">"resp_id"</span>, <span class="at">item_id =</span> <span class="st">"item_id"</span>, </span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="at">type =</span> <span class="st">"lcdm"</span>,  </span>
+<span id="cb42-5"><a href="#cb42-5"></a>  <span class="at">prior =</span> <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>),</span>
+<span id="cb42-6"><a href="#cb42-6"></a>  <span class="at">method =</span> <span class="st">"optim"</span>, <span class="at">backend =</span> <span class="st">"cmdstanr"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7"></a>  <span class="at">file =</span> <span class="st">"fits/ecpe-new-prior"</span></span>
+<span id="cb42-8"><a href="#cb42-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="extract-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Extract priors</h2>
+</section>
+<section id="extract-priors" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Extract priors</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"prior"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"prior"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   class       coef  prior_def                  
@@ -1182,10 +1241,10 @@ W. Jake Thompson, Ph.D.
 4 structural  Vc    dirichlet(rep_vector(1, C))</code></pre>
 </div>
 </div>
-<p> </p>
+<p><br> <br></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">measr_extract</span>(new_ecpe, <span class="st">"prior"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">measr_extract</span>(new_ecpe, <span class="st">"prior"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   class       coef  prior_def                  
@@ -1197,45 +1256,45 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section><section id="exercise-5" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 5</h2>
+</section>
+<section id="exercise-5" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2>Exercise 5</h2>
 <p>Estimate a new LCDM model for the MDM data with the following priors:</p>
 <ul>
 <li>Intercepts: <code>normal(-1, 2)</code>
 <ul>
 <li>Except item 3, which should use a <code>normal(0, 1)</code> prior</li>
-</ul>
-</li>
-<li>Main effects: <code>lognormal(0, 1)</code>
-</li>
+</ul></li>
+<li>Main effects: <code>lognormal(0, 1)</code></li>
 </ul>
 <p>Extract the prior to see that the specifications were applied</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_87646111" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls">
-<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
-</div>
+<div class="countdown" id="timer_71d6610f" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section><section id="section-6" class="slide level2 exercise" data-menu-title="Solution 5" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
+</section>
+<section id="section-6" class="slide level2 exercise" data-menu-title="Solution 5" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
+<h2></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44" data-code-line-numbers="|5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>new_mdm <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
-<span id="cb44-2"><a href="#cb44-2"></a>  <span class="at">data =</span> mdm_data, <span class="at">qmatrix =</span> mdm_qmatrix,</span>
-<span id="cb44-3"><a href="#cb44-3"></a>  <span class="at">resp_id =</span> <span class="st">"respondent"</span>, <span class="at">item_id =</span> <span class="st">"item"</span>,</span>
-<span id="cb44-4"><a href="#cb44-4"></a>  <span class="at">type =</span> <span class="st">"lcdm"</span>,</span>
-<span id="cb44-5"><a href="#cb44-5"></a>  <span class="at">prior =</span> <span class="fu">c</span>(<span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">2</span>), <span class="at">class =</span> <span class="st">"intercept"</span>),</span>
-<span id="cb44-6"><a href="#cb44-6"></a>            <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>, <span class="at">coef =</span> <span class="st">"l3_0"</span>)),</span>
-<span id="cb44-7"><a href="#cb44-7"></a>  <span class="at">method =</span> <span class="st">"mcmc"</span>, <span class="at">backend =</span> <span class="st">"cmdstanr"</span>,</span>
-<span id="cb44-8"><a href="#cb44-8"></a>  <span class="at">iter_warmup =</span> <span class="dv">1000</span>, <span class="at">iter_sampling =</span> <span class="dv">500</span>, <span class="at">chains =</span> <span class="dv">2</span>,</span>
-<span id="cb44-9"><a href="#cb44-9"></a>  <span class="at">file =</span> <span class="st">"fits/mdm-new-prior"</span></span>
-<span id="cb44-10"><a href="#cb44-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47" data-code-line-numbers="|5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>new_mdm <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
+<span id="cb47-2"><a href="#cb47-2"></a>  <span class="at">data =</span> mdm_data, <span class="at">qmatrix =</span> mdm_qmatrix,</span>
+<span id="cb47-3"><a href="#cb47-3"></a>  <span class="at">resp_id =</span> <span class="st">"respondent"</span>, <span class="at">item_id =</span> <span class="st">"item"</span>,</span>
+<span id="cb47-4"><a href="#cb47-4"></a>  <span class="at">type =</span> <span class="st">"lcdm"</span>,</span>
+<span id="cb47-5"><a href="#cb47-5"></a>  <span class="at">prior =</span> <span class="fu">c</span>(<span class="fu">prior</span>(<span class="fu">normal</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">2</span>), <span class="at">class =</span> <span class="st">"intercept"</span>),</span>
+<span id="cb47-6"><a href="#cb47-6"></a>            <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"intercept"</span>, <span class="at">coef =</span> <span class="st">"l3_0"</span>)),</span>
+<span id="cb47-7"><a href="#cb47-7"></a>  <span class="at">method =</span> <span class="st">"mcmc"</span>, <span class="at">backend =</span> <span class="st">"rstan"</span>,</span>
+<span id="cb47-8"><a href="#cb47-8"></a>  <span class="at">warmup =</span> <span class="dv">1000</span>, <span class="at">iter =</span> <span class="dv">1500</span>, <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb47-9"><a href="#cb47-9"></a>  <span class="at">file =</span> <span class="st">"fits/mdm-new-prior"</span></span>
+<span id="cb47-10"><a href="#cb47-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p> </p>
+<p><br> <br></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">measr_extract</span>(new_mdm, <span class="st">"prior"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">measr_extract</span>(new_mdm, <span class="st">"prior"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   class      coef  prior_def                  
@@ -1247,8 +1306,10 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section><section id="section-7" class="slide level2" data-menu-title="Closing" data-background-image="figure/backgrounds/plain-title.png" data-background-size="contain"><h2></h2>
-<p></p>
+</section></section>
+<section id="section-7" class="title-slide slide level1 closing center" data-menu-title="Closing" data-background-image="figure/backgrounds/plain-title.png" data-background-size="contain">
+<h1></h1>
+<p><br></p>
 <div class="end-title" color="white" data-font-size="200%">
 <p>Estimating diagnostic classification models</p>
 </div>
@@ -1262,11 +1323,27 @@ W. Jake Thompson, Ph.D.
 <div class="footer footer-default">
 
 </div>
-</section></section>
-</div>
+</section>
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1457,7 +1534,9 @@ W. Jake Thompson, Ph.D.
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1492,7 +1571,9 @@ W. Jake Thompson, Ph.D.
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1791,6 +1872,6 @@ W. Jake Thompson, Ph.D.
       }
     });
     </script>
-
+    
 
 </body></html>

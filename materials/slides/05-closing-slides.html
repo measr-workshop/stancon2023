@@ -14,7 +14,7 @@
   <meta name="generator" content="quarto-1.3.361">
 
   <meta name="author" content="W. Jake Thompson, Ph.D.">
-  <title>measr - Cognitive diagnostic  models</title>
+  <title>measr - Wrap-Up</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -32,71 +32,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #767676;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
-    div.sourceCode
-      { color: #545454; background-color: #fefefe; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #545454; } /* Normal */
-    code span.al { color: #7928a1; } /* Alert */
-    code span.an { color: #696969; } /* Annotation */
-    code span.at { color: #a55a00; } /* Attribute */
-    code span.bn { color: #7928a1; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #d91e18; } /* ControlFlow */
-    code span.ch { color: #008000; } /* Char */
-    code span.cn { color: #d91e18; } /* Constant */
-    code span.co { color: #696969; } /* Comment */
-    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
-    code span.do { color: #696969; font-style: italic; } /* Documentation */
-    code span.dt { color: #7928a1; } /* DataType */
-    code span.dv { color: #7928a1; } /* DecVal */
-    code span.er { color: #7928a1; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #a55a00; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #696969; } /* Information */
-    code span.kw { color: #d91e18; } /* Keyword */
-    code span.op { color: #00769e; } /* Operator */
-    code span.ot { color: #d91e18; } /* Other */
-    code span.pp { color: #7928a1; } /* Preprocessor */
-    code span.sc { color: #00769e; } /* SpecialChar */
-    code span.ss { color: #008000; } /* SpecialString */
-    code span.st { color: #008000; } /* String */
-    code span.va { color: #a55a00; } /* Variable */
-    code span.vs { color: #008000; } /* VerbatimString */
-    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -387,15 +322,13 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="measr - Cognitive diagnostic  models">
-<meta property="og:description" content="With R and Stan">
+<meta property="og:title" content="measr - Wrap-Up">
 <meta property="og:image" content="https://stancon2023.measr.info/files/social-image-measr.png">
 <meta property="og:site-name" content="measr">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="measr - Cognitive diagnostic  models">
-<meta name="twitter:description" content="With R and Stan">
+<meta name="twitter:title" content="measr - Wrap-Up">
 <meta name="twitter:image" content="https://stancon2023.measr.info/files/social-image-measr.png">
 <meta name="twitter:creator" content="@wjakethompson">
 <meta name="twitter:site" content="@atlas4learning">
@@ -408,8 +341,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="figure/backgrounds/ku-title.png" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">Cognitive diagnostic <br> models</h1>
-  <p class="subtitle">With R and Stan</p>
+  <h1 class="title">Wrap-Up</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -421,101 +353,76 @@ W. Jake Thompson, Ph.D.
 
 </section>
 <section>
-<section id="welcome" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
-<h1>Welcome!</h1>
+<section id="whats-next" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
+<h1>What’s next?</h1>
 
 </section>
-<section id="introductions" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Introductions</h2>
-<div class="columns">
+<section id="learn-more-about-dcms" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Learn more about DCMs</h2>
+<div class="columns center">
 <div class="column" style="width:50%;">
-<p><br><br>Jake Thompson<br>
-Assistant Director of Psychometrics<br>
-<a href="https://atlas.ku.edu">ATLAS</a> | University of Kansas</p>
-</div><div class="column" style="width:50%;">
-<div class="center">
-<p><img style="border-radius: 50%;" src="figure/images/thompson-2022-07.jpg" width="400px"></p>
-<div class="small">
-<p><i class="fa-brands fa-twitter" aria-label="twitter"></i> &nbsp; <a href="https://www.twitter.com/wjakethompson">@wjakethompson</a><br>
-<i class="fa-brands fa-github" aria-label="github"></i> &nbsp; <a href="https://www.gitub.com/wjakethompson">@wjakethompson</a></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="acknowledgements" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Acknowledgements</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="small">
-<p><br>The research reported here was supported by the Institute of Education Sciences, U.S. Department of Education, through Grant <a href="https://ies.ed.gov/funding/grantsearch/details.asp?ID=4546">R305D210045</a> to the University of Kansas. The opinions expressed are those of the authors and do not represent the views of the the Institute or the U.S. Department of Education.</p>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="center">
-<p><img data-src="figure/images/ies.jpg" alt="Logo for the Institute of Education Sciences"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="schedule" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Schedule</h2>
-<div class="columns">
-<div class="column center" style="width:50%;">
-<h3 id="part-1-foundations">Part 1: Foundations</h3>
-<p>Brief introduction to DCMs</p>
-<p>Theoretical underpinnings</p>
-</div><div class="column center fragment" style="width:50%;">
-<!-- -->
-<h3 id="part-2-applications">Part 2: Applications</h3>
-<p>Model estimation and evaluation</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figure/images/combined-logos.png"></p>
+<p><a href="https://www.amazon.com/Diagnostic-Measurement-Applications-Methodology-Sciences/dp/1606235273"><img data-src="figure/rupp-book.jpg" style="height:13em" alt="Cover of Diagnostic Measurement book by Rupp, Templin, and Henson."></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://link.springer.com/book/10.1007/978-3-030-05584-4"><img data-src="figure/dcm-handbook.jpeg" style="height:13em" alt="Cover of the Handbook of Diagnostic Classification Models by von Davier and Lee."></a></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="materials" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Materials</h2>
-<p>All materials are available on the workshop website:</p>
-<p><a href="https://stancon2023.measr.info" class="uri">https://stancon2023.measr.info</a></p>
-</section>
-<section id="installation" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Installation</h2>
-<ul>
-<li>Required
-<ul>
-<li>R (≥ 4.2)</li>
-<li>rstan (≥ 2.21.8)</li>
-<li>measr (≥ 0.3.1)</li>
-</ul></li>
-<li>Recommended
-<ul>
-<li>RStudio (≥ 2023.03.1+446)</li>
-<li>cmdstanr (≥ 0.5.3)</li>
-<li>CmdStan (≥ 2.32.2)</li>
-</ul></li>
-</ul>
-</section>
-<section id="copy-and-run" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Copy and run</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rstan"</span>, <span class="st">"StanHeaders"</span>, <span class="st">"cmdstanr"</span>),</span>
-<span id="cb1-2"><a href="#cb1-2"></a>                 <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">"https://mc-stan.org/r-packages"</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>)))</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># check toolchain</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>cmdstanr<span class="sc">::</span><span class="fu">check_cmdstan_toolchain</span>()</span>
-<span id="cb1-6"><a href="#cb1-6"></a>cmdstanr<span class="sc">::</span><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">install.packages</span>(<span class="st">"measr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="learn-more-about-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Learn more about measr</h2>
+<div class="columns v-center-container-slide">
+<div class="column center">
+<p><img data-src="figure/measr-hex.png" style="width:60.0%" alt="Hex logo for the measr R package."></p>
+</div><div class="column">
+<div class="large spaced">
+<p><i class="fa-solid fa-globe" aria-label="globe"></i> <a href="https://measr.info">measr documentation</a></p>
+<p><i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/wjakethompson/measr">wjakethompson/measr</a></p>
 </div>
-<p>For help installing RStan or configuring the toolchain, see the <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started">RStan help pages</a>.</p>
+</div>
+</div>
+</section>
+<section id="feedback" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
+<h2>Feedback</h2>
+<div class="columns">
+<div class="column small">
+<p>We value your feedback! To answer a short survey about and provide feedback on the {measr} package, please follow this link to a <a href="https://kusurvey.ca1.qualtrics.com/jfe/form/SV_3jGbhNjrU18Y9Se">Qualtrics survey</a>.</p>
+<p>ATLAS at the University of Kansas is conducting research to better understand the software development process for {measr}. Individuals who have used the {measr} package and are at least 18 years of age are invited to complete a 5-minute survey on their experiences. For questions, please contact Jake Thompson at wjakethompson@ku.edu.</p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://kusurvey.ca1.qualtrics.com/jfe/form/SV_3jGbhNjrU18Y9Se"><img data-src="figure/survey-qr.png" style="height:12em" alt="QR code to take the workshop survey."></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section id="httpsstancon2023.measr.info" class="title-slide slide level1 thank-you center" data-menu-title="Get in touch" data-background-color="#023047" data-background-iframe="grid-worms/index.html">
+<h1><a href="https://stancon2023.measr.info" class="uri">https://stancon2023.measr.info</a></h1>
+<div class="columns v-center-container">
+<div class="column image" style="width:60%;">
+<p><img data-src="figure/measr-hex.png" style="width:50.0%" alt="Hex logo for the measr R package."></p>
+</div><div class="column" style="width:40%;">
+<div class="thank-you-subtitle">
+<p><i class="fa-solid fa-globe" aria-label="globe"></i> <a href="https://wjakethompson.com">wjakethompson.com</a><br>
+<i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:wjakethompson@ku.edu">wjakethompson@ku.edu</a><br>
+<i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/wjakethompson"><span class="citation" data-cites="wjakethompson">@wjakethompson</span></a><br>
+<i class="fa-brands fa-twitter" aria-label="twitter"></i> <a href="https://twitter.com/wjakethompson"><span class="citation" data-cites="wjakethompson">@wjakethompson</span></a><br>
+<i class="fa-brands fa-mastodon" aria-label="mastodon"></i> <a href="https://fosstodon.org/@wjakethompson"><span class="citation" data-cites="wjakethompson">@wjakethompson</span><span class="citation" data-cites="fosstodon.org">@fosstodon.org</span></a></p>
+</div>
+</div>
+</div>
 
 <div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -639,7 +546,7 @@ Assistant Director of Psychometrics<br>
         autoPlayMedia: null,
 
         // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
+        preloadIframes: true,
 
         // Number of milliseconds between automatically proceeding to the
         // next slide, disabled when set to 0, this value can be overwritten
@@ -872,6 +779,159 @@ Assistant Director of Psychometrics<br>
           return note.innerHTML;
         });
       }
+          let selectedAnnoteEl;
+          const selectorForAnnotation = ( cell, annotation) => {
+            let cellAttr = 'data-code-cell="' + cell + '"';
+            let lineAttr = 'data-code-annotation="' +  annotation + '"';
+            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+            return selector;
+          }
+          const selectCodeLines = (annoteEl) => {
+            const doc = window.document;
+            const targetCell = annoteEl.getAttribute("data-target-cell");
+            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+            const lineIds = lines.map((line) => {
+              return targetCell + "-" + line;
+            })
+            let top = null;
+            let height = null;
+            let parent = null;
+            if (lineIds.length > 0) {
+                //compute the position of the single el (top and bottom and make a div)
+                const el = window.document.getElementById(lineIds[0]);
+                top = el.offsetTop;
+                height = el.offsetHeight;
+                parent = el.parentElement.parentElement;
+              if (lineIds.length > 1) {
+                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                height = bottom - top;
+              }
+              if (top !== null && height !== null && parent !== null) {
+                // cook up a div (if necessary) and position it 
+                let div = window.document.getElementById("code-annotation-line-highlight");
+                if (div === null) {
+                  div = window.document.createElement("div");
+                  div.setAttribute("id", "code-annotation-line-highlight");
+                  div.style.position = 'absolute';
+                  parent.appendChild(div);
+                }
+                div.style.top = top - 2 + "px";
+                div.style.height = height + 4 + "px";
+                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                if (gutterDiv === null) {
+                  gutterDiv = window.document.createElement("div");
+                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                  gutterDiv.style.position = 'absolute';
+                  const codeCell = window.document.getElementById(targetCell);
+                  const gutter = codeCell.querySelector('.code-annotation-gutter');
+                  gutter.appendChild(gutterDiv);
+                }
+                gutterDiv.style.top = top - 2 + "px";
+                gutterDiv.style.height = height + 4 + "px";
+              }
+              selectedAnnoteEl = annoteEl;
+            }
+          };
+          const unselectCodeLines = () => {
+            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+            elementsIds.forEach((elId) => {
+              const div = window.document.getElementById(elId);
+              if (div) {
+                div.remove();
+              }
+            });
+            selectedAnnoteEl = undefined;
+          };
+          // Handle positioning of the toggle
+          window.addEventListener(
+          "resize",
+          throttle(() => {
+            elRect = undefined;
+            if (selectedAnnoteEl) {
+              selectCodeLines(selectedAnnoteEl);
+            }
+          }, 10)
+          );
+          function throttle(fn, ms) {
+          let throttle = false;
+          let timer;
+            return (...args) => {
+              if(!throttle) { // first call gets through
+                  fn.apply(this, args);
+                  throttle = true;
+              } else { // all the others get throttled
+                  if(timer) clearTimeout(timer); // cancel #2
+                  timer = setTimeout(() => {
+                    fn.apply(this, args);
+                    timer = throttle = false;
+                  }, ms);
+              }
+            };
+          }
+          const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+          for (let i=0; i<annoteTargets.length; i++) {
+            const annoteTarget = annoteTargets[i];
+            const targetCell = annoteTarget.getAttribute("data-target-cell");
+            const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+            const contentFn = () => {
+              const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+              if (content) {
+                const tipContent = content.cloneNode(true);
+                tipContent.classList.add("code-annotation-tip-content");
+                return tipContent.outerHTML;
+              }
+            }
+            const config = {
+              allowHTML: true,
+              content: contentFn,
+              onShow: (instance) => {
+                selectCodeLines(instance.reference);
+                instance.reference.classList.add('code-annotation-active');
+                window.tippy.hideAll();
+              },
+              onHide: (instance) => {
+                unselectCodeLines();
+                instance.reference.classList.remove('code-annotation-active');
+              },
+              maxWidth: 300,
+              delay: [50, 0],
+              duration: [200, 0],
+              offset: [5, 10],
+              arrow: true,
+              trigger: 'click',
+              appendTo: function(el) {
+                return el.parentElement.parentElement.parentElement;
+              },
+              interactive: true,
+              interactiveBorder: 10,
+              theme: 'light-border',
+              placement: 'right',
+              positionFixed: true,
+              popperOptions: {
+                modifiers: [
+                {
+                  name: 'flip',
+                  options: {
+                    flipVariations: false, // true by default
+                    allowedAutoPlacements: ['right'],
+                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
+                  },
+                },
+                {
+                  name: 'preventOverflow',
+                  options: {
+                    mainAxis: false,
+                    altAxis: false
+                  }
+                }
+                ]        
+              }      
+            };
+            window.tippy(annoteTarget, config); 
+          }
       const findCites = (el) => {
         const parentEl = el.parentElement;
         if (parentEl) {
