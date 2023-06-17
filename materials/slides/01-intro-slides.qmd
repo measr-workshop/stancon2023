@@ -74,7 +74,9 @@ Model estimation and evaluation
 
 ## Materials {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-All materials are available on the workshop website: https://stancon2023.measr.info
+All materials are available on the workshop website:
+
+<https://stancon2023.measr.info>
 
 ## Installation {background-image="figure/backgrounds/default.png" background-size="contain"}
 
