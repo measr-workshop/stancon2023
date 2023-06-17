@@ -279,7 +279,7 @@ base +
 :::{.columns}
 :::{.column width="50%"}
 * DCMs are psychometric models designed to classify
-  * We can define our attributes in any wya that we choose
+  * We can define our attributes in any way that we choose
   * Items depend on the attribute definitions
   * Classifications are probabilistic
   * Takes fewer items to classify than to rank/scale
