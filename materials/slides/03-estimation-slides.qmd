@@ -60,7 +60,7 @@ dir_copy(here("materials", "slides", "grid-worms"),
 
 ## ECPE data {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r ecpe-data, echo = TRUE}
 library(measr)
 
 ecpe_data
@@ -68,7 +68,7 @@ ecpe_data
 
 ## ECPE Q-matrix {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r ecpe-qmatrix, echo = TRUE}
 #| class-output: highlight
 #| output-line-numbers: "|4|5,11|6,10"
 
@@ -82,7 +82,7 @@ ecpe_qmatrix
 ## Exercise 1 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
 
 1. Download the exercise files
-```{r echo = TRUE, eval = FALSE}
+```{r download-materials, echo = TRUE, eval = FALSE}
 usethis::use_course("measr-workshop/stancon2023-exercises")
 ```
 
@@ -95,7 +95,7 @@ usethis::use_course("measr-workshop/stancon2023-exercises")
     * How many respondents are in the data? 
     * How many attributes are measured?
     
-```{r}
+```{r countdown-1}
 countdown(
   minutes = 3, 
   seconds = 0,
@@ -118,7 +118,7 @@ countdown(
 
 :::{.columns}
 :::{.column width="50%"}
-```{r echo = TRUE}
+```{r mdm-data, echo = TRUE}
 mdm_data
 ```
 :::
@@ -133,7 +133,7 @@ mdm_data
 
 :::{.columns}
 :::{.column width="50%"}
-```{r echo = TRUE}
+```{r mdm-qmatrix, echo = TRUE}
 mdm_qmatrix
 ```
 :::
@@ -260,7 +260,7 @@ parameters {
 :::{.panel-tabset}
 ### Q-matrix
 
-```{r}
+```{r ecpe-qmatrix-12}
 slice(ecpe_qmatrix, 1:2)
 ```
 
@@ -321,7 +321,7 @@ transformed parameters {
 
 :::{.column width="50%"}
 
-```{r echo = TRUE}
+```{r ecpe-profiles, echo = TRUE}
 create_profiles(3)
 ```
 
@@ -355,7 +355,7 @@ transformed parameters {
 
 :::{.column width="30%"}
 
-```{r echo = TRUE}
+```{r ecpe-profiles-2, echo = TRUE}
 create_profiles(3)
 ```
 
@@ -386,11 +386,11 @@ model {
 ```
 
 
-## Exercise 2 {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+## Exercise 2 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
 
 Complete the `parameters` and `transformed parameters` blocks for the MDM data.
 
-```{r}
+```{r countdown-2}
 countdown(
   minutes = 5, 
   seconds = 0,
@@ -462,7 +462,7 @@ transformed parameters {
 
 Estimate a DCM with Stan
 
-```{r}
+```{r est-ecpe}
 #| echo: true
 ecpe <- measr_dcm(
   data = ecpe_data, qmatrix = ecpe_qmatrix, # <1>
@@ -494,7 +494,7 @@ ecpe <- measr_dcm(
   * `cmdstanr::sample()`
   * `cmdstanr::optimize()`
 
-## Exercise 3 {background-image="figure/backgrounds/exercises.png" background-size="contain"}
+## Exercise 3 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
 
 Estimate and LCDM on the MDM data. Your model should have:
 
@@ -502,19 +502,19 @@ Estimate and LCDM on the MDM data. Your model should have:
 * 1000 warmup and 500 sampling iterations
 * Use whichever backend you prefer
 
-```{r}
+```{r countdown-3}
 countdown(minutes = 5, bottom = "10%")
 ```
 
 ## {data-menu-title="Solution 3" background-image="figure/backgrounds/exercises.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r est-mdm, echo = TRUE}
 mdm_lcdm <- measr_dcm(
   data = mdm_data, qmatrix = mdm_qmatrix,
   resp_id = "respondent", item_id = "item",
   type = "lcdm",
-  method = "mcmc", backend = "cmdstanr",
-  iter_warmup = 1000, iter_sampling = 500, chains = 2,
+  method = "mcmc", backend = "rstan",
+  warmup = 1000, iter = 1500, chains = 2,
   file = "fits/mdm-lcdm"
 )
 ```
@@ -525,13 +525,13 @@ mdm_lcdm <- measr_dcm(
 `measr_extract()` can be used to pull out components of an estimated model.
 :::
 
-```{r echo = TRUE}
+```{r ecpe-item, echo = TRUE}
 measr_extract(ecpe, "item_param")
 ```
 
 ## Extracting structural parameters {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r ecpe-strc, echo = TRUE}
 #| class-output: highlight
 #| output-line-numbers: "|4,7,10,11"
 
@@ -540,7 +540,7 @@ measr_extract(ecpe, "strc_param")
 
 ## Extracting respondent probabilities {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-```{r}
+```{r ecpe-prob, echo = TRUE}
 ecpe <- add_respondent_estimates(ecpe)
 measr_extract(ecpe, "attribute_prob")
 ```
@@ -552,7 +552,7 @@ What proportion of respondents have mastered multiplication in the MDM data?
 
 What is the probability that respondent zfn2i has mastered multiplication?
 
-```{r}
+```{r countdown-4}
 countdown(minutes = 2, bottom = "10%")
 ```
 
@@ -562,13 +562,13 @@ countdown(minutes = 2, bottom = "10%")
 
 ### Structural parameters
 
-```{r echo = TRUE}
+```{r mdm-strc, echo = TRUE}
 measr_extract(mdm_lcdm, "strc_param")
 ```
 
 ### Respondent probabilities
 
-```{r echo = TRUE}
+```{r mdm-prob, echo = TRUE}
 #| class-output: highlight
 #| output-line-numbers: "|12"
 
@@ -578,17 +578,32 @@ measr_extract(mdm_lcdm, "attribute_prob")
 
 :::
 
+## Working with Stan objects {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+Extract Stan code with:
+
+```{r ecpe-code, echo = TRUE, eval = FALSE}
+ecpe$stancode
+```
+
+Extract the Stan object:
+
+```{r ecpe-stan, echo = TRUE, eval = FALSE}
+ecpe$model
+```
+
+
 # Priors {background-image="figure/backgrounds/section.png" background-size="contain"}
 
 ## Default priors {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r default-priors, echo = TRUE}
 default_dcm_priors(type = "lcdm")
 ```
 
 ## Weakly informative priors {background-image="figure/backgrounds/empty.png" background-size="contain"}
 
-```{r include = FALSE, cache = TRUE}
+```{r calc-prior, include = FALSE, cache = TRUE}
 library(rstan)
 
 prior_mod <- "
@@ -627,7 +642,7 @@ draws <- posterior::as_draws_df(prior_stan) |>
          class = fct_inorder(class))
 ```
 
-```{r}
+```{r plot-prior}
 #| out-width: 80%
 #| out-height: 80%
 #| fig-alt: "The distribution of expected probabilities of providing a correct response for each class, based on the default priors."
@@ -644,14 +659,14 @@ ggplot(draws, aes(x = value, y = class)) +
 
 ## Creating custom priors {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r class-prior, echo = TRUE}
 prior(normal(0, 10), class = "maineffect")
 ```
 
 </br> </br>
 
 :::{.fragment}
-```{r echo = TRUE}
+```{r coef-prior, echo = TRUE}
 prior(normal(0, 1), class = "intercept", coef = "l3_0")
 ```
 :::
@@ -662,7 +677,7 @@ prior(normal(0, 1), class = "intercept", coef = "l3_0")
 
 ### Specify separately
 
-```{r eval = FALSE, echo = TRUE}
+```{r sep-prior, eval = FALSE, echo = TRUE}
 #| code-line-numbers: "|1,6"
 my_prior <- prior(normal(-1, 1), class = "intercept")
 new_ecpe <- measr_dcm(
@@ -677,7 +692,7 @@ new_ecpe <- measr_dcm(
 
 ### Specify in `measr_dcm()`
 
-```{r, echo = TRUE}
+```{r func-prior, echo = TRUE}
 #| code-line-numbers: "|5"
 new_ecpe <- measr_dcm(
   data = ecpe_data, qmatrix = ecpe_qmatrix,
@@ -693,14 +708,14 @@ new_ecpe <- measr_dcm(
 
 ## Extract priors {background-image="figure/backgrounds/default.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r extract-prior, echo = TRUE}
 measr_extract(ecpe, "prior")
 ```
 
 </br> </br>
 
 :::{.fragment}
-```{r echo = TRUE}
+```{r extract-new-prior, echo = TRUE}
 measr_extract(new_ecpe, "prior")
 ```
 :::
@@ -715,13 +730,13 @@ Estimate a new LCDM model for the MDM data with the following priors:
 
 Extract the prior to see that the specifications were applied
 
-```{r}
+```{r countdown-5}
 countdown(minutes = 5, bottom = "10%")
 ```
 
 ## {.exercise data-menu-title="Solution 5" background-image="figure/backgrounds/exercises.png" background-size="contain"}
 
-```{r echo = TRUE}
+```{r fit-mdm-new, echo = TRUE}
 #| code-line-numbers: "|5-6"
 new_mdm <- measr_dcm(
   data = mdm_data, qmatrix = mdm_qmatrix,
@@ -729,8 +744,8 @@ new_mdm <- measr_dcm(
   type = "lcdm",
   prior = c(prior(normal(-1, 2), class = "intercept"),
             prior(normal(0, 1), class = "intercept", coef = "l3_0")),
-  method = "mcmc", backend = "cmdstanr",
-  iter_warmup = 1000, iter_sampling = 500, chains = 2,
+  method = "mcmc", backend = "rstan",
+  warmup = 1000, iter = 1500, chains = 2,
   file = "fits/mdm-new-prior"
 )
 ```
@@ -738,7 +753,7 @@ new_mdm <- measr_dcm(
 </br> </br>
 
 :::{.fragment}
-```{r echo = TRUE}
+```{r extract-mdm-new, echo = TRUE}
 measr_extract(new_mdm, "prior")
 ```
 :::
