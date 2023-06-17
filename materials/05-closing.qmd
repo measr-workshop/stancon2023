@@ -1,0 +1,14 @@
+---
+title: "Wrap-Up"
+---
+
+This session wraps up the workshop, including resources for further learning.
+Please take our [post-workshop survey](https://kusurvey.ca1.qualtrics.com/jfe/form/SV_3jGbhNjrU18Y9Se)!
+
+```{=html}
+<p class="buttons"><a class="btn btn-danger" target="_blank" href="slides/05-closing-slides.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open slides in new window</a>
+```
+
+```{=html}
+<iframe width="768" height="432" src="slides/05-closing-slides.html" style="border:1px solid #023047" title="Wrap-Up Slides"></iframe>
+```

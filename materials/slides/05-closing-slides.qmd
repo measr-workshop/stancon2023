@@ -1,0 +1,120 @@
+---
+title: Wrap-Up
+author: W. Jake Thompson, Ph.D.
+format:
+  measr-quarto-revealjs:
+    progress: false
+    title-slide-attributes: 
+      data-background-image: figure/backgrounds/ku-title.png
+      data-background-size: contain
+code-link: true
+preload-iframes: true
+code-annotations: select
+filters:
+  - lua/output-line-highlight.lua
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(ggmeasr)
+library(ggdist)
+library(magick)
+library(distributional)
+library(knitr)
+library(measr)
+library(here)
+library(fs)
+library(downlit)
+library(countdown)
+library(cmdstanr)
+library(posterior)
+
+opts_chunk$set(
+  fig.width = 7,
+  fig.asp = 0.618,
+  fig.align = "center"
+)
+
+set_theme(plot_margin = margin(5, 0, 0, 0))
+```
+
+# What's next? {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Learn more about DCMs {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns .center}
+
+:::{.column width="50%"}
+[![](figure/rupp-book.jpg){fig-alt="Cover of Diagnostic Measurement book by Rupp, Templin, and Henson." height="13em"}](https://www.amazon.com/Diagnostic-Measurement-Applications-Methodology-Sciences/dp/1606235273)
+:::
+
+:::{.column width="50%"}
+[![](figure/dcm-handbook.jpeg){fig-alt="Cover of the Handbook of Diagnostic Classification Models by von Davier and Lee." height="13em"}](https://link.springer.com/book/10.1007/978-3-030-05584-4)
+:::
+
+:::
+
+## Learn more about measr {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns .v-center-container-slide}
+
+:::{.column .center}
+![](figure/measr-hex.png){width="60%" fig-alt="Hex logo for the measr R package."}
+:::
+
+:::{.column}
+
+:::{.large .spaced}
+{{< fa globe >}} [measr documentation](https://measr.info)
+
+{{< fa brands github >}} [wjakethompson/measr](https://github.com/wjakethompson/measr)
+:::
+
+:::
+
+:::
+
+## Feedback {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+
+:::{.column}
+Please take our post-workshop survey.
+
+* Anonymous
+
+* Feedback on workshop and measr functionality
+
+Open a [Github issue](https://github.com/wjakethompson/measr/issues).
+:::
+
+:::{.column}
+[![](figure/survey-qr.png){fig-alt="QR code to take the workshop survey." height="12em"}](https://kusurvey.ca1.qualtrics.com/jfe/form/SV_3jGbhNjrU18Y9Se)
+:::
+
+:::
+
+
+# <https://stancon2023.measr.info> {.thank-you data-menu-title="Get in touch" background-color="#023047" background-iframe="grid-worms/index.html"}
+
+:::{.columns .v-center-container}
+
+:::{.column .image width="60%"}
+
+![](figure/measr-hex.png){width="50%" fig-alt="Hex logo for the measr R package."}
+
+:::
+
+:::{.column width="40%"}
+
+:::{.thank-you-subtitle}
+{{< fa globe >}} [wjakethompson.com](https://wjakethompson.com)  
+{{< fa envelope >}} [wjakethompson@ku.edu](mailto:wjakethompson@ku.edu)  
+{{< fa brands github >}} [@wjakethompson](https://github.com/wjakethompson)  
+{{< fa brands twitter >}} [@wjakethompson](https://twitter.com/wjakethompson)  
+{{< fa brands mastodon >}} [@wjakethompson@fosstodon.org](https://fosstodon.org/@wjakethompson)  
+:::
+
+:::
+
+:::

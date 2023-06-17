@@ -24,9 +24,6 @@ $code-block-bg: #EEEEEE;
 $btn-code-copy-color: $theme-darkblue;
 $btn-code-copy-color-active: $theme-darkblue;
 
-/* TODO: Customize presentation appearance by setting SCSS variables */
-/* See https://quarto.org/docs/presentations/revealjs/themes.html#customizing-themes */
-
 /*-- scss:rules --*/
 
 .reveal .slides #title-slide {
@@ -105,6 +102,69 @@ $btn-code-copy-color-active: $theme-darkblue;
   top: 1em !important;
 }
 
+.reveal .slides .end-title {
+  font-family: $presentation-heading-font;
+  font-weight: $presentation-heading-font-weight;
+  text-align: center;
+  color: white;
+  font-size: 175%;
+}
+
+.reveal .slides .end-subtitle {
+  color: white;
+  font-size: 125%;
+  text-align: center;
+}
+
+/* thank you slides */
+.reveal .slides .thank-you {
+ /* top: 1em !important; */
+}
+
+div.thank-you .slide-background-content {
+  width: 60%;
+  height: 70%;
+  position: relative;
+  top: 20%;
+}
+
+.reveal .slides .thank-you h1 {
+  font-family: $font-family;
+  text-align: center !important;
+  
+  a {
+    color: $theme-lightblue;
+  }
+}
+
+.reveal .slides .thank-you-subtitle {
+  color: white;
+  font-size: 80%;
+  text-align: left;
+
+  a {
+    color: $theme-lightblue;
+  }
+  
+  p {
+    line-height: 2em;
+  }
+}
+
+.v-center-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.v-center-container-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+}
+
 /* section headers */
 .reveal .slides .title-slide h1 {
   font-size: 45pt;
@@ -138,22 +198,22 @@ $btn-code-copy-color-active: $theme-darkblue;
   font-size: 80%;
 }
 
+.reveal .slides .smaller {
+  font-size: 50%;
+}
+
+.reveal .slides .large {
+  font-size: 120%;
+}
+
 .reveal .slides .larger {
   font-size: 150%;
 }
 
-.reveal .slides .end-title{
-  font-family: $presentation-heading-font;
-  font-weight: $presentation-heading-font-weight;
-  text-align: center;
-  color: white;
-  font-size: 175%;
-}
-
-.reveal .slides .end-subtitle{
-  color: white;
-  font-size: 125%;
-  text-align: center;
+.reveal .slides .spaced {
+  p {
+    line-height: 2em;
+  }
 }
 
 .reveal .slides .eqn-box {

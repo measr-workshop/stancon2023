@@ -51,6 +51,8 @@ website:
               file: materials/03-estimation.qmd
             - text: "Evaluating DCMs"
               file: materials/04-evaluation.qmd
+            - text: "Wrap-Up"
+              file: materials/05-closing.qmd
   
   page-footer:
     left: |

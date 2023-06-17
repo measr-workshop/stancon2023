@@ -1,0 +1,820 @@
+---
+title: Evaluating diagnostic </br> classification models
+subtitle: With Stan and measr
+author: W. Jake Thompson, Ph.D.
+format:
+  measr-quarto-revealjs:
+    progress: false
+    title-slide-attributes: 
+      data-background-image: figure/backgrounds/ku-title.png
+      data-background-size: contain
+code-link: true
+preload-iframes: true
+code-annotations: select
+filters:
+  - lua/output-line-highlight.lua
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(ggmeasr)
+library(ggdist)
+library(magick)
+library(distributional)
+library(knitr)
+library(measr)
+library(here)
+library(fs)
+library(downlit)
+library(countdown)
+library(cmdstanr)
+library(posterior)
+
+opts_chunk$set(
+  fig.width = 7,
+  fig.asp = 0.618,
+  fig.align = "center"
+)
+
+set_theme(plot_margin = margin(5, 0, 0, 0))
+
+# copy grid-worms
+if (!dir_exists(here("_site/materials/slides/"))) {
+  dir_create(here("_site/materials/slides/"))
+}
+dir_copy(here("materials", "slides", "grid-worms"),
+         here("_site/materials/slides/grid-worms"), overwrite = TRUE)
+```
+
+## Model evaluation {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* **Absolute fit**: How well does the model represent the observed data?
+  * Model-level
+  * Item-level
+
+* **Relative fit**: How do multiple models compare to each other?
+
+* **Reliability**: How consistent and accurate are the classifications?
+
+# Absolute model fit {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Model-level absolute fit {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Limited information indices based on parameter point estimates
+  * M~2~ statistic ([Liu et al., 2016](https://doi.org/10.3102/1076998615621293))
+  
+* Posterior predictive model checks (PPMCs)
+
+## Calculating limited information indices {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r read-ecpe}
+ecpe <- measr_dcm(
+  data = ecpe_data, qmatrix = ecpe_qmatrix,
+  resp_id = "resp_id", item_id = "item_id",
+  type = "lcdm",
+  method = "mcmc", backend = "cmdstanr",
+  iter_warmup = 1000, iter_sampling = 500,
+  chains = 4, parallel_chains = 4,
+  file = "fits/ecpe-lcdm"
+)
+```
+
+:::{.panel-tabset}
+
+### One-time calculation
+
+`fit_*` functions are used for calculating absolute fit indices.
+
+```{r ecpe-m2}
+#| echo: true
+fit_m2(ecpe)
+```
+
+### Save for future
+
+`add_fit()` will add the fit index to the model object (and resave) to prevent unnecessary calculations in the future.
+
+```{r ecpe-add-m2}
+#| echo: true
+
+ecpe <- add_fit(ecpe, method = "m2")
+measr_extract(ecpe, "m2")
+```
+
+:::
+
+## Exercise 1 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+* Open `evaluation.Rmd` and run the `setup` chunk.
+
+* Calculate the M~2~ statistic for the MDM LCDM model using `add_fit()`.
+
+* Extract the M~2~ statistic. Does the model fit the data?
+
+```{r countdown-1}
+countdown(
+  minutes = 3, 
+  seconds = 0,
+  bottom = "10%",
+  color_border              = "#023047",
+  color_background          = "#023047",
+  color_text                = "#8ECAE6",
+  color_running_background  = "#023047",
+  color_running_text        = "#8ECAE6",
+  color_finished_background = "#D7263D",
+  color_finished_text       = "#FFFFFF"
+)
+```
+
+## {.exercise data-menu-title="Solution 1" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{r read-mdm}
+mdm_lcdm <- measr_dcm(
+  data = mdm_data, qmatrix = mdm_qmatrix,
+  resp_id = "respondent", item_id = "item",
+  type = "lcdm",
+  method = "mcmc", backend = "rstan",
+  warmup = 1000, iter = 1500, chains = 2,
+  file = "fits/mdm-lcdm"
+)
+```
+
+```{r mdm-m2, echo = TRUE}
+mdm_lcdm <- add_fit(mdm_lcdm, method = "m2")
+measr_extract(mdm_lcdm, "m2")
+```
+
+## PPMC: Raw score distribution {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r calc-raw-score, cache = TRUE}
+retain <- 500
+ecpe_preds <- predict(ecpe, summary = FALSE)
+keep_draws <- sample(unique(ecpe_preds$class_probabilities$.draw),
+                     size = retain)
+
+pi <- as_draws_df(ecpe) |> 
+  merge_chains() |> 
+  subset_draws(variable = "pi", draw = keep_draws) |> 
+  as_tibble() |> 
+  pivot_longer(starts_with("pi")) |> 
+  separate_wider_regex(name,
+                       patterns = c("pi\\[", item = "[0-9]*", ",", 
+                                    class = "[0-9]*", "\\]")) |> 
+  select(.draw, item, class, prob = value)
+
+raw_scores <- ecpe_preds$class_probabilities |> 
+  filter(.draw %in% keep_draws) |> 
+  pivot_longer(starts_with("[")) |> 
+  group_by(.draw, resp_id) |> 
+  mutate(class = 1:n()) |> 
+  slice_sample(n = 1, weight_by = value) |> 
+  ungroup() |> 
+  select(.draw, resp_id, class) |> 
+  mutate(.draw = as.integer(factor(.draw)),
+         class = as.character(class)) |> 
+  left_join(pi, join_by(.draw, class),
+            relationship = "many-to-many") |> 
+  mutate(rand = runif(n()),
+         score = as.integer(rand <= prob)) |> 
+  summarize(score = sum(score), .by = c(.draw, resp_id)) |> 
+  count(.draw, score)
+```
+
+:::{.columns}
+
+:::{.column width="30%"}
+* For each iteration, calculate the total number of respondents at each score point
+
+:::{.fragment fragment-index=2}
+
+* Calculate the expected number of respondents at each score point
+
+:::
+
+:::{.fragment fragment-index=3}
+
+* Calculate the <span style="color: #D7263D;">observed</span> number of respondents at each score point
+
+:::
+
+:::
+
+:::{.column width="70%"}
+
+:::{.r-stack}
+
+:::{.fragment fragment-index=1}
+
+```{r score-dist}
+#| out-width: 100%
+#| out-height: 50%
+#| fig-alt: Something...
+
+p <- ggplot() +
+  geom_point(data = raw_scores, aes(x = factor(score), y = n),
+             position = position_jitter(height = 0, seed = 1213),
+             alpha = 0.2, color = palette_measr[4]) +
+  scale_y_comma() +
+  labs(x = "Correct Responses", y = "Respondents")
+
+p
+```
+
+:::
+
+:::{.fragment fragment-index=2}
+
+```{r exp-score}
+#| out-width: 100%
+#| out-height: 50%
+#| fig-alt: Something...
+
+exp_scores <- summarize(raw_scores, n = mean(n), .by = score)
+
+p <- p +
+  geom_point(data = exp_scores, aes(x = factor(score), y = n),
+             color = palette_measr[1], shape = 18, size = 5) +
+  geom_line(data = exp_scores, aes(x = factor(score), y = n),
+            group = 1, color = palette_measr[1])
+
+p
+```
+
+:::
+
+:::{.fragment fragment-index=3}
+
+```{r obs-score}
+#| out-width: 100%
+#| out-height: 50%
+#| fig-alt: Something...
+
+obs_scores <- ecpe_data |> 
+  pivot_longer(-resp_id) |> 
+  summarize(score = sum(value), .by = resp_id) |> 
+  count(score)
+
+p <- p +
+  geom_point(data = obs_scores, aes(x = factor(score), y = n),
+             color = palette_measr[2], shape = 16, size = 5) +
+  geom_line(data = obs_scores, aes(x = factor(score), y = n),
+            color = palette_measr[2], group = 1)
+
+p
+```
+
+:::
+
+:::
+
+:::
+
+:::
+
+## PPMC: $\chi^2$ {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.columns}
+
+:::{.column width="30%"}
+* Calculate a $\chi^2$-like statistic comparing the number of respondents at each score point in each iteration to the expectation
+
+:::{.fragment fragment-index=2}
+
+* Calculate the $\chi^2$ value comparing the <span style="color: #D7263D;">observed</span> data to the expectation
+
+:::
+
+:::
+
+:::{.column width="70%"}
+
+:::{.r-stack}
+
+:::{.fragment fragment-index=1}
+
+```{r chisq-dist}
+#| out-width: 100%
+#| out-height: 50%
+#| fig-alt: Something...
+
+ppmc_chisq <- raw_scores |> 
+  complete(.draw, score, fill = list(n = 0L)) |> 
+  full_join(rename(exp_scores, exp = n), join_by(score)) |> 
+  arrange(.draw, score) |> 
+  mutate(piece = ((n - exp) ^ 2) / exp) |> 
+  summarize(chisq = sum(piece), .by = .draw)
+
+p <- ggplot() +
+  geom_histogram(data = ppmc_chisq, aes(x = chisq),
+                 binwidth = 2, boundary = 0,
+                 fill = palette_measr[1], color = palette_measr[4]) +
+  labs(x = "&chi;<sup>2</sup><sub>rep</sub>", y = "Replications") +
+  theme(axis.title.x = ggtext::element_markdown(family = "sans"))
+
+p
+```
+
+:::
+
+:::{.fragment fragment-index=2}
+
+```{r chisq-obs}
+#| out-width: 100%
+#| out-height: 50%
+#| fig-alt: Something...
+
+obs_chisq <- obs_scores |> 
+  full_join(rename(exp_scores, exp = n), join_by(score)) |> 
+  replace_na(list(n = 0L)) |> 
+  arrange(score) |> 
+  mutate(piece = ((n - exp) ^ 2) / exp) |> 
+  summarize(chisq = sum(piece))
+
+p <- p +
+  geom_vline(xintercept = obs_chisq$chisq,
+             linetype = "dashed", color = palette_measr[2])
+
+p
+```
+
+:::
+
+:::
+
+:::
+
+:::
+
+## PPMC: *ppp* {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Calculate the proportion of iterations where the $\chi^2$-like statistic from replicated data set exceed the observed data statistic
+  * Posterior predictive *p*-value (*ppp*)
+
+## PPMCs with measr {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### One-time calculation
+
+```{r ecpe-raw-score, cache = TRUE}
+#| echo: true
+fit_ppmc(ecpe, model_fit = "raw_score", item_fit = NULL)
+```
+
+### Save for future
+
+```{r ecpe-save-raw-score}
+#| echo: true
+
+ecpe <- add_fit(ecpe, method = "ppmc", model_fit = "raw_score", item_fit = NULL)
+measr_extract(ecpe, "ppmc_raw_score")
+```
+
+:::
+
+## Exercise 2 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+* Calculate the raw score PPMC for the MDM LCDM
+
+* Does the model fit the observed data?
+
+```{r countdown-2}
+countdown(minutes = 4, bottom = "10%")
+```
+
+## {.exercise data-menu-title="Solution 2" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{r mdm-raw-score, echo = TRUE}
+mdm_lcdm <- add_fit(mdm_lcdm, method = "ppmc", item_fit = NULL)
+measr_extract(mdm_lcdm, "ppmc_raw_score")
+```
+
+## Item-level fit {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Diagnose problems with model-level
+
+* Identify particular items that may not be performing as expected
+
+* Identify potential dimensionality issues
+
+## Item-level fit with measr {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Currently support two-measures of item-level fit using PPMCs:
+  * Conditional probability of each class providing a correct response ($\pi$ matrix)
+  * Item pair odds ratios
+
+## Calculating item-level fit {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r ecpe-ppmc-item, echo = TRUE}
+ecpe <- add_fit(ecpe, method = "ppmc",
+                item_fit = c("conditional_prob", "odds_ratio"))
+```
+
+## Extracting item-level fit {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Conditional probabilities
+
+```{r ecpe-cond-prob, echo = TRUE}
+measr_extract(ecpe, "ppmc_conditional_prob")
+```
+
+### Odds ratios
+
+```{r ecpe-odd-ratio, echo = TRUE}
+measr_extract(ecpe, "ppmc_odds_ratio")
+```
+
+:::
+
+## Flagging item-level fit {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Conditional probabilities
+
+```{r ecpe-cond-prob-flags, echo = TRUE}
+measr_extract(ecpe, "ppmc_conditional_prob_flags")
+```
+
+### Odds ratios
+
+```{r ecpe-odd-ratio-flags, echo = TRUE}
+measr_extract(ecpe, "ppmc_odds_ratio_flags")
+```
+
+:::
+
+## Patterns of item-level misfit {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r flag-patterns, echo = TRUE}
+#| class-output: highlight
+#| output-line-numbers: "|4-7"
+
+measr_extract(ecpe, "ppmc_conditional_prob_flags") |> 
+  count(class, name = "flags") |> 
+  left_join(measr_extract(ecpe, "strc_param"), by = join_by(class)) |> 
+  arrange(desc(flags))
+```
+
+## Exercise 3 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+* Calculate PPMCs for the conditional probabilities and odds ratios for the MDM model
+
+* What do the results tell us about the model?
+
+```{r countdown-3}
+countdown(minutes = 5, bottom = "10%")
+```
+
+## {.exercise data-menu-title="Solution 3" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+```{r mdm-item-fit, echo = TRUE}
+mdm_lcdm <- add_fit(mdm_lcdm, method = "ppmc",
+                    item_fit = c("conditional_prob", "odds_ratio"))
+```
+
+</br>
+
+:::{.fragment}
+
+```{r mdm-cond-prob, echo = TRUE}
+measr_extract(mdm_lcdm, "ppmc_conditional_prob_flags")
+```
+
+:::
+
+</br>
+
+:::{.fragment}
+
+```{r mdm-odd-ratio, echo = TRUE}
+measr_extract(mdm_lcdm, "ppmc_odds_ratio_flags")
+```
+
+:::
+
+# Relative model fit {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Model comparisons  {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Doesn't give us information whether or not a model fits the data, only compares competing models to each other
+  * Should be evaluated in conjunction with absolute model fit
+
+* Implemented with the [loo](https://mc-stan.org/loo) package
+  * PSIS-LOO ([Vehtari, 2017](https://doi.org/10.1007/s11222-016-9696-4))
+  * WAIC ([Watanabe, 2010](https://jmlr.org/papers/v11/watanabe10a.html))
+  
+## Relative fit with measr {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r ecpe-rel-fit, echo = TRUE}
+ecpe <- add_criterion(ecpe, criterion = c("loo", "waic"))
+```
+
+</br>
+
+:::{.fragment}
+
+```{r ecpe-loo, echo = TRUE}
+measr_extract(ecpe, "loo")
+```
+
+:::
+
+## Comparing models {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+First, we need another model to compare
+
+```{r ecpe-dina, echo = TRUE}
+#| code-line-numbers: "|4|11"
+
+ecpe_dina <- measr_dcm(
+  data = ecpe_data, qmatrix = ecpe_qmatrix,
+  resp_id = "resp_id", item_id = "item_id",
+  type = "dina",
+  method = "mcmc", backend = "cmdstanr",
+  iter_warmup = 1000, iter_sampling = 500,
+  chains = 4, parallel_chains = 4,
+  file = "fits/ecpe-dina"
+)
+
+ecpe_dina <- add_criterion(ecpe_dina, criterion = "loo")
+```
+
+## `loo_compare()` {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+```{r compare-loo, echo = TRUE}
+loo_compare(ecpe, ecpe_dina, criterion = "loo",
+            model_names = c("lcdm", "dina"))
+```
+
+* LCDM is the preferred model
+  * Preferred does not imply "good"
+  * Remember, the LCDM showed poor absolute fit
+
+* Difference is much larger than the standard error of the difference
+
+## Exercise 4 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+* Estimate a DINA model for the MDM data
+
+* Add PSIS-LOO and WAIC criteria to both the LCDM and DINA models for the MDM data
+
+* Use `loo_compare()` to compare the LCDM and DINA models
+  * What do the findings tell us?
+  * Can you explain the results?
+
+```{r countdown-4}
+countdown(minutes = 5, bottom = "10%")
+```
+
+## {.exercise data-menu-title="Solution 4" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Estimate DINA model
+
+```{r mdm-dina, echo = TRUE}
+mdm_dina <- measr_dcm(
+  data = mdm_data, qmatrix = mdm_qmatrix,
+  resp_id = "respondent", item_id = "item",
+  type = "dina",
+  method = "mcmc", backend = "rstan",
+  warmup = 1000, iter = 1500, chains = 2,
+  file = "fits/mdm-dina"
+)
+```
+
+### Add criterion
+
+```{r mdm-rel-fit, echo = TRUE}
+mdm_lcdm <- add_criterion(mdm_lcdm, criterion = c("loo", "waic"))
+mdm_dina <- add_criterion(mdm_dina, criterion = c("loo", "waic"))
+```
+
+### Compare models
+
+
+```{r mdm-compare-loo, echo = TRUE}
+loo_compare(mdm_lcdm, mdm_dina, criterion = "loo")
+```
+
+</br>
+
+```{r mdm-compare-waic, echo = TRUE}
+loo_compare(mdm_lcdm, mdm_dina, criterion = "waic")
+```
+
+:::
+
+# Reliability {background-image="figure/backgrounds/section.png" background-size="contain"}
+
+## Reliability methods {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+* Reporting reliability depends on how results are estimated and reported
+
+* Reliability for:
+  * Profile-level classification
+  * Attribute-level classification
+  * Attribute-level probability of proficiency
+  
+## Reliability with measr {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### One-time calculation
+
+```{r ecpe-reli, cache = TRUE}
+#| echo: true
+reliability(ecpe)
+```
+
+### Save for future
+
+```{r ecpe-add-reli}
+#| echo: true
+
+ecpe <- add_reliability(ecpe)
+```
+
+:::
+
+## Profile-level classification {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Profile-level probabilities
+
+```{r ecpe-class-prob, echo = TRUE}
+measr_extract(ecpe, "class_prob")
+```
+
+### Profile-level classifications
+
+:::{.columns}
+
+:::{.column width="60%"}
+
+```{r ecpe-class-show, echo = TRUE, eval = FALSE}
+measr_extract(ecpe, "class_prob") |> 
+  pivot_longer(-resp_id,
+               names_to = "profile",
+               values_to = "prob") |> 
+  slice_max(order_by = prob,
+            by = resp_id)
+```
+
+:::
+
+:::{.column width="40%"}
+
+```{r ecpe-class-eval, echo = FALSE, eval = TRUE}
+measr_extract(ecpe, "class_prob") |> 
+  pivot_longer(-resp_id,
+               names_to = "profile",
+               values_to = "prob") |> 
+  slice_max(order_by = prob,
+            by = resp_id)
+```
+
+:::
+
+:::
+
+### Profile reliability
+
+```{r ecpe-class-reli}
+measr_extract(ecpe, "pattern_reliability")
+```
+
+* Estimating classification consistency and accuracy for cognitive diagnostic assessment ([Cui et al., 2012](https://doi.org/10.1111/j.1745-3984.2011.00158.x))
+
+:::
+
+## Attribute-level classification {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Attribute-level probabilities
+
+```{r ecpe-att-prob, echo = TRUE}
+measr_extract(ecpe, "attribute_prob")
+```
+
+### Attribute-level classifications
+
+:::{.columns}
+
+:::{.column width="45%"}
+
+```{r ecpe-att-show, echo = TRUE, eval = FALSE}
+measr_extract(ecpe, "attribute_prob") |> 
+  mutate(
+    across(
+      where(is.double),
+      ~case_when(.x > 0.5 ~ 1L,
+                 TRUE ~ 0L)
+    )
+  )
+```
+
+:::
+
+:::{.column width="55%"}
+
+```{r ecpe-att-eval, echo = FALSE, eval = TRUE}
+measr_extract(ecpe, "attribute_prob") |> 
+  mutate(
+    across(
+      where(is.double),
+      ~case_when(.x > 0.5 ~ 1L,
+                 TRUE ~ 0L)
+    )
+  )
+```
+
+:::
+
+:::
+
+### Classification reliability
+
+```{r ecpe-att-reli}
+measr_extract(ecpe, "classification_reliability")
+```
+
+* Measures of agreement to assess attribute-level classification accuracy and consistency for cognitive diagnostic assessments ([Johnson & Sinharay, 2018](https://doi.org/10.1111/jedm.12196))
+
+:::
+
+## Attribute-level probabilities {background-image="figure/backgrounds/default.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Attribute-level probabilities
+
+```{r ecpe-att-prob-2, echo = TRUE}
+measr_extract(ecpe, "attribute_prob")
+```
+
+### Probability reliability
+
+```{r ecpe-prob-reli}
+measr_extract(ecpe, "probability_reliability")
+```
+
+* The reliability of the posterior probability of skill attainment in diagnostic classification models ([Johnson & Sinharay, 2020](https://doi.org/10.3102/1076998619864550))
+
+:::
+
+## Exercise 5 {.exercise background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+* Add reliability information to the MDM LCDM and DINA models
+
+* Examine the attribute classification indices for both models
+
+```{r countdown-5}
+countdown(minutes = 4, bottom = "10%")
+```
+
+## {.exercise data-menu-title="Solution 5" background-image="figure/backgrounds/exercises.png" background-size="contain"}
+
+:::{.panel-tabset}
+
+### Calculate reliability
+
+```{r mdm-calc-reli, echo = TRUE}
+mdm_lcdm <- add_reliability(mdm_lcdm)
+mdm_dina <- add_reliability(mdm_dina)
+```
+
+### Compare reliability
+
+```{r mdm-lcdm-reli, echo = TRUE}
+measr_extract(mdm_lcdm, "classification_reliability")
+```
+
+</br>
+
+```{r mdm-dina-reli, echo = TRUE}
+measr_extract(mdm_dina, "classification_reliability")
+```
+
+:::
+
+# {.closing data-menu-title="Closing" background-image="figure/backgrounds/plain-title.png" background-size="contain" style="top: 0px;"}
+
+</br>
+
+:::{.end-title color="white" font-size="200%"}
+Evaluating diagnostic classification models
+:::
+
+:::{.end-subtitle}
+With Stan and measr
+:::
+
+:::{.center}
+<https://stancon2023.measr.info>
+:::
