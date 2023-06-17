@@ -208,7 +208,7 @@ raw_scores <- ecpe_preds$class_probabilities |>
 ```{r score-dist}
 #| out-width: 100%
 #| out-height: 50%
-#| fig-alt: Something...
+#| fig-alt: "Scatter plot showing the number of respondents at each score point in each iteration."
 
 p <- ggplot() +
   geom_point(data = raw_scores, aes(x = factor(score), y = n),
@@ -227,7 +227,7 @@ p
 ```{r exp-score}
 #| out-width: 100%
 #| out-height: 50%
-#| fig-alt: Something...
+#| fig-alt: "Scatter plot showing the number of respondents at each score point in each iteration with the average number of respondents overlayed."
 
 exp_scores <- summarize(raw_scores, n = mean(n), .by = score)
 
@@ -247,7 +247,7 @@ p
 ```{r obs-score}
 #| out-width: 100%
 #| out-height: 50%
-#| fig-alt: Something...
+#| fig-alt: "Scatter plot showing the number of respondents at each score point in each iteration with the average and observed number of respondents overlayed."
 
 obs_scores <- ecpe_data |> 
   pivot_longer(-resp_id) |> 
@@ -295,7 +295,7 @@ p
 ```{r chisq-dist}
 #| out-width: 100%
 #| out-height: 50%
-#| fig-alt: Something...
+#| fig-alt: "Histogram of the chi-square values from each iteration."
 
 ppmc_chisq <- raw_scores |> 
   complete(.draw, score, fill = list(n = 0L)) |> 
@@ -321,7 +321,7 @@ p
 ```{r chisq-obs}
 #| out-width: 100%
 #| out-height: 50%
-#| fig-alt: Something...
+#| fig-alt: "Histogram of the chi-square values from each iteration with a dashed vertical line indicating the value from the observed data."
 
 obs_chisq <- obs_scores |> 
   full_join(rename(exp_scores, exp = n), join_by(score)) |> 
