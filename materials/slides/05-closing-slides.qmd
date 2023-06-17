@@ -78,14 +78,10 @@ set_theme(plot_margin = margin(5, 0, 0, 0))
 
 :::{.columns}
 
-:::{.column}
-Please take our post-workshop survey.
+:::{.column .small}
+We value your feedback! To answer a short survey about and provide feedback on the {measr} package, please follow this link to a [Qualtrics survey](https://kusurvey.ca1.qualtrics.com/jfe/form/SV_3jGbhNjrU18Y9Se).
 
-* Anonymous
-
-* Feedback on workshop and measr functionality
-
-Open a [Github issue](https://github.com/wjakethompson/measr/issues).
+ATLAS at the University of Kansas is conducting research to better understand the software development process for {measr}. Individuals who have used the {measr} package and are at least 18 years of age are invited to complete a 5-minute survey on their experiences. For questions, please contact Jake Thompson at wjakethompson@ku.edu.
 :::
 
 :::{.column}
