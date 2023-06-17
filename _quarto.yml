@@ -41,6 +41,7 @@ website:
         - section: "Overview"
           contents: 
             - materials/index.qmd
+            - materials/prework.qmd
         - section: "Workshop Content"
           contents: 
             - text: "Welcome!"

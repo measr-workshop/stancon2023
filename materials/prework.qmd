@@ -1,0 +1,66 @@
+---
+title: Prework
+---
+
+Thank you participating in our workshop, Cognitive Diagnostic Models With R and Stan.
+To prepare for the workshop, please install the following:
+
+* A recent version of R (≥ 4.2.0), which is available for free at <https://cran.r-project.org/>
+* (Recommended) A recent version of RStudio Desktop (≥ 2023.06.0-421), available for free at <https://posit.co/download/rstudio-desktop/>
+* The R packages we will use, which you can install by connecting to the internet, opening RStudio, and running the following code in the console:
+
+```{.r}
+install.packages(c("measr", "fs"), repos = "https://cran.rstudio.com/",
+                 dependencies = TRUE)
+```
+
+## Optional
+
+By default, measr using [rstan](https://mc-stan.org/rstan) as a backend for estimating models.
+However, the version of rstan on CRAN is outdated.
+Therefore, I recommend using an updated version of rstan from the [stan-dev/r-packages](https://github.com/stan-dev/r-packages) repository, or using the [cmdstanr](https://mc-stan.org/cmdstanr) interface to CmdStan.
+
+### Updated rstan
+
+You can download an updated version of rstan by running the following code:
+
+```{.r}
+install.packages(
+  c("StanHeaders", "rstan"),
+  repos = c("https://mc-stan.org/r-packages/", getOption("repos"))
+)
+```
+
+To verify that rstan is installed correctly, run the following code.
+If it works, then things are set up properly!
+For additional help installing rstan, see the [RStan Getting Started](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started) help page.
+
+```{.r}
+example(stan_model, package = "rstan", run.dontrun = TRUE)
+```
+
+
+### cmdstanr
+
+For cmdstanr, I recommend installing the development version directly from Github:
+
+```{.r}
+install.packages("remotes")
+remotes::install_github("stan-dev/cmdstanr")
+```
+
+After installing cmdstanr, you will also need to install CmdStan, which can be by running:
+
+```{.r}
+cmdstanr::install_cmdstan()
+```
+
+To ensure that cmdstanr and CmdStan are installed properly, try running the following code.
+If it works, then you are good to go!
+For help with install cmdstanr, see the [Getting Started with CmdStanR](https://mc-stan.org/cmdstanr/articles/cmdstanr.html) vignette.
+
+```{.r}
+file <- file.path(cmdstan_path(), "examples", "bernoulli", "bernoulli.stan")
+mod <- cmdstan_model(file)
+```
+

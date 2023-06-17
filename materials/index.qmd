@@ -2,4 +2,12 @@
 title: Materials
 ---
 
-Something...
+Each session includes slides and exercises.
+The slides for each session can be accessed using the links in the sidebar.
+You can download the exercises as an R project by running:
+
+```{.r}
+usethis::use_course("measr-workshop/stancon2023-exercises")
+```
+
+To make sure you can run the exercises, following the installation instructions on the [prework](prework.qmd) page.
