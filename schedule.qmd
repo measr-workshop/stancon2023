@@ -5,26 +5,62 @@ toc: false
 page-layout: full
 ---
 
+```{r setup, include = FALSE}
+library(tidyverse)
+library(ggmeasr)
+library(here)
+library(gt)
+library(gtExtras)
+library(glue)
+
+sched <- read_csv(here("data", "schedule.csv"))
+```
+
+
 ::: {.schedule-page}
 
-```{r}
-show_table <- function(group_id) {
-  # Add a heading
-  cat(as.character(paste("\n\n###", schedule_nested$group[[group_id]], "\n\n")))
+Here's your roadmap for the workshop!
+
+- [**Materials**](/materials/) ({{< fa book-open-reader >}}): This page contains the slides for each session.
+
+- [**Exercises**](https://github.com/measr-workshop/stancon2023-exercises) ({{< fa laptop-code >}}): This Github repository contains all of the exercises for each session.
+
+```{r show-table, echo = FALSE, results = "asis"}
+print_sched <- function(group, data) {
+  cat(as.character(paste("\n\n###", group, "\n\n")))
   
-  # Make the table
-  tbl <- schedule_nested$data[[group_id]] %>% 
-    select(-subgroup) %>% 
-    kbl(escape = FALSE, align = "rlccc", table.attr = 'class="schedule-table"') %>% 
-    kable_styling() %>% 
-    column_spec(1, width = "20%", extra_css = "padding-right: 20px;") %>% 
-    column_spec(2, width = "50%") %>% 
-    column_spec(3:5, width = "10%") %>% 
-    pack_rows(index = schedule_nested$subgroup_index[[group_id]],
-              label_row_css = "border-bottom: 2px solid #000000;")
-  
-  cat(tbl)
+  data |> 
+    mutate(time = str_replace(time, ":00$", ""),
+           time_end = str_replace(time_end, ":00$", ""),
+           time_range = paste0(time, "&ndash;", time_end),
+           time_range = map(time_range, html)) |> 
+    select(title, time_range, content, example) |> 
+    mutate(content = ifelse(!is.na(content),
+                            glue('<a href="{content}.qmd"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>'),
+                            glue('<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>')),
+           example = ifelse(!is.na(example),
+                            glue('<a href="{example}"><i class="fa-solid fa-laptop-code fa-lg"></i></a>'),
+                            glue('<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>')),
+           content = map(content, html),
+           example = map(example, html)) |> 
+    mutate(title = case_when(title == "Break" ~ glue("{emoji::emoji('coffee')} Break"),
+                             TRUE ~ title)) |> 
+    gt() |> 
+    gt_merge_stack(title, time_range, small_cap = FALSE,
+                   font_size = c("17px", "13px")) |> 
+    cols_width(title ~ px(400),
+               everything() ~ px(150)) |> 
+    cols_label(content = "materials",
+               example = "exercises") |> 
+    cols_align(align = "left", columns = title) |> 
+    gt_theme_measr() |> 
+    print()
 }
+
+sched |> 
+  select(-deadline, -subgroup) |> 
+  nest(data = -group) |> 
+  pwalk(print_sched)
 ```
 
 :::

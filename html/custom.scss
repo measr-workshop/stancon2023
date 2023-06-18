@@ -185,11 +185,18 @@ i.bi.bi-chevron-right.ms-2:hover {
   display: block;
 }
 
-.schedule-page h3 {
-  text-align: center;
-  margin-top: 3rem;
-  border-bottom: 3px solid $darkblue;
-  padding-bottom: 0.5rem;
+.schedule-page {
+  .gt_table {
+    font-size: 100% !important;
+  }
+  
+  h3 {
+    text-align: center;
+    margin-top: 3rem;
+    border-bottom: 3px solid $darkblue;
+    color: $darkblue;
+    padding-bottom: 0.5rem;
+  }
 }
 
 .download-btn {
