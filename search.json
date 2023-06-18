@@ -788,6 +788,6 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "show_table &lt;- function(group_id) {\n  # Add a heading\n  cat(as.character(paste(\"\\n\\n###\", schedule_nested$group[[group_id]], \"\\n\\n\")))\n  \n  # Make the table\n  tbl &lt;- schedule_nested$data[[group_id]] %&gt;% \n    select(-subgroup) %&gt;% \n    kbl(escape = FALSE, align = \"rlccc\", table.attr = 'class=\"schedule-table\"') %&gt;% \n    kable_styling() %&gt;% \n    column_spec(1, width = \"20%\", extra_css = \"padding-right: 20px;\") %&gt;% \n    column_spec(2, width = \"50%\") %&gt;% \n    column_spec(3:5, width = \"10%\") %&gt;% \n    pack_rows(index = schedule_nested$subgroup_index[[group_id]],\n              label_row_css = \"border-bottom: 2px solid #000000;\")\n  \n  cat(tbl)\n}"
+    "text": "Here’s your roadmap for the workshop!\n\nMaterials (): This page contains the slides for each session.\nExercises (): This Github repository contains all of the exercises for each session.\n\n\nCognitive Diagnostic Models\n\n\n\n\n\n\n\n\n\n\n\n\ntitle\n\n\nmaterials\n\n\nexercises\n\n\n\n\n\n\n\n\nWelcome\n\n\n08:30–08:45\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to diagnostic models\n\n\n08:45–09:30\n\n\n\n\n\n\n\n\n\n\n\n\nEstimating diagnostic models\n\n\n09:30–10:30\n\n\n\n\n\n\n\n\n\n\n\n\n☕ Break\n\n\n10:30–10:45\n\n\n\n\n\n\n\n\n\n\n\n\nEvaluating diagnostic models\n\n\n10:45–11:45\n\n\n\n\n\n\n\n\n\n\n\n\nWrap-up\n\n\n11:45–12:00"
   }
 ]

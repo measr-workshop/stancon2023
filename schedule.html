@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -171,25 +137,577 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <div class="schedule-page">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>show_table <span class="ot">&lt;-</span> <span class="cf">function</span>(group_id) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a heading</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">as.character</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">###"</span>, schedule_nested<span class="sc">$</span>group[[group_id]], <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make the table</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  tbl <span class="ot">&lt;-</span> schedule_nested<span class="sc">$</span>data[[group_id]] <span class="sc">%&gt;%</span> </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>subgroup) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kbl</span>(<span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">align =</span> <span class="st">"rlccc"</span>, <span class="at">table.attr =</span> <span class="st">'class="schedule-table"'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">width =</span> <span class="st">"20%"</span>, <span class="at">extra_css =</span> <span class="st">"padding-right: 20px;"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">width =</span> <span class="st">"50%"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">width =</span> <span class="st">"10%"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pack_rows</span>(<span class="at">index =</span> schedule_nested<span class="sc">$</span>subgroup_index[[group_id]],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_row_css =</span> <span class="st">"border-bottom: 2px solid #000000;"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(tbl)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here’s your roadmap for the workshop!</p>
+<ul>
+<li><p><a href="./materials/"><strong>Materials</strong></a> (<i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i>): This page contains the slides for each session.</p></li>
+<li><p><a href="https://github.com/measr-workshop/stancon2023-exercises"><strong>Exercises</strong></a> (<i class="fa-solid fa-laptop-code" aria-label="laptop-code"></i>): This Github repository contains all of the exercises for each session.</p></li>
+</ul>
+<section id="cognitive-diagnostic-models" class="level3">
+<h3 class="anchored" data-anchor-id="cognitive-diagnostic-models">Cognitive Diagnostic Models</h3>
+<div id="sxucjjguap" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+
+<style>@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#sxucjjguap table {
+  font-family: 'Open Sans', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sxucjjguap thead, #sxucjjguap tbody, #sxucjjguap tfoot, #sxucjjguap tr, #sxucjjguap td, #sxucjjguap th {
+  border-style: none;
+}
+
+#sxucjjguap p {
+  margin: 0;
+  padding: 0;
+}
+
+#sxucjjguap .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sxucjjguap .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sxucjjguap .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sxucjjguap .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-top-color: #FFFFFF;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 80%;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sxucjjguap .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 80%;
+  font-weight: bolder;
+  text-transform: uppercase;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sxucjjguap .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sxucjjguap .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sxucjjguap .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sxucjjguap .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sxucjjguap .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 80%;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sxucjjguap .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 80%;
+  font-weight: bolder;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sxucjjguap .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sxucjjguap .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sxucjjguap .gt_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sxucjjguap .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 80%;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sxucjjguap .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sxucjjguap .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sxucjjguap .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sxucjjguap .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sxucjjguap .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sxucjjguap .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sxucjjguap .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sxucjjguap .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sxucjjguap .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 0px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 0px;
+  border-right-color: #D3D3D3;
+}
+
+#sxucjjguap .gt_sourcenote {
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sxucjjguap .gt_left {
+  text-align: left;
+}
+
+#sxucjjguap .gt_center {
+  text-align: center;
+}
+
+#sxucjjguap .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sxucjjguap .gt_font_normal {
+  font-weight: normal;
+}
+
+#sxucjjguap .gt_font_bold {
+  font-weight: bold;
+}
+
+#sxucjjguap .gt_font_italic {
+  font-style: italic;
+}
+
+#sxucjjguap .gt_super {
+  font-size: 65%;
+}
+
+#sxucjjguap .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sxucjjguap .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sxucjjguap .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sxucjjguap .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sxucjjguap .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sxucjjguap .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sxucjjguap .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width:400px;">
+<col style="width:150px;">
+<col style="width:150px;">
+</colgroup>
+<thead>
+<tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: center; vertical-align: middle; font-weight: bold; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #023047;" scope="col" id="title">
+title
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="text-align: center; vertical-align: middle; font-weight: bold; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #023047;" scope="col" id="materials">
+materials
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="text-align: center; vertical-align: middle; font-weight: bold; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #023047;" scope="col" id="exercises">
+exercises
+</th>
+</tr>
+</thead>
+
+<tbody class="gt_table_body">
+<tr>
+<td headers="title" class="gt_row gt_left" style="background-color: #FFFFFF;">
+<div style="line-height:17px">
+<span style="font-weight:bold;font-variant:normal;color:#000000;font-size:17px">Welcome
+</span></div>
+<div style="line-height:13px">
+<span style="font-weight:bold;color:#BEBEBE;font-size:13px">08:30–08:45</span>
 </div>
+</td>
+<td headers="content" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<a href="./materials/01-intro.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td headers="example" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+</tr>
+<tr>
+<td headers="title" class="gt_row gt_left" style="background-color: #FFFFFF;">
+<div style="line-height:17px">
+<span style="font-weight:bold;font-variant:normal;color:#000000;font-size:17px">Introduction to diagnostic models
+</span></div>
+<div style="line-height:13px">
+<span style="font-weight:bold;color:#BEBEBE;font-size:13px">08:45–09:30</span>
+</div>
+</td>
+<td headers="content" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<a href="./materials/02-dcm-intro.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td headers="example" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+</tr>
+<tr>
+<td headers="title" class="gt_row gt_left" style="background-color: #FFFFFF;">
+<div style="line-height:17px">
+<span style="font-weight:bold;font-variant:normal;color:#000000;font-size:17px">Estimating diagnostic models
+</span></div>
+<div style="line-height:13px">
+<span style="font-weight:bold;color:#BEBEBE;font-size:13px">09:30–10:30</span>
+</div>
+</td>
+<td headers="content" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<a href="./materials/03-estimation.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td headers="example" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<a href="https://github.com/measr-workshop/stancon2023-exercises/blob/main/estimation.Rmd"><i class="fa-solid fa-laptop-code fa-lg"></i></a>
+</td>
+</tr>
+<tr>
+<td headers="title" class="gt_row gt_left" style="background-color: #FFFFFF;">
+<div style="line-height:17px">
+<span style="font-weight:bold;font-variant:normal;color:#000000;font-size:17px">☕ Break
+</span></div>
+<div style="line-height:13px">
+<span style="font-weight:bold;color:#BEBEBE;font-size:13px">10:30–10:45</span>
+</div>
+</td>
+<td headers="content" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>
+</td>
+<td headers="example" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+</tr>
+<tr>
+<td headers="title" class="gt_row gt_left" style="background-color: #FFFFFF;">
+<div style="line-height:17px">
+<span style="font-weight:bold;font-variant:normal;color:#000000;font-size:17px">Evaluating diagnostic models
+</span></div>
+<div style="line-height:13px">
+<span style="font-weight:bold;color:#BEBEBE;font-size:13px">10:45–11:45</span>
+</div>
+</td>
+<td headers="content" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<a href="./materials/04-evaluation.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td headers="example" class="gt_row gt_center" style="background-color: #FFFFFF;">
+<a href="https://github.com/measr-workshop/stancon2023-exercises/blob/main/evaluation.Rmd"><i class="fa-solid fa-laptop-code fa-lg"></i></a>
+</td>
+</tr>
+<tr>
+<td headers="title" class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent; background-color: #FFFFFF;">
+<div style="line-height:17px">
+<span style="font-weight:bold;font-variant:normal;color:#000000;font-size:17px">Wrap-up
+</span></div>
+<div style="line-height:13px">
+<span style="font-weight:bold;color:#BEBEBE;font-size:13px">11:45–12:00</span>
+</div>
+</td>
+<td headers="content" class="gt_row gt_center" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent; background-color: #FFFFFF;">
+<a href="./materials/05-closing.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td headers="example" class="gt_row gt_center" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent; background-color: #FFFFFF;">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</section>
 </div>
 
 
