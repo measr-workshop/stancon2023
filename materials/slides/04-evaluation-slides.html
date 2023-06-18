@@ -8,17 +8,17 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.361">
-
-  <meta name="author" content="W. Jake Thompson, Ph.D.">
-  <title>measr - Evaluating diagnostic  classification models</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+<meta name="author" content="W. Jake Thompson, Ph.D.">
+<title>measr - Evaluating diagnostic  classification models</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -96,12 +96,12 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -298,7 +298,7 @@
   }
 
   </style>
-  <style type="text/css">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -385,8 +385,8 @@
       margin-right: 0; 
     }
   </style>
-  <link href="../../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
-  <script src="../../site_libs/countdown-0.4.0/countdown.js"></script>
+<link href="../../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+<script src="../../site_libs/countdown-0.4.0/countdown.js"></script>
 <meta property="og:title" content="measr - Evaluating diagnostic  classification models">
 <meta property="og:description" content="With Stan and measr">
 <meta property="og:image" content="https://stancon2023.measr.info/files/social-image-measr.png">
@@ -407,8 +407,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="figure/backgrounds/ku-title.png" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">Evaluating diagnostic <br> classification models</h1>
+<section id="title-slide" data-background-image="figure/backgrounds/ku-title.png" data-background-size="contain" class="quarto-title-block center"><h1 class="title">Evaluating diagnostic  classification models</h1>
   <p class="subtitle">With Stan and measr</p>
 
 <div class="quarto-title-authors">
@@ -419,38 +418,33 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 
-</section>
-<section id="model-evaluation" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Model evaluation</h2>
+</section><section id="model-evaluation" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Model evaluation</h2>
 <ul>
-<li><p><strong>Absolute fit</strong>: How well does the model represent the observed data?</p>
+<li>
+<p><strong>Absolute fit</strong>: How well does the model represent the observed data?</p>
 <ul>
 <li>Model-level</li>
 <li>Item-level</li>
-</ul></li>
+</ul>
+</li>
 <li><p><strong>Relative fit</strong>: How do multiple models compare to each other?</p></li>
 <li><p><strong>Reliability</strong>: How consistent and accurate are the classifications?</p></li>
-</ul>
-</section>
-<section>
-<section id="absolute-model-fit" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
-<h1>Absolute model fit</h1>
+</ul></section><section><section id="absolute-model-fit" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain"><h1>Absolute model fit</h1>
 
-</section>
-<section id="model-level-absolute-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Model-level absolute fit</h2>
+</section><section id="model-level-absolute-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Model-level absolute fit</h2>
 <ul>
 <li>Limited information indices based on parameter point estimates
 <ul>
 <li>M<sub>2</sub> statistic (<a href="https://doi.org/10.3102/1076998615621293">Liu et al., 2016</a>)</li>
-</ul></li>
-<li>Posterior predictive model checks (PPMCs)</li>
 </ul>
-</section>
-<section id="calculating-limited-information-indices" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Calculating limited information indices</h2>
+</li>
+<li>Posterior predictive model checks (PPMCs)</li>
+</ul></section><section id="calculating-limited-information-indices" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Calculating limited information indices</h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">One-time calculation</a></li><li><a href="#tabset-1-2">Save for future</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-1-1">One-time calculation</a></li>
+<li><a href="#tabset-1-2">Save for future</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <p><code>fit_*</code> functions are used for calculating absolute fit indices.</p>
@@ -479,9 +473,7 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section>
-<section id="exercise-1" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2>Exercise 1</h2>
+</section><section id="exercise-1" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 1</h2>
 <ul>
 <li><p>Open <code>evaluation.Rmd</code> and run the <code>setup</code> chunk.</p></li>
 <li><p>Calculate the M<sub>2</sub> statistic for the MDM LCDM model using <code>add_fit()</code>.</p></li>
@@ -490,14 +482,14 @@ W. Jake Thompson, Ph.D.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="countdown" id="timer_dd8169cb" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section>
-<section id="section" class="slide level2 exercise" data-menu-title="Solution 1" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2></h2>
+</section><section id="section" class="slide level2 exercise" data-menu-title="Solution 1" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">add_fit</span>(mdm_lcdm, <span class="at">method =</span> <span class="st">"m2"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"m2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -508,9 +500,7 @@ W. Jake Thompson, Ph.D.
 1 0.0306     1 0.861</code></pre>
 </div>
 </div>
-</section>
-<section id="ppmc-raw-score-distribution" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>PPMC: Raw score distribution</h2>
+</section><section id="ppmc-raw-score-distribution" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>PPMC: Raw score distribution</h2>
 <div class="columns">
 <div class="column" style="width:30%;">
 <ul>
@@ -532,8 +522,7 @@ W. Jake Thompson, Ph.D.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="04-evaluation-slides_files/figure-revealjs/score-dist-1.png" style="width:100.0%;height:50.0%" alt="Scatter plot showing the number of respondents at each score point in each iteration."></p>
+<figure><p><img data-src="04-evaluation-slides_files/figure-revealjs/score-dist-1.png" style="width:100.0%;height:50.0%" alt="Scatter plot showing the number of respondents at each score point in each iteration."></p>
 </figure>
 </div>
 </div>
@@ -543,8 +532,7 @@ W. Jake Thompson, Ph.D.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="04-evaluation-slides_files/figure-revealjs/exp-score-1.png" style="width:100.0%;height:50.0%" alt="Scatter plot showing the number of respondents at each score point in each iteration with the average number of respondents overlayed."></p>
+<figure><p><img data-src="04-evaluation-slides_files/figure-revealjs/exp-score-1.png" style="width:100.0%;height:50.0%" alt="Scatter plot showing the number of respondents at each score point in each iteration with the average number of respondents overlayed."></p>
 </figure>
 </div>
 </div>
@@ -554,8 +542,7 @@ W. Jake Thompson, Ph.D.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="04-evaluation-slides_files/figure-revealjs/obs-score-1.png" style="width:100.0%;height:50.0%" alt="Scatter plot showing the number of respondents at each score point in each iteration with the average and observed number of respondents overlayed."></p>
+<figure><p><img data-src="04-evaluation-slides_files/figure-revealjs/obs-score-1.png" style="width:100.0%;height:50.0%" alt="Scatter plot showing the number of respondents at each score point in each iteration with the average and observed number of respondents overlayed."></p>
 </figure>
 </div>
 </div>
@@ -564,9 +551,8 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section>
-<section id="ppmc-chi2" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>PPMC: <span class="math inline">\(\chi^2\)</span></h2>
+</section><section id="ppmc-chi2" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>PPMC: <span class="math inline">\(\chi^2\)</span>
+</h2>
 <div class="columns">
 <div class="column" style="width:30%;">
 <ul>
@@ -583,8 +569,7 @@ W. Jake Thompson, Ph.D.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="04-evaluation-slides_files/figure-revealjs/chisq-dist-1.png" style="width:100.0%;height:50.0%" alt="Histogram of the chi-square values from each iteration."></p>
+<figure><p><img data-src="04-evaluation-slides_files/figure-revealjs/chisq-dist-1.png" style="width:100.0%;height:50.0%" alt="Histogram of the chi-square values from each iteration."></p>
 </figure>
 </div>
 </div>
@@ -594,8 +579,7 @@ W. Jake Thompson, Ph.D.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="04-evaluation-slides_files/figure-revealjs/chisq-obs-1.png" style="width:100.0%;height:50.0%" alt="Histogram of the chi-square values from each iteration with a dashed vertical line indicating the value from the observed data."></p>
+<figure><p><img data-src="04-evaluation-slides_files/figure-revealjs/chisq-obs-1.png" style="width:100.0%;height:50.0%" alt="Histogram of the chi-square values from each iteration with a dashed vertical line indicating the value from the observed data."></p>
 </figure>
 </div>
 </div>
@@ -604,20 +588,20 @@ W. Jake Thompson, Ph.D.
 </div>
 </div>
 </div>
-</section>
-<section id="ppmc-ppp" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>PPMC: <em>ppp</em></h2>
+</section><section id="ppmc-ppp" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>PPMC: <em>ppp</em>
+</h2>
 <ul>
 <li>Calculate the proportion of iterations where the <span class="math inline">\(\chi^2\)</span>-like statistic from replicated data set exceed the observed data statistic
 <ul>
 <li>Posterior predictive <em>p</em>-value (<em>ppp</em>)</li>
-</ul></li>
 </ul>
-</section>
-<section id="ppmcs-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>PPMCs with measr</h2>
+</li>
+</ul></section><section id="ppmcs-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>PPMCs with measr</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">One-time calculation</a></li><li><a href="#tabset-2-2">Save for future</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-2-1">One-time calculation</a></li>
+<li><a href="#tabset-2-2">Save for future</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center" data-hash="04-evaluation-slides_cache/revealjs/ecpe-raw-score_8f483b579bb046a1ef85b4e08ccc8123">
@@ -646,9 +630,7 @@ $model_fit$raw_score
 </div>
 </div>
 </div>
-</section>
-<section id="exercise-2" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2>Exercise 2</h2>
+</section><section id="exercise-2" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 2</h2>
 <ul>
 <li><p>Calculate the raw score PPMC for the MDM LCDM</p></li>
 <li><p>Does the model fit the observed data?</p></li>
@@ -656,14 +638,14 @@ $model_fit$raw_score
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="countdown" id="timer_e21c2ac4" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section>
-<section id="section-1" class="slide level2 exercise" data-menu-title="Solution 2" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2></h2>
+</section><section id="section-1" class="slide level2 exercise" data-menu-title="Solution 2" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">add_fit</span>(mdm_lcdm, <span class="at">method =</span> <span class="st">"ppmc"</span>, <span class="at">item_fit =</span> <span class="cn">NULL</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"ppmc_raw_score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -674,36 +656,30 @@ $model_fit$raw_score
 1      3.36      6.90  0.736    20.3 0.726</code></pre>
 </div>
 </div>
-</section>
-<section id="item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Item-level fit</h2>
+</section><section id="item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Item-level fit</h2>
 <ul>
 <li><p>Diagnose problems with model-level</p></li>
 <li><p>Identify particular items that may not be performing as expected</p></li>
 <li><p>Identify potential dimensionality issues</p></li>
-</ul>
-</section>
-<section id="item-level-fit-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Item-level fit with measr</h2>
+</ul></section><section id="item-level-fit-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Item-level fit with measr</h2>
 <ul>
 <li>Currently support two-measures of item-level fit using PPMCs:
 <ul>
 <li>Conditional probability of each class providing a correct response (<span class="math inline">\(\pi\)</span> matrix)</li>
 <li>Item pair odds ratios</li>
-</ul></li>
 </ul>
-</section>
-<section id="calculating-item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Calculating item-level fit</h2>
+</li>
+</ul></section><section id="calculating-item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Calculating item-level fit</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>ecpe <span class="ot">&lt;-</span> <span class="fu">add_fit</span>(ecpe, <span class="at">method =</span> <span class="st">"ppmc"</span>,</span>
 <span id="cb13-2"><a href="#cb13-2"></a>                <span class="at">item_fit =</span> <span class="fu">c</span>(<span class="st">"conditional_prob"</span>, <span class="st">"odds_ratio"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="extracting-item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Extracting item-level fit</h2>
+</section><section id="extracting-item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Extracting item-level fit</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Conditional probabilities</a></li><li><a href="#tabset-3-2">Odds ratios</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-3-1">Conditional probabilities</a></li>
+<li><a href="#tabset-3-2">Odds ratios</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell" data-layout-align="center">
@@ -749,11 +725,12 @@ $model_fit$raw_score
 </div>
 </div>
 </div>
-</section>
-<section id="flagging-item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Flagging item-level fit</h2>
+</section><section id="flagging-item-level-fit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Flagging item-level fit</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Conditional probabilities</a></li><li><a href="#tabset-4-2">Odds ratios</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-4-1">Conditional probabilities</a></li>
+<li><a href="#tabset-4-2">Odds ratios</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell" data-layout-align="center">
@@ -799,9 +776,7 @@ $model_fit$raw_score
 </div>
 </div>
 </div>
-</section>
-<section id="patterns-of-item-level-misfit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Patterns of item-level misfit</h2>
+</section><section id="patterns-of-item-level-misfit" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Patterns of item-level misfit</h2>
 <div class="cell" data-layout-align="center" data-output-line-numbers="|4-7">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"ppmc_conditional_prob_flags"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">count</span>(class, <span class="at">name =</span> <span class="st">"flags"</span>) <span class="sc">|&gt;</span> </span>
@@ -821,9 +796,7 @@ $model_fit$raw_score
 <span id="cb23-11"><a href="#cb23-11"></a>8 [0,0,0]     2  0.2981 ± 0.0165</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section>
-<section id="exercise-3" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2>Exercise 3</h2>
+</section><section id="exercise-3" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 3</h2>
 <ul>
 <li><p>Calculate PPMCs for the conditional probabilities and odds ratios for the MDM model</p></li>
 <li><p>What do the results tell us about the model?</p></li>
@@ -831,19 +804,19 @@ $model_fit$raw_score
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="countdown" id="timer_70d5f8b9" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section>
-<section id="section-2" class="slide level2 exercise" data-menu-title="Solution 3" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2></h2>
+</section><section id="section-2" class="slide level2 exercise" data-menu-title="Solution 3" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">add_fit</span>(mdm_lcdm, <span class="at">method =</span> <span class="st">"ppmc"</span>,</span>
 <span id="cb24-2"><a href="#cb24-2"></a>                    <span class="at">item_fit =</span> <span class="fu">c</span>(<span class="st">"conditional_prob"</span>, <span class="st">"odds_ratio"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
+<p></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"ppmc_conditional_prob_flags"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -854,7 +827,7 @@ $model_fit$raw_score
 </div>
 </div>
 </div>
-<p><br></p>
+<p></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"ppmc_odds_ratio_flags"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -865,32 +838,26 @@ $model_fit$raw_score
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="relative-model-fit" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
-<h1>Relative model fit</h1>
+</section></section><section><section id="relative-model-fit" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain"><h1>Relative model fit</h1>
 
-</section>
-<section id="model-comparisons" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Model comparisons</h2>
+</section><section id="model-comparisons" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Model comparisons</h2>
 <ul>
 <li>Doesn’t give us information whether or not a model fits the data, only compares competing models to each other
 <ul>
 <li>Should be evaluated in conjunction with absolute model fit</li>
-</ul></li>
+</ul>
+</li>
 <li>Implemented with the <a href="https://mc-stan.org/loo">loo</a> package
 <ul>
 <li>PSIS-LOO (<a href="https://doi.org/10.1007/s11222-016-9696-4">Vehtari, 2017</a>)</li>
 <li>WAIC (<a href="https://jmlr.org/papers/v11/watanabe10a.html">Watanabe, 2010</a>)</li>
-</ul></li>
 </ul>
-</section>
-<section id="relative-fit-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Relative fit with measr</h2>
+</li>
+</ul></section><section id="relative-fit-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Relative fit with measr</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>ecpe <span class="ot">&lt;-</span> <span class="fu">add_criterion</span>(ecpe, <span class="at">criterion =</span> <span class="fu">c</span>(<span class="st">"loo"</span>, <span class="st">"waic"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
+<p></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"loo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -910,9 +877,7 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="comparing-models" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Comparing models</h2>
+</section><section id="comparing-models" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Comparing models</h2>
 <p>First, we need another model to compare</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb32" data-code-line-numbers="|4|11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>ecpe_dina <span class="ot">&lt;-</span> <span class="fu">measr_dcm</span>(</span>
@@ -927,9 +892,7 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 <span id="cb32-10"><a href="#cb32-10"></a></span>
 <span id="cb32-11"><a href="#cb32-11"></a>ecpe_dina <span class="ot">&lt;-</span> <span class="fu">add_criterion</span>(ecpe_dina, <span class="at">criterion =</span> <span class="st">"loo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="loo_compare" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2><code>loo_compare()</code></h2>
+</section><section id="loo_compare" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2><code>loo_compare()</code></h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">loo_compare</span>(ecpe, ecpe_dina, <span class="at">criterion =</span> <span class="st">"loo"</span>,</span>
 <span id="cb33-2"><a href="#cb33-2"></a>            <span class="at">model_names =</span> <span class="fu">c</span>(<span class="st">"lcdm"</span>, <span class="st">"dina"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -944,34 +907,38 @@ dina -808.6      39.3 </code></pre>
 <ul>
 <li>Preferred does not imply “good”</li>
 <li>Remember, the LCDM showed poor absolute fit</li>
-</ul></li>
-<li>Difference is much larger than the standard error of the difference</li>
 </ul>
-</section>
-<section id="exercise-4" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2>Exercise 4</h2>
+</li>
+<li>Difference is much larger than the standard error of the difference</li>
+</ul></section><section id="exercise-4" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 4</h2>
 <ul>
 <li><p>Estimate a DINA model for the MDM data</p></li>
 <li><p>Add PSIS-LOO and WAIC criteria to both the LCDM and DINA models for the MDM data</p></li>
-<li><p>Use <code>loo_compare()</code> to compare the LCDM and DINA models</p>
+<li>
+<p>Use <code>loo_compare()</code> to compare the LCDM and DINA models</p>
 <ul>
 <li>What do the findings tell us?</li>
 <li>Can you explain the results?</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="countdown" id="timer_be355cac" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section>
-<section id="section-3" class="slide level2 exercise" data-menu-title="Solution 4" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2></h2>
+</section><section id="section-3" class="slide level2 exercise" data-menu-title="Solution 4" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Estimate DINA model</a></li><li><a href="#tabset-5-2">Add criterion</a></li><li><a href="#tabset-5-3">Compare models</a></li></ul>
+<ul id="tabset-5" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-5-1">Estimate DINA model</a></li>
+<li><a href="#tabset-5-2">Add criterion</a></li>
+<li><a href="#tabset-5-3">Compare models</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell" data-layout-align="center">
@@ -1000,7 +967,7 @@ mdm_lcdm  0.0       0.0
 mdm_dina -0.2       2.5   </code></pre>
 </div>
 </div>
-<p><br></p>
+<p></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">loo_compare</span>(mdm_lcdm, mdm_dina, <span class="at">criterion =</span> <span class="st">"waic"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1012,28 +979,25 @@ mdm_dina -0.2       2.5   </code></pre>
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="reliability" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain">
-<h1>Reliability</h1>
+</section></section><section><section id="reliability" class="title-slide slide level1 center" data-background-image="figure/backgrounds/section.png" data-background-size="contain"><h1>Reliability</h1>
 
-</section>
-<section id="reliability-methods" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Reliability methods</h2>
+</section><section id="reliability-methods" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Reliability methods</h2>
 <ul>
 <li><p>Reporting reliability depends on how results are estimated and reported</p></li>
-<li><p>Reliability for:</p>
+<li>
+<p>Reliability for:</p>
 <ul>
 <li>Profile-level classification</li>
 <li>Attribute-level classification</li>
 <li>Attribute-level probability of proficiency</li>
-</ul></li>
 </ul>
-</section>
-<section id="reliability-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Reliability with measr</h2>
+</li>
+</ul></section><section id="reliability-with-measr" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Reliability with measr</h2>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">One-time calculation</a></li><li><a href="#tabset-6-2">Save for future</a></li></ul>
+<ul id="tabset-6" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-6-1">One-time calculation</a></li>
+<li><a href="#tabset-6-2">Save for future</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="cell" data-layout-align="center" data-hash="04-evaluation-slides_cache/revealjs/ecpe-reli_db306d24d40ea6f269136379436e86af">
@@ -1079,11 +1043,13 @@ $eap_reliability
 </div>
 </div>
 </div>
-</section>
-<section id="profile-level-classification" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Profile-level classification</h2>
+</section><section id="profile-level-classification" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Profile-level classification</h2>
 <div class="panel-tabset">
-<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Profile-level probabilities</a></li><li><a href="#tabset-7-2">Profile-level classifications</a></li><li><a href="#tabset-7-3">Profile reliability</a></li></ul>
+<ul id="tabset-7" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-7-1">Profile-level probabilities</a></li>
+<li><a href="#tabset-7-2">Profile-level classifications</a></li>
+<li><a href="#tabset-7-3">Profile reliability</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-7-1">
 <div class="cell" data-layout-align="center">
@@ -1155,11 +1121,13 @@ $eap_reliability
 </div>
 </div>
 </div>
-</section>
-<section id="attribute-level-classification" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Attribute-level classification</h2>
+</section><section id="attribute-level-classification" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Attribute-level classification</h2>
 <div class="panel-tabset">
-<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Attribute-level probabilities</a></li><li><a href="#tabset-8-2">Attribute-level classifications</a></li><li><a href="#tabset-8-3">Classification reliability</a></li></ul>
+<ul id="tabset-8" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-8-1">Attribute-level probabilities</a></li>
+<li><a href="#tabset-8-2">Attribute-level classifications</a></li>
+<li><a href="#tabset-8-3">Classification reliability</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-8-1">
 <div class="cell" data-layout-align="center">
@@ -1234,11 +1202,12 @@ $eap_reliability
 </div>
 </div>
 </div>
-</section>
-<section id="attribute-level-probabilities-1" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
-<h2>Attribute-level probabilities</h2>
+</section><section id="attribute-level-probabilities-1" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain"><h2>Attribute-level probabilities</h2>
 <div class="panel-tabset">
-<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">Attribute-level probabilities</a></li><li><a href="#tabset-9-2">Probability reliability</a></li></ul>
+<ul id="tabset-9" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-9-1">Attribute-level probabilities</a></li>
+<li><a href="#tabset-9-2">Probability reliability</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-9-1">
 <div class="cell" data-layout-align="center">
@@ -1278,9 +1247,7 @@ $eap_reliability
 </div>
 </div>
 </div>
-</section>
-<section id="exercise-5" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2>Exercise 5</h2>
+</section><section id="exercise-5" class="slide level2 exercise" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2>Exercise 5</h2>
 <ul>
 <li><p>Add reliability information to the MDM LCDM and DINA models</p></li>
 <li><p>Examine the attribute classification indices for both models</p></li>
@@ -1288,16 +1255,19 @@ $eap_reliability
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="countdown" id="timer_56e847a7" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section>
-<section id="section-4" class="slide level2 exercise" data-menu-title="Solution 5" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain">
-<h2></h2>
+</section><section id="section-4" class="slide level2 exercise" data-menu-title="Solution 5" data-background-image="figure/backgrounds/exercises.png" data-background-size="contain"><h2></h2>
 <div class="panel-tabset">
-<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Calculate reliability</a></li><li><a href="#tabset-10-2">Compare reliability</a></li></ul>
+<ul id="tabset-10" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-10-1">Calculate reliability</a></li>
+<li><a href="#tabset-10-2">Compare reliability</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-10-1">
 <div class="cell" data-layout-align="center">
@@ -1315,7 +1285,7 @@ $eap_reliability
 1 multiplication    0.898       0.819</code></pre>
 </div>
 </div>
-<p><br></p>
+<p></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">measr_extract</span>(mdm_dina, <span class="st">"classification_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1328,10 +1298,8 @@ $eap_reliability
 </div>
 </div>
 </div>
-</section></section>
-<section id="section-5" class="title-slide slide level1 closing center" data-menu-title="Closing" data-background-image="figure/backgrounds/plain-title.png" data-background-size="contain" style="top: 0px;">
-<h1></h1>
-<p><br></p>
+</section></section><section id="section-5" class="title-slide slide level1 closing center" data-menu-title="Closing" data-background-image="figure/backgrounds/plain-title.png" data-background-size="contain" style="top: 0px;"><h1></h1>
+<p></p>
 <div class="end-title" color="white" data-font-size="200%">
 <p>Evaluating diagnostic classification models</p>
 </div>
@@ -1346,26 +1314,10 @@ $eap_reliability
 
 </div>
 </section>
-    </div>
+</div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1556,9 +1508,7 @@ $eap_reliability
           RevealZoom
         ]
       });
-    </script>
-    
-    <script>
+    </script><script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1593,9 +1543,7 @@ $eap_reliability
         }
 
       })();
-    </script>
-
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1894,6 +1842,6 @@ $eap_reliability
       }
     });
     </script>
-    
+
 
 </body></html>
