@@ -684,7 +684,7 @@ measr_extract(ecpe, "class_prob") |>
 
 ### Profile reliability
 
-```{r ecpe-class-reli}
+```{r ecpe-class-reli, echo = TRUE}
 measr_extract(ecpe, "pattern_reliability")
 ```
 
@@ -740,7 +740,7 @@ measr_extract(ecpe, "attribute_prob") |>
 
 ### Classification reliability
 
-```{r ecpe-att-reli}
+```{r ecpe-att-reli, echo = TRUE}
 measr_extract(ecpe, "classification_reliability")
 ```
 
@@ -760,7 +760,7 @@ measr_extract(ecpe, "attribute_prob")
 
 ### Probability reliability
 
-```{r ecpe-prob-reli}
+```{r ecpe-prob-reli, echo = TRUE}
 measr_extract(ecpe, "probability_reliability")
 ```
 
