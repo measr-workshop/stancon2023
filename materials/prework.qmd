@@ -10,7 +10,8 @@ To prepare for the workshop, please install the following:
 * The R packages we will use, which you can install by connecting to the internet, opening RStudio, and running the following code in the console:
 
 ```{.r}
-install.packages(c("measr", "fs"), repos = "https://cran.rstudio.com/",
+install.packages(c("measr", "fs", "usethis"),
+                 repos = "https://cran.rstudio.com/",
                  dependencies = TRUE)
 ```
 

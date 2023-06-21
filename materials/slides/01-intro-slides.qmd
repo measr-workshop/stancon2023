@@ -95,14 +95,16 @@ All materials are available on the workshop website:
 ```{r}
 #| echo: true
 #| eval: false
+install.packages(c("measr", "fs", "usethis"))
+
+
+# Optional
 install.packages(c("rstan", "StanHeaders", "cmdstanr"),
                  repos = c("https://mc-stan.org/r-packages", getOption("repos")))
 
-# check toolchain
+## check toolchain
 cmdstanr::check_cmdstan_toolchain()
 cmdstanr::install_cmdstan(cores = 2)
-
-install.packages("measr")
 ```
 
-For help installing RStan or configuring the toolchain, see the [RStan help pages](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started).
+For help installing RStan, CmdStanR, or configuring the toolchain, see the [prework page](materials/prework.qmd).
