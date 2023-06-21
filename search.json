@@ -102,7 +102,7 @@
     "href": "materials/slides/01-intro-slides.html#copy-and-run",
     "title": "Cognitive diagnostic  models",
     "section": "Copy and run",
-    "text": "Copy and run\n\ninstall.packages(c(\"rstan\", \"StanHeaders\", \"cmdstanr\"),\n                 repos = c(\"https://mc-stan.org/r-packages\", getOption(\"repos\")))\n\n# check toolchain\ncmdstanr::check_cmdstan_toolchain()\ncmdstanr::install_cmdstan(cores = 2)\n\ninstall.packages(\"measr\")\n\nFor help installing RStan or configuring the toolchain, see the RStan help pages."
+    "text": "Copy and run\n\ninstall.packages(c(\"measr\", \"fs\", \"usethis\"))\n\n\n# Optional\ninstall.packages(c(\"rstan\", \"StanHeaders\", \"cmdstanr\"),\n                 repos = c(\"https://mc-stan.org/r-packages\", getOption(\"repos\")))\n\n## check toolchain\ncmdstanr::check_cmdstan_toolchain()\ncmdstanr::install_cmdstan(cores = 2)\n\nFor help installing RStan, CmdStanR, or configuring the toolchain, see the prework page."
   },
   {
     "objectID": "materials/slides/02-dcm-intro-slides.html#section",

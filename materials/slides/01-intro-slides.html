@@ -501,16 +501,18 @@ Assistant Director of Psychometrics<br>
 <section id="copy-and-run" class="slide level2" data-background-image="figure/backgrounds/default.png" data-background-size="contain">
 <h2>Copy and run</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rstan"</span>, <span class="st">"StanHeaders"</span>, <span class="st">"cmdstanr"</span>),</span>
-<span id="cb1-2"><a href="#cb1-2"></a>                 <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">"https://mc-stan.org/r-packages"</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>)))</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"measr"</span>, <span class="st">"fs"</span>, <span class="st">"usethis"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># check toolchain</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>cmdstanr<span class="sc">::</span><span class="fu">check_cmdstan_toolchain</span>()</span>
-<span id="cb1-6"><a href="#cb1-6"></a>cmdstanr<span class="sc">::</span><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Optional</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rstan"</span>, <span class="st">"StanHeaders"</span>, <span class="st">"cmdstanr"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6"></a>                 <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">"https://mc-stan.org/r-packages"</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>)))</span>
 <span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">install.packages</span>(<span class="st">"measr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="do">## check toolchain</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>cmdstanr<span class="sc">::</span><span class="fu">check_cmdstan_toolchain</span>()</span>
+<span id="cb1-10"><a href="#cb1-10"></a>cmdstanr<span class="sc">::</span><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For help installing RStan or configuring the toolchain, see the <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started">RStan help pages</a>.</p>
+<p>For help installing RStan, CmdStanR, or configuring the toolchain, see the <a href="materials/prework.qmd">prework page</a>.</p>
 
 <div class="footer footer-default">
 
