@@ -481,7 +481,7 @@ W. Jake Thompson, Ph.D.
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_dd8169cb" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown" id="timer_b7c7a90a" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
 <div class="countdown-controls">
 <button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
 </div>
@@ -637,7 +637,7 @@ $model_fit$raw_score
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_e21c2ac4" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown" id="timer_82e4daa7" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
 <div class="countdown-controls">
 <button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
 </div>
@@ -803,7 +803,7 @@ $model_fit$raw_score
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_70d5f8b9" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown" id="timer_d3f3a5b9" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
 <div class="countdown-controls">
 <button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
 </div>
@@ -924,7 +924,7 @@ dina -808.6      39.3 </code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_be355cac" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown" id="timer_924057c4" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
 <div class="countdown-controls">
 <button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
 </div>
@@ -1108,6 +1108,7 @@ $eap_reliability
 </div>
 <div id="tabset-7-3">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"pattern_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   accuracy consistency
@@ -1131,7 +1132,7 @@ $eap_reliability
 <div class="tab-content">
 <div id="tabset-8-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"attribute_prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"attribute_prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,922 × 4
    resp_id morphosyntactic cohesive lexical
@@ -1154,14 +1155,14 @@ $eap_reliability
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"attribute_prob"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb51-3"><a href="#cb51-3"></a>    <span class="fu">across</span>(</span>
-<span id="cb51-4"><a href="#cb51-4"></a>      <span class="fu">where</span>(is.double),</span>
-<span id="cb51-5"><a href="#cb51-5"></a>      <span class="sc">~</span><span class="fu">case_when</span>(.x <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">~</span> 1L,</span>
-<span id="cb51-6"><a href="#cb51-6"></a>                 <span class="cn">TRUE</span> <span class="sc">~</span> 0L)</span>
-<span id="cb51-7"><a href="#cb51-7"></a>    )</span>
-<span id="cb51-8"><a href="#cb51-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"attribute_prob"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb52-3"><a href="#cb52-3"></a>    <span class="fu">across</span>(</span>
+<span id="cb52-4"><a href="#cb52-4"></a>      <span class="fu">where</span>(is.double),</span>
+<span id="cb52-5"><a href="#cb52-5"></a>      <span class="sc">~</span><span class="fu">case_when</span>(.x <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">~</span> 1L,</span>
+<span id="cb52-6"><a href="#cb52-6"></a>                 <span class="cn">TRUE</span> <span class="sc">~</span> 0L)</span>
+<span id="cb52-7"><a href="#cb52-7"></a>    )</span>
+<span id="cb52-8"><a href="#cb52-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:55%;">
 <div class="cell" data-layout-align="center">
@@ -1187,6 +1188,7 @@ $eap_reliability
 </div>
 <div id="tabset-8-3">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"classification_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   attribute       accuracy consistency
@@ -1211,7 +1213,7 @@ $eap_reliability
 <div class="tab-content">
 <div id="tabset-9-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"attribute_prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"attribute_prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,922 × 4
    resp_id morphosyntactic cohesive lexical
@@ -1232,6 +1234,7 @@ $eap_reliability
 </div>
 <div id="tabset-9-2">
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">measr_extract</span>(ecpe, <span class="st">"probability_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   attribute       informational
@@ -1254,7 +1257,7 @@ $eap_reliability
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_56e847a7" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
+<div class="countdown" id="timer_ce6788c1" data-update-every="1" tabindex="0" style="right:0;bottom:10%;">
 <div class="countdown-controls">
 <button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
 </div>
@@ -1271,13 +1274,13 @@ $eap_reliability
 <div class="tab-content">
 <div id="tabset-10-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">add_reliability</span>(mdm_lcdm)</span>
-<span id="cb57-2"><a href="#cb57-2"></a>mdm_dina <span class="ot">&lt;-</span> <span class="fu">add_reliability</span>(mdm_dina)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>mdm_lcdm <span class="ot">&lt;-</span> <span class="fu">add_reliability</span>(mdm_lcdm)</span>
+<span id="cb60-2"><a href="#cb60-2"></a>mdm_dina <span class="ot">&lt;-</span> <span class="fu">add_reliability</span>(mdm_dina)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-10-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"classification_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">measr_extract</span>(mdm_lcdm, <span class="st">"classification_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   attribute      accuracy consistency
@@ -1287,7 +1290,7 @@ $eap_reliability
 </div>
 <p></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">measr_extract</span>(mdm_dina, <span class="st">"classification_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">measr_extract</span>(mdm_dina, <span class="st">"classification_reliability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   attribute      accuracy consistency
